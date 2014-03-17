@@ -13,4 +13,6 @@ public class JudgeBotTest {
         assertThat(judgeBot.ask(new Tweet("Salut"))).isNull();
         assertThat(judgeBot.ask(new Tweet("This is not a question."))).isNull();
     }
+
+   
 }

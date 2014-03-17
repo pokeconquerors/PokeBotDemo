@@ -1,7 +1,6 @@
 package fr.univaix.iut.pokebattle.run;
 
 import fr.univaix.iut.pokebattle.bot.JudgeBot;
-import fr.univaix.iut.pokebattle.bot.PokeBot;
 import fr.univaix.iut.pokebattle.tuse.TUSEException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
