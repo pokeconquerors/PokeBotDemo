@@ -7,12 +7,12 @@ import fr.univaix.iut.pokebattle.twitter.Tweet;
  */
 public class JudgeAnswerCell implements SmartCell {
 
-    public String ask(Tweet question) {
-       if (question.getScreenName() != null) {
-        	System.out.println("@" + question.getScreenName() + " Salisalut très cher voisin !");
-        	return "@" + question.getScreenName() + " Salisalut très cher voisin !";
-        }
-        return null;
-    }
+	public String ask(Tweet question) {
 
+		if (question.getScreenName() != null) {
+			System.out.println("@" + question.getScreenName() + " salut");
+			return "@" + question.getScreenName() + " salut B";
+		}
+		return null;
+	}
 }
