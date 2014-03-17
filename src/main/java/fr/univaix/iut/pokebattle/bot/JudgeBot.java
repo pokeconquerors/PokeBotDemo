@@ -3,6 +3,7 @@ package fr.univaix.iut.pokebattle.bot;
 import com.google.common.collect.Lists;
 
 import fr.univaix.iut.pokebattle.smartcell.JudgeAnswerCell;
+import fr.univaix.iut.pokebattle.smartcell.JudgeNbPLostCell;
 import fr.univaix.iut.pokebattle.smartcell.PokemonCriesCell;
 import fr.univaix.iut.pokebattle.smartcell.SmartCell;
 import fr.univaix.iut.pokebattle.twitter.Tweet;
@@ -16,8 +17,9 @@ public class JudgeBot implements Bot {
      * find an answer.
      */
 	 private final SmartCell[] smartCells = new SmartCell[]{
-	            new JudgeAnswerCell()
-	    };
+			    new JudgeNbPLostCell(),
+	            new JudgeAnswerCell() //minimum de condition
+	 };
     /**
      * Ask something to Bot, it will respond to you.
      *
