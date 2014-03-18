@@ -12,10 +12,19 @@ import fr.univaix.iut.pokebattle.smartcell.SmartCell;
 import fr.univaix.iut.pokebattle.twitter.Tweet;
 
 public class JudgeBot implements Bot {
-	private String arene = null;
+	private boolean inFight = false;
+		private String arene = null;
 	private List<String[]> pokemons = new ArrayList<String[]>();
 	private long id;	
 
+	public boolean isInFight() {
+		return inFight;
+	}
+
+	public void setInFight(boolean inFight) {
+		this.inFight = inFight;
+	}
+	
 	public void pushPokemon(String nomPokemon, String nomProprio) {
 		pokemons.add(new String[]{nomPokemon, nomProprio});
 	}
