@@ -17,7 +17,7 @@ public class JudgeValidateFightCell implements SmartCell {
 
 	public String ask(Tweet question) {
 		if (!owner.isInFight()) {
-			if (question.getText().contains("#fight #ok with")
+			if (question.getText().toLowerCase().contains("#fight #ok with")
 					&& question.getScreenName() != null) {
 				System.out.println("@" + question.getScreenName() + " VS "
 						+ getOppenent(question.getText())

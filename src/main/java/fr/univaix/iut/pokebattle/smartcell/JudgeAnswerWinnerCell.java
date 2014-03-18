@@ -22,7 +22,7 @@ public class JudgeAnswerWinnerCell implements SmartCell {
 	
 	public String ask(Tweet question) {
 	
-		if (question.getText().contains("#KO") && question.getScreenName() != null) {
+		if (question.getText().toLowerCase().contains("#ko") && question.getScreenName() != null) {
 			System.out.println("@" + owner.getWinnerPokemon(question.getScreenName()) + " #Win" );
 			return "@" + owner.getWinnerPokemon(question.getScreenName()) + " #Win" ;
 		}
