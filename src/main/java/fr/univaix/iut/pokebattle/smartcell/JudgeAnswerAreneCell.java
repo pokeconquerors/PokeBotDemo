@@ -14,6 +14,10 @@ public class JudgeAnswerAreneCell implements SmartCell {
 			if (arene != null) {
 				arene = " my Gym is " + arene;
 			}
+			else
+			{
+				arene = " no Gym";
+			}
 			System.out.println("@" + question.getScreenName() + arene);
 			return "@" + question.getScreenName() + arene;
 

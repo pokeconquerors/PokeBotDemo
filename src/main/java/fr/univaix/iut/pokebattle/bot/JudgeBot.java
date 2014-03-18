@@ -4,8 +4,6 @@ import fr.univaix.iut.pokebattle.smartcell.JudgeAnswerAreneCell;
 import fr.univaix.iut.pokebattle.smartcell.JudgeAnswerCell;
 
 import fr.univaix.iut.pokebattle.smartcell.JudgeNbPLostCell;
-import fr.univaix.iut.pokebattle.smartcell.PokemonCriesCell;
-
 import fr.univaix.iut.pokebattle.smartcell.SmartCell;
 import fr.univaix.iut.pokebattle.twitter.Tweet;
 

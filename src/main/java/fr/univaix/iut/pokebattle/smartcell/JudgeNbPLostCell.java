@@ -14,7 +14,7 @@ public class JudgeNbPLostCell implements SmartCell {
 
 	public String ask(Tweet question) {
 
-		if (question.getScreenName() != null) {
+		if (question.getText().contains("#attack") && question.getScreenName() != null) {
 			System.out.println(getPokemon(question.getText()) + " -10 pv /cc "
 					+ "@" + question.getScreenName());
 			return getPokemon(question.getText()) + " -10 pv /cc " + "@"
