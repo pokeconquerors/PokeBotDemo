@@ -1,16 +1,22 @@
 package fr.univaix.iut.pokebattle.bot;
 
+import java.util.List;
+
 import fr.univaix.iut.pokebattle.smartcell.JudgeAnswerAreneCell;
 import fr.univaix.iut.pokebattle.smartcell.JudgeAnswerCell;
 import fr.univaix.iut.pokebattle.smartcell.JudgeNbPLostCell;
+import fr.univaix.iut.pokebattle.smartcell.JudgeValidateFightCell;
 import fr.univaix.iut.pokebattle.smartcell.SmartCell;
 import fr.univaix.iut.pokebattle.twitter.Tweet;
 
 public class JudgeBot implements Bot {
-	private JudgeBot instance;
 	private String arene = null;
+	private List<String[]> pokemons;
 	private long id;	
 
+	public void pushPokemon(String nomPokemon, String nomProprio) {
+		pokemons.add(new String[]{nomPokemon, nomProprio});
+	}
 	
 	public JudgeBot() {
 	
@@ -18,10 +24,6 @@ public class JudgeBot implements Bot {
 	
 	public JudgeBot(String arene) {
 		this.arene = arene;
-	}
-
-	public JudgeBot getInstance() {
-		return instance;
 	}
 	
 	@Override
@@ -38,6 +40,7 @@ public class JudgeBot implements Bot {
 	 * List of smartcell the questions go through to find an answer.
 	 */
 	private final SmartCell[] smartCells = new SmartCell[] {
+			new JudgeValidateFightCell(this),
 			new JudgeNbPLostCell(this), new JudgeAnswerAreneCell(this),
 			new JudgeAnswerCell() };
 
