@@ -1,10 +1,10 @@
 package fr.univaix.iut.pokebattle.smartcell;
 
-import static org.fest.assertions.Assertions.assertThat;
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
+import fr.univaix.iut.pokebattle.bot.JudgeBot;
 import fr.univaix.iut.pokebattle.twitter.Tweet;
 
 public class JudgeAnswerCellTest {

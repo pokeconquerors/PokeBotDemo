@@ -1,12 +1,18 @@
 package fr.univaix.iut.pokebattle.smartcell;
 
+import fr.univaix.iut.pokebattle.bot.JudgeBot;
 import fr.univaix.iut.pokebattle.twitter.Tweet;
 
 /**
  * Reply to all.
  */
 public class JudgeNbPLostCell implements SmartCell {
-
+	private JudgeBot owner;
+	
+	public JudgeNbPLostCell (JudgeBot owner) {
+		this.owner = owner;
+	}
+	
 	public String getPokemon(String text) {
 		String[] tab = text.split(" ");
 		return tab[0];

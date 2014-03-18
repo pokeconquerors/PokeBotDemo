@@ -6,7 +6,20 @@ import fr.univaix.iut.pokebattle.twitter.Tweet;
 
 
 public class PokeBot implements Bot {
-    /**
+    
+	private long id;
+
+	@Override
+	public long getId() {
+		return id;
+	}
+
+	@Override
+	public void setId(long id) {
+		this.id = id;
+	}
+	
+	/**
      * List of smartcell the questions go through to
      * find an answer.
      */

@@ -4,15 +4,20 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import fr.univaix.iut.pokebattle.bot.JudgeBot;
 import fr.univaix.iut.pokebattle.twitter.Tweet;
 
 public class JudgeAnswerAreneCellTest {
-	JudgeAnswerAreneCell cell = new JudgeAnswerAreneCell("ViridianGym");
-	
+		
 	@Test
 	public void Test_JudgeAnswerArene_Viridian() {
-		
-		assertEquals("@TwitterTest my Gym is ViridianGym", cell.ask(new Tweet("TwitterTest", "Gym?")));
-		
+		JudgeAnswerAreneCell cell = new JudgeAnswerAreneCell(new JudgeBot("ViridianGym"));
+		assertEquals("@TwitterTest my Gym is ViridianGym", cell.ask(new Tweet("TwitterTest", "Gym?")));		
+	}
+	
+	@Test
+	public void Test_JudgeAnswerArene_No() {
+		JudgeAnswerAreneCell cell = new JudgeAnswerAreneCell(new JudgeBot());
+		assertEquals("@TwitterTest no Gym", cell.ask(new Tweet("TwitterTest", "Gym?")));		
 	}
 }

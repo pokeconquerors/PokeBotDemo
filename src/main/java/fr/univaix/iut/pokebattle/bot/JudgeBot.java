@@ -2,27 +2,43 @@ package fr.univaix.iut.pokebattle.bot;
 
 import fr.univaix.iut.pokebattle.smartcell.JudgeAnswerAreneCell;
 import fr.univaix.iut.pokebattle.smartcell.JudgeAnswerCell;
-
 import fr.univaix.iut.pokebattle.smartcell.JudgeNbPLostCell;
 import fr.univaix.iut.pokebattle.smartcell.SmartCell;
 import fr.univaix.iut.pokebattle.twitter.Tweet;
 
 public class JudgeBot implements Bot {
+	private JudgeBot instance;
 	private String arene = null;
+	private long id;	
 
-	public String getArene() {
-		return arene;
+	
+	public JudgeBot() {
+	
+	}
+	
+	public JudgeBot(String arene) {
+		this.arene = arene;
 	}
 
-	public void setArene(String arene) {
-		this.arene = arene;
+	public JudgeBot getInstance() {
+		return instance;
+	}
+	
+	@Override
+	public long getId() {
+		return id;
+	}
+
+	@Override
+	public void setId(long id) {
+		this.id = id;
 	}
 
 	/**
 	 * List of smartcell the questions go through to find an answer.
 	 */
 	private final SmartCell[] smartCells = new SmartCell[] {
-			new JudgeNbPLostCell(), new JudgeAnswerAreneCell(arene),
+			new JudgeNbPLostCell(this), new JudgeAnswerAreneCell(this),
 			new JudgeAnswerCell() };
 
 	/**
@@ -42,6 +58,15 @@ public class JudgeBot implements Bot {
 			}
 		}
 		return null;
+	}
+	
+
+	public void setArene(String arene) {
+		this.arene = arene;		
+	}
+
+	public String getArene() {
+		return arene;		
 	}
 
 }

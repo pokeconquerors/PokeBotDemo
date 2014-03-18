@@ -43,7 +43,7 @@ public class TwitterUserStreamEasyBuilder {
             LOGGER.info("Ignored status change");
             return;
         }
-
+        this.bot.setId(twitter.getId());
         String response = bot.ask(new Tweet(status.getUser().getScreenName(), status.getText()));
 
         if (response != null) {

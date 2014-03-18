@@ -1,26 +1,23 @@
 package fr.univaix.iut.pokebattle.smartcell;
 
+import fr.univaix.iut.pokebattle.bot.JudgeBot;
 import fr.univaix.iut.pokebattle.twitter.Tweet;
 
 public class JudgeAnswerAreneCell implements SmartCell {
-	private String arene =null;
+	private JudgeBot owner;
 	
-	public JudgeAnswerAreneCell(String arene) {
-		this.arene=arene;
+	public JudgeAnswerAreneCell(JudgeBot owner) {
+		this.owner = owner;
 	}
 
 	public String ask(Tweet question) {
-		if (question.getText().contains("Gym?")) {
-			if (arene != null) {
-				arene = " my Gym is " + arene;
+		if (question.getText().contains("Gym?")) {	
+			if(owner.getArene() != null) {
+				return "@" + question.getScreenName() + " my Gym is " + owner.getArene();
 			}
-			else
-			{
-				arene = " no Gym";
-			}
-			System.out.println("@" + question.getScreenName() + arene);
-			return "@" + question.getScreenName() + arene;
-
+			else {
+				return "@" + question.getScreenName() + " no Gym";
+			}	
 		}
 		return null;
 	}
