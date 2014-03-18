@@ -1,5 +1,6 @@
 package fr.univaix.iut.pokebattle.bot;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import fr.univaix.iut.pokebattle.smartcell.JudgeAnswerAreneCell;
@@ -11,7 +12,7 @@ import fr.univaix.iut.pokebattle.twitter.Tweet;
 
 public class JudgeBot implements Bot {
 	private String arene = null;
-	private List<String[]> pokemons;
+	private List<String[]> pokemons = new ArrayList<String[]>();
 	private long id;	
 
 	public void pushPokemon(String nomPokemon, String nomProprio) {
@@ -20,6 +21,15 @@ public class JudgeBot implements Bot {
 	
 	public JudgeBot() {
 	
+	}
+	
+	public String getWinnerPokemon(String Perdant) {
+		for (String[] tmpPokemons : pokemons) {
+			if(!tmpPokemons[0].equals(Perdant)) {
+				return tmpPokemons[0];
+			}
+		}
+		return null;
 	}
 	
 	public JudgeBot(String arene) {
