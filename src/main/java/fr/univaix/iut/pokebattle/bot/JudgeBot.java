@@ -5,6 +5,7 @@ import java.util.List;
 
 import fr.univaix.iut.pokebattle.smartcell.JudgeAnswerAreneCell;
 import fr.univaix.iut.pokebattle.smartcell.JudgeAnswerCell;
+import fr.univaix.iut.pokebattle.smartcell.JudgeHireCell;
 import fr.univaix.iut.pokebattle.smartcell.JudgeNbPLostCell;
 import fr.univaix.iut.pokebattle.smartcell.JudgeValidateFightCell;
 import fr.univaix.iut.pokebattle.smartcell.SmartCell;
@@ -50,8 +51,10 @@ public class JudgeBot implements Bot {
 	 * List of smartcell the questions go through to find an answer.
 	 */
 	private final SmartCell[] smartCells = new SmartCell[] {
+			new JudgeHireCell(this),
 			new JudgeValidateFightCell(this),
-			new JudgeNbPLostCell(this), new JudgeAnswerAreneCell(this),
+			new JudgeNbPLostCell(this), 
+			new JudgeAnswerAreneCell(this),
 			new JudgeAnswerCell() };
 
 	/**
