@@ -13,6 +13,6 @@ public class JudgeAnswerCellTest {
 	
 	@Test
 	public void testAsk_Epeditor() {
-        assertEquals("@Boulet Salisalut très cher voisin !", cell.ask(new Tweet("Boulet","@PokeConquerors Salut")));
+        assertEquals("@Boulet Salisalut très cher voisin !", cell.ask(new Tweet("Boulet","@PokeConquerors Salut!")));
 	}
 }

@@ -10,11 +10,11 @@ public class JudgeNbPLostCellTest {
 	
 	@Test
 	public void test_NbPLost_NomPokemon() {
-		assertEquals("@NomPokemon -10 pv /cc @TwitterTest", cell.ask(new Tweet("TwitterTest", "@NomPokemon /cc @TwitterTest")));
+		assertEquals("@NomPokemon -10 pv /cc @TwitterTest", cell.ask(new Tweet("TwitterTest", "@NomPokemon #attack /cc @TwitterTest")));
 	}
 	
 	@Test
 	public void test_NbPLost_Carapuce() {
-		assertEquals("@Carapuce -10 pv /cc @TwitterTest", cell.ask(new Tweet("TwitterTest", "@Carapuce /cc @TwitterTest")));
+		assertEquals("@Carapuce -10 pv /cc @TwitterTest", cell.ask(new Tweet("TwitterTest", "@Carapuce #attack /cc @TwitterTest")));
 	}
 }
