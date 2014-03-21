@@ -24,7 +24,7 @@ public class JudgeAnswerWinnerCell implements SmartCell {
 	
 		if (question.getText().toLowerCase().contains("#ko") && question.getScreenName() != null) {
 			System.out.println("@" + owner.getWinnerPokemon(question.getScreenName()) + " #Win" );
-			return "@" + owner.getWinnerPokemon(question.getScreenName()) + " #Win" ;
+			return "@" + owner.getWinnerPokemon(question.getScreenName()) + " #Win";
 		}
 		return null;
 	}
