@@ -22,12 +22,14 @@ public class JudgeValidateFightCell implements SmartCell {
 				System.out.println("@" + question.getScreenName() + " VS "
 						+ getOppenent(question.getText())
 						+ " => OK ! Let's ready for the next battle !");
+				owner.setInFight(true);
 				return "@" + question.getScreenName() + " VS "
 						+ getOppenent(question.getText())
 						+ " => OK ! Let's ready for the next battle !";
 			}
 			return null;
 		}
-		return null;
+		System.out.println("Je suis déjà en combat, veuillez me contacter plus tard jeune dresseur bipéde, cordialement");
+		return "Je suis déjà en combat, veuillez me contacter plus tard jeune dresseur bipéde, cordialement";
 	}
 }
