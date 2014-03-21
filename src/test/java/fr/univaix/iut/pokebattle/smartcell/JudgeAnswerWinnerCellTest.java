@@ -18,16 +18,6 @@ public class JudgeAnswerWinnerCellTest {
 		assertThat(judge.ask(new Tweet("Salut !"))).isNull();
 	}
 	
-	/*@Test
-	public void testWinner() {
-		
-		judge.pushPokemon("Carapuce", "twitterTest1");
-		judge.pushPokemon("Bulbizard", "twitterTest2");
-		
-		assertEquals("@Bulbizard #Win", cell.ask(new Tweet("Carapuce", "#KO /cc @twitterJudge @nedseb @pcreux")));
-		
-	}*/
-	
 	@Test
 	public void testWinner1() {
 		
