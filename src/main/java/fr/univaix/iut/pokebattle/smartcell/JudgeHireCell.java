@@ -1,5 +1,6 @@
 package fr.univaix.iut.pokebattle.smartcell;
 
+import twitter4j.TwitterException;
 import fr.univaix.iut.pokebattle.bot.JudgeBot;
 import fr.univaix.iut.pokebattle.twitter.Tweet;
 
@@ -15,6 +16,12 @@ public class JudgeHireCell implements SmartCell {
 		if (question.getText().toLowerCase().contains("hire")) {
 			if (owner.getArene() == null || owner.getArene() == "no Gym") {
 				owner.setArene("@" + question.getScreenName());
+				try {
+					owner.update();
+				} catch (TwitterException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				return "@" + question.getScreenName() + " my gym is " + "@"
 						+ question.getScreenName();
 			} else {
