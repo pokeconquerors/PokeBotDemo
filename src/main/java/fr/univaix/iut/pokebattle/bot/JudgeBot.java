@@ -3,6 +3,8 @@ package fr.univaix.iut.pokebattle.bot;
 import java.util.ArrayList;
 import java.util.List;
 
+import twitter4j.Twitter;
+import twitter4j.TwitterException;
 import fr.univaix.iut.pokebattle.smartcell.JudgeAnswerAreneCell;
 import fr.univaix.iut.pokebattle.smartcell.JudgeAnswerCell;
 import fr.univaix.iut.pokebattle.smartcell.JudgeHireCell;
@@ -13,9 +15,18 @@ import fr.univaix.iut.pokebattle.twitter.Tweet;
 
 public class JudgeBot implements Bot {
 	private boolean inFight = false;
-		private String arene = null;
+	private String arene = null;
 	private List<String[]> pokemons = new ArrayList<String[]>();
-	private long id;	
+	private long id;
+	private Twitter twitter;
+
+	public Twitter getTwitter() {
+		return twitter;
+	}
+
+	public void setTwitter(Twitter twitter) {
+		this.twitter = twitter;
+	}
 
 	public boolean isInFight() {
 		return inFight;
@@ -24,28 +35,28 @@ public class JudgeBot implements Bot {
 	public void setInFight(boolean inFight) {
 		this.inFight = inFight;
 	}
-	
+
 	public void pushPokemon(String nomPokemon, String nomProprio) {
-		pokemons.add(new String[]{nomPokemon, nomProprio});
+		pokemons.add(new String[] { nomPokemon, nomProprio });
 	}
-	
+
 	public JudgeBot() {
-	
+
 	}
-	
+
 	public String getWinnerPokemon(String Perdant) {
 		for (String[] tmpPokemons : pokemons) {
-			if(!tmpPokemons[0].equals(Perdant)) {
+			if (!tmpPokemons[0].equals(Perdant)) {
 				return tmpPokemons[0];
 			}
 		}
 		return null;
 	}
-	
+
 	public JudgeBot(String arene) {
 		this.arene = arene;
 	}
-	
+
 	@Override
 	public long getId() {
 		return id;
@@ -60,10 +71,8 @@ public class JudgeBot implements Bot {
 	 * List of smartcell the questions go through to find an answer.
 	 */
 	private final SmartCell[] smartCells = new SmartCell[] {
-			new JudgeHireCell(this),
-			new JudgeValidateFightCell(this),
-			new JudgeNbPLostCell(this), 
-			new JudgeAnswerAreneCell(this),
+			new JudgeHireCell(this), new JudgeValidateFightCell(this),
+			new JudgeNbPLostCell(this), new JudgeAnswerAreneCell(this),
 			new JudgeAnswerCell() };
 
 	/**
@@ -84,14 +93,15 @@ public class JudgeBot implements Bot {
 		}
 		return null;
 	}
-	
 
-	public void setArene(String arene) {
-		this.arene = arene;		
+	public void setArene(String arene){
+		this.arene = arene;
 	}
 
-	public String getArene() {
+	public String getArene(){
 		return arene;		
 	}
-
+	public void update() throws TwitterException {
+		twitter.updateProfile("Pokejuge", "", "","gym : " + getArene());
+	}
 }
