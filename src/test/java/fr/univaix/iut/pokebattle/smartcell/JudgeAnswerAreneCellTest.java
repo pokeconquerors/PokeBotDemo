@@ -5,8 +5,13 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import twitter4j.Twitter;
+import twitter4j.TwitterFactory;
+import twitter4j.conf.ConfigurationBuilder;
 import fr.univaix.iut.pokebattle.bot.JudgeBot;
+import fr.univaix.iut.pokebattle.tuse.Credentials;
 import fr.univaix.iut.pokebattle.twitter.Tweet;
+import fr.univaix.iut.pokebattle.twitter.TwitterBuilder;
 
 public class JudgeAnswerAreneCellTest {
 		
@@ -18,8 +23,13 @@ public class JudgeAnswerAreneCellTest {
 	
 	@Test
 	public void Test_JudgeAnswerArene_No() {
-		JudgeAnswerAreneCell cell = new JudgeAnswerAreneCell(new JudgeBot());
+		TwitterFactory factory = new TwitterFactory();
+		Twitter twitter = factory.getInstance();
+		JudgeBot  juge = new JudgeBot();
+		juge.setTwitter(twitter);
+		JudgeAnswerAreneCell cell = new JudgeAnswerAreneCell(juge);
 		assertEquals("@TwitterTest no Gym", cell.ask(new Tweet("TwitterTest", "@PokeConquerors Gym?")));		
+		
 	}
 	
 	@Test

@@ -2,14 +2,25 @@ package fr.univaix.iut.pokebattle.bot;
 
 import fr.univaix.iut.pokebattle.twitter.Tweet;
 
+import org.junit.BeforeClass;
 import org.junit.Test;
 
+import twitter4j.Twitter;
+import twitter4j.TwitterFactory;
 import static org.fest.assertions.Assertions.assertThat;
 import static org.junit.Assert.assertEquals;
 
 public class JudgeBotTest {
     JudgeBot judgeBot = new JudgeBot();
-
+	private static JudgeBot judge = null;
+	
+	@BeforeClass
+	public static void setUp () {
+		TwitterFactory factory = new TwitterFactory();
+		Twitter twitter = factory.getInstance();
+		judge = new JudgeBot();
+		judge.setTwitter(twitter);
+	}
     @Test
     public void testAsk() throws Exception {
         assertThat(judgeBot.ask(new Tweet("@PokeConquerors Salut"))).isNull();
@@ -32,7 +43,8 @@ public class JudgeBotTest {
 
     @Test
     public void testTweetHadOwnerHaveAnswer_Gym() {
-    	assertThat(judgeBot.ask(new Tweet("TwitterTest","@PokeConquerors Gym?"))).isNotNull();
+
+    	assertThat(judge.ask(new Tweet("TwitterTest","@PokeConquerors Gym?"))).isNotNull();
     }
     
     @Test
@@ -42,7 +54,8 @@ public class JudgeBotTest {
     
     @Test
     public void testMultiple_Salut_Gym() {
-    	assertEquals("@TwitterTest no Gym", judgeBot.ask(new Tweet("TwitterTest","@PokeConquerors Salut! Gym?")));
+    	judge.setArene(null);
+    	assertEquals("@TwitterTest no Gym", judge.ask(new Tweet("TwitterTest","@PokeConquerors Salut! Gym?")));
     }
     
     @Test
