@@ -20,6 +20,7 @@ public class JudgeBot implements Bot {
 	private long id;
 	private Twitter twitter;
 
+	
 	public Twitter getTwitter() {
 		return twitter;
 	}
@@ -36,21 +37,46 @@ public class JudgeBot implements Bot {
 		this.inFight = inFight;
 	}
 
-	public void pushPokemon(String nomPokemon, String nomProprio) {
-		pokemons.add(new String[] { nomPokemon, nomProprio });
+	public void pushPokemon(String nomPokemon, String nomProprio, String level, String xp) {
+		pokemons.add(new String[] { nomPokemon, nomProprio, level, xp });
 	}
-
-	public JudgeBot() {
-
-	}
-
-	public String getWinnerPokemon(String Perdant) {
+	
+	public String getWinnerPokemon(String pokemonPerdant) {
 		for (String[] tmpPokemons : pokemons) {
-			if (!tmpPokemons[0].equals(Perdant)) {
+			if (!tmpPokemons[0].equals(pokemonPerdant)) {
 				return tmpPokemons[0];
 			}
 		}
 		return null;
+	}
+	
+	public String getElementInList(String pokemon, int indice) {
+		for (String[] tmpPokemons : pokemons) {
+			if (tmpPokemons[0].equals(pokemon)) {
+				return tmpPokemons[indice];
+			}
+		}
+		return null;
+	}
+
+	public String getPokemon(String pokemon) {
+		return getElementInList(pokemon, 0);
+	}
+	
+	public String getProprietaire(String pokemon) {
+		return getElementInList(pokemon, 1);
+	}
+	
+	public String getLevel(String pokemon) {
+		return getElementInList(pokemon, 2);
+	}
+	
+	public String getXP(String pokemon) {
+		return getElementInList(pokemon, 3);
+	}
+
+	public JudgeBot() {
+
 	}
 
 	public JudgeBot(String arene) {
