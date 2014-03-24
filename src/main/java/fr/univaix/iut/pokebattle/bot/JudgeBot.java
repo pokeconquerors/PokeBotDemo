@@ -7,6 +7,7 @@ import twitter4j.Twitter;
 import twitter4j.TwitterException;
 import fr.univaix.iut.pokebattle.smartcell.JudgeAnswerAreneCell;
 import fr.univaix.iut.pokebattle.smartcell.JudgeAnswerCell;
+import fr.univaix.iut.pokebattle.smartcell.JudgeAnswerWinnerCell;
 import fr.univaix.iut.pokebattle.smartcell.JudgeHireCell;
 import fr.univaix.iut.pokebattle.smartcell.JudgeNbPLostCell;
 import fr.univaix.iut.pokebattle.smartcell.JudgeValidateFightCell;
@@ -97,6 +98,7 @@ public class JudgeBot implements Bot {
 	 * List of smartcell the questions go through to find an answer.
 	 */
 	private final SmartCell[] smartCells = new SmartCell[] {
+			new JudgeAnswerWinnerCell(this),
 			new JudgeHireCell(this), new JudgeValidateFightCell(this),
 			new JudgeNbPLostCell(this), new JudgeAnswerAreneCell(this),
 			new JudgeAnswerCell() };
