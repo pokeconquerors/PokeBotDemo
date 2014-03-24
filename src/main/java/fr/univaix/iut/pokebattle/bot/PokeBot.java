@@ -1,6 +1,5 @@
 package fr.univaix.iut.pokebattle.bot;
 
-import twitter4j.Twitter;
 import fr.univaix.iut.pokebattle.smartcell.PokemonCriesCell;
 import fr.univaix.iut.pokebattle.smartcell.SmartCell;
 import fr.univaix.iut.pokebattle.twitter.Tweet;
@@ -44,17 +43,5 @@ public class PokeBot implements Bot {
         }
         return null;
     }
-
-	@Override
-	public void setTwitter(Twitter twitter) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public Twitter getTwitter() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 }
