@@ -7,11 +7,8 @@ import org.junit.Test;
 
 import twitter4j.Twitter;
 import twitter4j.TwitterFactory;
-import twitter4j.conf.ConfigurationBuilder;
 import fr.univaix.iut.pokebattle.bot.JudgeBot;
-import fr.univaix.iut.pokebattle.tuse.Credentials;
 import fr.univaix.iut.pokebattle.twitter.Tweet;
-import fr.univaix.iut.pokebattle.twitter.TwitterBuilder;
 
 public class JudgeAnswerAreneCellTest {
 		
