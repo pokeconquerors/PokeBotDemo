@@ -1,12 +1,15 @@
 package fr.univaix.iut.pokebattle.bot;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+
 
 import twitter4j.Twitter;
 import twitter4j.TwitterException;
 import fr.univaix.iut.pokebattle.smartcell.JudgeAnswerAreneCell;
 import fr.univaix.iut.pokebattle.smartcell.JudgeAnswerCell;
+import fr.univaix.iut.pokebattle.smartcell.JudgeAnswerNbFightCell;
 import fr.univaix.iut.pokebattle.smartcell.JudgeAnswerWinnerCell;
 import fr.univaix.iut.pokebattle.smartcell.JudgeHireCell;
 import fr.univaix.iut.pokebattle.smartcell.JudgeNbPLostCell;
@@ -20,8 +23,8 @@ public class JudgeBot implements Bot {
 	private List<String[]> pokemons = new ArrayList<String[]>();
 	private long id;
 	private Twitter twitter;
-
-	
+	private List<Date> date5fight = new ArrayList<>();
+	private int uneHeure = 3600000;
 	public Twitter getTwitter() {
 		return twitter;
 	}
@@ -98,7 +101,7 @@ public class JudgeBot implements Bot {
 	 * List of smartcell the questions go through to find an answer.
 	 */
 	private final SmartCell[] smartCells = new SmartCell[] {
-			new JudgeAnswerWinnerCell(this),
+			new JudgeAnswerWinnerCell(this),new JudgeAnswerNbFightCell(this),
 			new JudgeHireCell(this), new JudgeValidateFightCell(this),
 			new JudgeNbPLostCell(this), new JudgeAnswerAreneCell(this),
 			new JudgeAnswerCell() };
@@ -131,5 +134,35 @@ public class JudgeBot implements Bot {
 	}
 	public void update() throws TwitterException {
 		twitter.updateProfile("Pokejuge", "", "","gym : " + getArene());
+	}
+	public boolean hasAlreadyDone5Fights() {
+		if (date5fight == null)return false;
+		if(date5fight.size() == 5)return true;
+		return false;
+	}
+	public boolean isMoreThanAnHour(Date date1,Date date2){
+		System.out.println(date2);
+		if(date1.getTime() > date2.getTime() + uneHeure){
+			return true;
+		}
+		return false;
+	}
+	public void updateDateList(Date datetweet){
+		for(int i = 0; i<date5fight.size(); i++){
+			if(isMoreThanAnHour(datetweet,date5fight.get(i))){
+				date5fight.remove(0);
+			}
+		}
+	}
+
+	public List<Date> getDate5fight() {
+		return date5fight;
+	}
+
+	public void setDate5fight(List<Date> l) {
+		this.date5fight = l;
+	}
+	public void addDate5fight(Date d){
+		date5fight.add(d);
 	}
 }

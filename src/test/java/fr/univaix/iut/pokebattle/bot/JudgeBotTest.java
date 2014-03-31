@@ -1,5 +1,9 @@
 package fr.univaix.iut.pokebattle.bot;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.Date;
+
 import fr.univaix.iut.pokebattle.twitter.Tweet;
 
 import org.junit.BeforeClass;
@@ -61,5 +65,9 @@ public class JudgeBotTest {
     @Test
     public void testMultiple_Gym_Salut() {
     	assertEquals("@TwitterTest Salisalut très cher voisin !", judgeBot.ask(new Tweet("TwitterTest","@Gym? Salut!")));
-    }   
+    }
+    @Test
+    public void testisoneHourBetween(){
+    	assertThat(judge.isMoreThanAnHour(new Date(3600002), new Date(1))).isTrue();
+    }
 }
