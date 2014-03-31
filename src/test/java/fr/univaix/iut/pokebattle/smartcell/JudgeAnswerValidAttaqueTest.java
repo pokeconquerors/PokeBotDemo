@@ -1,0 +1,36 @@
+package fr.univaix.iut.pokebattle.smartcell;
+
+import static org.junit.Assert.*;
+import fr.univaix.iut.pokebattle.bot.JudgeBot;
+import fr.univaix.iut.pokebattle.smartcell.JudgeAnswerValidAttaque;
+import fr.univaix.iut.pokebattle.twitter.Tweet;
+
+import org.junit.Test;
+
+import static org.fest.assertions.Assertions.assertThat;
+
+public class JudgeAnswerValidAttaqueTest {
+	JudgeBot judge = new JudgeBot();
+	JudgeAnswerValidAttaque cell = new JudgeAnswerValidAttaque(judge);
+	
+	@Test
+	public void test_NoOwner() {
+		assertThat(cell.ask(new Tweet("Salut !"))).isNull();
+	}
+		
+	@Test
+	public void test_PokemonOK() {
+		judge.pushPokemon("Carapuce", "twitterTest1", "1", "70");
+		judge.pushPokemon("Bulbizarre", "twitterTest2", "1", "70");
+		assertEquals("@Bulbizarre -10pv /cc @twitterTest1", cell.ask(new Tweet("twitterTest1", "@Carapuce #attack #charge @Bulbizarre /cc @twitterTest1 @pokeconquerors")));
+	}
+	
+	@Test
+	public void test_attaque() {
+		assertEquals("#charge", cell.getElementInArray("@NomPokemon #attack #charge @NomAdversaire /cc @TwitterTest @Judge", 2));
+		
+	}
+
+}
+
+

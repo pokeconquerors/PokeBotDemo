@@ -24,7 +24,7 @@ public class JudgeAnswerWinnerCell implements SmartCell {
 
 	public String ask(Tweet question) {
 
-		String WinnerPokemon = owner.getWinnerPokemon(question.getScreenName());
+		String WinnerPokemon = owner.getOtherPokemon(question.getScreenName());
 
 		if (question.getText().toLowerCase().contains("#ko")
 				&& question.getScreenName() != null && owner.isInFight()) {

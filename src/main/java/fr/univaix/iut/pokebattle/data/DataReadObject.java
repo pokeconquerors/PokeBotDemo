@@ -51,13 +51,14 @@ public class DataReadObject {
 	}
 	
 	private void ChargerJson() {
+		
 		Gson gson = new Gson();
 
         BufferedReader lecteur = new BufferedReader(
                               new InputStreamReader(DataReadObject.class.getClassLoader().getResourceAsStream(pokedexFile)));
         //convert the json string back to object
         setPokemons(gson.fromJson(lecteur, DataObjectPokemon[].class));
-	}
+    }
 	
 	public DataObjectAttack[] getAttaques(String nomPokemon) {
 		for (DataObjectPokemon pokemon : pokemons) {
@@ -77,6 +78,26 @@ public class DataReadObject {
 				return attaque;
 		}
 		return null;
+	}
+	
+	public String getAttaqueNom(DataObjectAttack attaque) {
+		return attaque.nom;
+	}
+	
+	public String getAttaqueNiveau(DataObjectAttack attaque) {
+		return attaque.niveau;
+	}
+	
+	public String getAttaquePuissance(DataObjectAttack attaque) {
+		return attaque.puissance;
+	}
+	
+	public String getAttaquePrecision(DataObjectAttack attaque) {
+		return attaque.precision;
+	}
+	
+	public String getAttaquePP(DataObjectAttack attaque) {
+		return attaque.pp;
 	}
 }
 

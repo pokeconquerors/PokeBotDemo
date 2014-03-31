@@ -12,7 +12,7 @@ import fr.univaix.iut.pokebattle.smartcell.JudgeAnswerCell;
 import fr.univaix.iut.pokebattle.smartcell.JudgeAnswerNbFightCell;
 import fr.univaix.iut.pokebattle.smartcell.JudgeAnswerWinnerCell;
 import fr.univaix.iut.pokebattle.smartcell.JudgeHireCell;
-import fr.univaix.iut.pokebattle.smartcell.JudgeNbPLostCell;
+import fr.univaix.iut.pokebattle.smartcell.JudgeAnswerValidAttaque;
 import fr.univaix.iut.pokebattle.smartcell.JudgeValidateFightCell;
 import fr.univaix.iut.pokebattle.smartcell.SmartCell;
 import fr.univaix.iut.pokebattle.twitter.Tweet;
@@ -45,7 +45,7 @@ public class JudgeBot implements Bot {
 		pokemons.add(new String[] { nomPokemon, nomProprio, level, xp });
 	}
 	
-	public String getWinnerPokemon(String pokemonPerdant) {
+	public String getOtherPokemon(String pokemonPerdant) {
 		for (String[] tmpPokemons : pokemons) {
 			if (!tmpPokemons[0].equals(pokemonPerdant)) {
 				return tmpPokemons[0];
@@ -103,7 +103,7 @@ public class JudgeBot implements Bot {
 	private final SmartCell[] smartCells = new SmartCell[] {
 			new JudgeAnswerWinnerCell(this),new JudgeAnswerNbFightCell(this),
 			new JudgeHireCell(this), new JudgeValidateFightCell(this),
-			new JudgeNbPLostCell(this), new JudgeAnswerAreneCell(this),
+			new JudgeAnswerValidAttaque(this), new JudgeAnswerAreneCell(this),
 			new JudgeAnswerCell() };
 
 	/**
