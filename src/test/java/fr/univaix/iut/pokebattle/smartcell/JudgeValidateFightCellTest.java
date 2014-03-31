@@ -2,7 +2,6 @@ package fr.univaix.iut.pokebattle.smartcell;
 
 import static org.junit.Assert.assertEquals;
 
-import java.security.acl.Owner;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
@@ -13,9 +12,6 @@ import fr.univaix.iut.pokebattle.twitter.Tweet;
 import static org.fest.assertions.Assertions.assertThat;
 
 import org.junit.Test;
-
-import twitter4j.Twitter;
-import twitter4j.TwitterFactory;
 
 public class JudgeValidateFightCellTest {
 	

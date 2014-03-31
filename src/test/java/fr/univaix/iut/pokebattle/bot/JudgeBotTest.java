@@ -1,7 +1,5 @@
 package fr.univaix.iut.pokebattle.bot;
 
-import java.util.Arrays;
-import java.util.List;
 import java.util.Date;
 
 import fr.univaix.iut.pokebattle.twitter.Tweet;
