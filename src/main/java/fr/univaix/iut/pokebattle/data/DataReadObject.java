@@ -32,6 +32,14 @@ public class DataReadObject {
 	public DataObjectPokemon getPokemon(int position) {
 		return pokemons[position];
 	}
+	
+	public DataObjectPokemon getPokemon(String nomPokemon) {
+		for (DataObjectPokemon pokemon : pokemons) {
+			if(pokemon.nom.toLowerCase().equals(nomPokemon.toLowerCase()))
+				return pokemon;
+		}
+		return null;
+	}
 
 
 	public void setPokemons(DataObjectPokemon[] pokemons) {
@@ -45,10 +53,30 @@ public class DataReadObject {
 	private void ChargerJson() {
 		Gson gson = new Gson();
 
-        BufferedReader br = new BufferedReader(
+        BufferedReader lecteur = new BufferedReader(
                               new InputStreamReader(DataReadObject.class.getClassLoader().getResourceAsStream(pokedexFile)));
         //convert the json string back to object
-        pokemons = gson.fromJson(br, DataObjectPokemon[].class);
+        setPokemons(gson.fromJson(lecteur, DataObjectPokemon[].class));
+	}
+	
+	public DataObjectAttack[] getAttaques(String nomPokemon) {
+		for (DataObjectPokemon pokemon : pokemons) {
+			if(pokemon.nom.toLowerCase().equals(nomPokemon.toLowerCase()))
+				return pokemon.attaques;
+		}
+		return null;
+	}
+	
+	public DataObjectAttack getAttaque(String nomPokemon, String nomAttaque) {
+		return getAttaque(nomAttaque, getPokemon(nomPokemon));		
+	}
+
+	private DataObjectAttack getAttaque(String nomAttaque, DataObjectPokemon pokemon) {
+		for (DataObjectAttack attaque : pokemon.attaques) {
+			if(attaque.nom.toLowerCase().equals(nomAttaque.toLowerCase()))
+				return attaque;
+		}
+		return null;
 	}
 }
 
