@@ -26,10 +26,42 @@ public class DataReadObjectTest {
 		assertThat(dro.getPokemon(0)).isNotNull();		
 	}
 	
+	@Test
+	public void test_GiveAnOtherPokemon() {
+		assertThat(dro.getPokemon(1)).isNotNull();		
+	}
+	
+	@Test
+	public void test_GiveIndice_Nom() {
+		assertEquals("Bulbizarre", dro.getPokemon(0).nom);		
+	}
 	
 	@Test
 	public void test_GiveNom() {
-		assertEquals("Bulbizarre", dro.getPokemon(0).nom);		
+		assertThat(dro.getPokemon("Bulbizarre")).isNotNull();		
+	}
+	
+	@Test
+	public void test_GiveWrongNom() {
+		assertThat(dro.getPokemon("JeNeSuisPasUnPokemon")).isNull();		
+	}
+	
+	@Test
+	public void test_GiveNomAttaque_0() {
+		DataObjectPokemon pokemon = dro.getPokemon("bulbizarre");
+		assertEquals("Charge", dro.getAttaqueNom(pokemon.attaques[0]));		
+	}
+	
+	@Test
+	public void test_GiveNiveauAttaque_0() {
+		DataObjectPokemon pokemon = dro.getPokemon("bulbizarre");
+		assertEquals("N.7", dro.getAttaqueNiveau(pokemon.attaques[2]));		
+	}
+	
+	@Test
+	public void test_GiveNomttaque_0() {
+		DataObjectPokemon pokemon = dro.getPokemon("bulbizarre");
+		assertEquals("Charge", dro.getAttaqueNom(pokemon.attaques[0]));		
 	}
 
 }

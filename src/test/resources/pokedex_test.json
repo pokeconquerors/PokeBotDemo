@@ -1,0 +1,157 @@
+[
+  {
+    "numéro": "001",
+    "nom": "Bulbizarre",
+    "nomen": "Bulbasaur",
+    "nomja": "フシギダネ",
+    "nomtm": "Fushigidane",
+    "nomde": "Bisasam",
+    "légende": "ArtworkdeBulbizarrepour{{RFVF}}",
+    "ndex": "001",
+    "jdex": "226",
+    "njdex": "231",
+    "hdex": "203",
+    "fdex": "001",
+    "odex": "R-014",
+    "opdex": "N-004",
+    "espece": "Graine",
+    "taille": "0.7",
+    "poids": "6.9",
+    "fmratio": ".125",
+    "oeufpas": "5120",
+    "effortval": "+1Att.Spé",
+    "type1": "Plante",
+    "type2": "Poison",
+    "expval": "64",
+    "expmax": "1059860",
+    "captureval": "45",
+    "groupoeuf1": "Monstre",
+    "groupoeuf2": "Plante",
+    "capspe1": "Engrais",
+    "capspe2": "Chlorophyle",
+    "capspe2-reve": "oui",
+    "couleur": "Vert",
+    "forme": "8",
+    "pokemon": "Bulbizarre",
+    "numero": "001",
+    "attaques": [
+      {
+        "niveau": "Départ",
+        "nom": "Charge",
+        "puissance": "35",
+        "precision": "95",
+        "pp": "35"
+      },
+      {
+        "niveau": "Départ",
+        "nom": "Rugissement",
+        "puissance": "-",
+        "precision": "100",
+        "pp": "40"
+      },
+      {
+        "niveau": "N.7",
+        "nom": "Vampigraine",
+        "puissance": "-",
+        "precision": "90",
+        "pp": "10"
+      },
+      {
+        "niveau": "N.13",
+        "nom": "Fouet Lianes",
+        "puissance": "35",
+        "precision": "100",
+        "pp": "10"
+      },
+      {
+        "niveau": "N.20",
+        "nom": "Poudre Toxik",
+        "puissance": "-",
+        "precision": "75",
+        "pp": "35"
+      },
+      {
+        "niveau": "N.27",
+        "nom": "Tranch'Herbe",
+        "puissance": "55",
+        "precision": "95",
+        "pp": "25"
+      },
+      {
+        "niveau": "N.34",
+        "nom": "Croissance",
+        "puissance": "-",
+        "precision": "-",
+        "pp": "40"
+      },
+      {
+        "niveau": "N.41",
+        "nom": "Poudre Dodo",
+        "puissance": "-",
+        "precision": "75",
+        "pp": "15"
+      },
+      {
+        "niveau": "N.48",
+        "nom": "Lance-Soleil",
+        "puissance": "120",
+        "precision": "100",
+        "pp": "10"
+      }
+    ]
+  },
+  {
+    "numéro": "010",
+    "nom": "Chenipan",
+    "nomen": "Caterpie",
+    "nomja": "キャタピ",
+    "nomromaji": "Kyatapī",
+    "nomtm": "Caterpie",
+    "nomde": "Raupy",
+    "image": "Chenipan.png",
+    "légende": "ArtworkdeChenipanpour{{RFVF}}",
+    "ndex": "010",
+    "jdex": "024",
+    "njdex": "024",
+    "hdex": "212",
+    "espece": "Ver",
+    "taille": "0.3",
+    "poids": "2.9",
+    "fmratio": ".500",
+    "oeufpas": "3840",
+    "effortval": "+1PV",
+    "type1": "Insecte",
+    "expval": "53",
+    "expmax": "1000000",
+    "captureval": "255",
+    "groupoeuf1": "Insecte",
+    "capspe1": "ÉcranPoudre",
+    "capspe2": "Fuite(capacitéspéciale){{!}}Fuite",
+    "capspe2-reve": "oui",
+    "couleur": "Vert",
+    "forme": "2",
+    "pokemon": "Chenipan",
+    "numero": "010",
+    "artwork_supp1-nom": "Génération1",
+    "artwork_supp1-img": "ChenipanRB.png",
+    "pdm": "oui",
+    "diff_rs-rfvf": "oui",
+    "pinballRB-gif": "oui",
+    "attaques": [
+      {
+        "niveau": "Départ",
+        "nom": "Charge",
+        "puissance": "35",
+        "precision": "95",
+        "pp": "35"
+      },
+      {
+        "niveau": "Départ",
+        "nom": "Sécrétion",
+        "puissance": "-",
+        "precision": "95",
+        "pp": "40"
+      }
+    ]
+  }
+]
