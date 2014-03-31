@@ -35,7 +35,10 @@ public class JudgeValidateFightCell implements SmartCell {
 			}
 		}
 		else {
+			if (question.getText().toLowerCase().contains("#fight #ok with")
+					&& question.getScreenName() != null) {
 			return "Je suis déjà en combat, veuillez me contacter plus tard jeune dresseur bipéde, cordialement";
+			}
 		}
 		return null;
 	}
