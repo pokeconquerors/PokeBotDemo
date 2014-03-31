@@ -57,6 +57,7 @@ public class TwitterUserStreamEasyBuilder {
 		if (response != null) {
 			DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 			Date date = new Date();
+			System.out.println(response + " " + dateFormat.format(date) + " #PokeBattle");
 			twitter.updateStatus(response + " " + dateFormat.format(date) + " #PokeBattle");
 		}
 	

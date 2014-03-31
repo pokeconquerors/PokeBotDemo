@@ -35,7 +35,6 @@ public class JudgeValidateFightCell implements SmartCell {
 			}
 		}
 		else {
-			System.out.println("Je suis déjà en combat, veuillez me contacter plus tard jeune dresseur bipéde, cordialement");
 			return "Je suis déjà en combat, veuillez me contacter plus tard jeune dresseur bipéde, cordialement";
 		}
 		return null;
