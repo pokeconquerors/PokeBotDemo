@@ -15,7 +15,7 @@ public class JudgeAnswerWinnerCellTest {
 	
 	@Test
 	public void test_NoOwner() {
-		assertThat(judge.ask(new Tweet("Salut !"))).isNull();
+		assertThat(cell.ask(new Tweet("Salut !"))).isNull();
 	}
 	
 	@Test

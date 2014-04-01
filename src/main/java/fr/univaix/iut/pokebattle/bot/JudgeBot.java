@@ -6,6 +6,7 @@ import java.util.List;
 
 import twitter4j.Twitter;
 import twitter4j.TwitterException;
+import fr.univaix.iut.pokebattle.smartcell.JudgeAlwaysAnswersCell;
 import fr.univaix.iut.pokebattle.smartcell.JudgeAnswerAreneCell;
 import fr.univaix.iut.pokebattle.smartcell.JudgeAnswerCell;
 import fr.univaix.iut.pokebattle.smartcell.JudgeAnswerNbFightCell;
@@ -105,7 +106,7 @@ public class JudgeBot implements Bot {
 			new JudgeAnswerWinnerCell(this), new JudgeAnswerNbFightCell(this),
 			new JudgeHireCell(this), new JudgeValidateFightCell(this),
 			new JudgeAnswerValidAttaque(this), new JudgeAnswerAreneCell(this),
-			new JudgeAnswerCell() };
+			new JudgeAnswerCell(), new JudgeAlwaysAnswersCell() };
 
 	/**
 	 * Ask something to Bot, it will respond to you.

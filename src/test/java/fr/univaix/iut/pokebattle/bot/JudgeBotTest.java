@@ -25,17 +25,17 @@ public class JudgeBotTest {
 	}
     @Test
     public void testAsk() throws Exception {
-        assertThat(judgeBot.ask(new Tweet("@PokeConquerors Salut"))).isNull();
+        assertThat(judgeBot.ask(new Tweet("@PokeConquerors Salut"))).isNotNull();
     }
     
     @Test
     public void testNotImplementedNoAnswer() throws Exception {
-        assertThat(judgeBot.ask(new Tweet("@PokeConquerors This is not a question."))).isNull();
+        assertThat(judgeBot.ask(new Tweet("@PokeConquerors This is not a question."))).isNotNull();
     }
     
     @Test
     public void testNoOwnerNoSalut() {
-    	assertThat(judgeBot.ask(new Tweet("@PokeConquerors Salut!"))).isNull();
+    	assertThat(judgeBot.ask(new Tweet("@PokeConquerors Salut!"))).isNotNull();
     }
     
     @Test
@@ -51,7 +51,7 @@ public class JudgeBotTest {
     
     @Test
     public void testNoOwnerHaveAnswer_Gym() {
-    	assertThat(judgeBot.ask(new Tweet("@PokeConquerors Gym?"))).isNull();
+    	assertThat(judgeBot.ask(new Tweet("@PokeConquerors Gym?"))).isNotNull();
     }
     
     @Test
