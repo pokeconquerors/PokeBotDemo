@@ -33,8 +33,7 @@ public class JudgeHireCellTest {
 	public void Test_Hire_impossible() {
 		JudgeHireCell cell = new JudgeHireCell(judge);
 		cell.ask(new Tweet("toto", " Hire!"));
-		assertEquals("@titi @toto is my owner",
-				cell.ask(new Tweet("titi", " Hire!")));
+		assertEquals("@titi @toto is my owner",	cell.ask(new Tweet("titi", " Hire!")));
 	}
 
 }

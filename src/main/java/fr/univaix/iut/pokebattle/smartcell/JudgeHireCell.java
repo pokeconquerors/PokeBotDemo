@@ -13,22 +13,38 @@ public class JudgeHireCell implements SmartCell {
 	}
 
 	public String ask(Tweet question) {
-		if (question.getText().toLowerCase().matches(".*\\s+hire\\s*!.*")) {
-			if (owner.getArene() == null || owner.getArene().equals("no Gym")) {
+		if (isNotNull(question) && isHiring(question)) {
+			if (hasNoArena()) {
 				owner.setArene("@" + question.getScreenName());
-				try {
-					owner.update();
-				} catch (TwitterException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+				updateOwnerDescription();
 				return "@" + question.getScreenName() + " my gym is " + "@"
 						+ question.getScreenName();
-			} else {
+			} 
+			else {
 				return "@" + question.getScreenName() + " " + owner.getArene()
 						+ " is my owner";
 			}
 		}
 		return null;
+	}
+
+	private boolean hasNoArena() {
+		return owner.getArene() == null;
+	}
+
+	private void updateOwnerDescription() {
+		try {
+			owner.update();
+		} catch (TwitterException e) {
+			e.printStackTrace();
+		}
+	}
+
+	private boolean isNotNull(Tweet question) {
+		return (question.getScreenName() != null);
+	}
+
+	private boolean isHiring(Tweet question) {
+		return question.getText().matches(".*\\s+(?i)hire\\s*!.*");
 	}
 }

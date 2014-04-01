@@ -25,7 +25,8 @@ public class JudgeAnswerAreneCellTest {
 		JudgeBot  juge = new JudgeBot();
 		juge.setTwitter(twitter);
 		JudgeAnswerAreneCell cell = new JudgeAnswerAreneCell(juge);
-		assertEquals("@TwitterTest no Gym", cell.ask(new Tweet("TwitterTest", "@PokeConquerors Gym?")));		
+		assertEquals("@TwitterTest no Gym", 
+				cell.ask(new Tweet("TwitterTest", "@PokeConquerors Gym?")));		
 		
 	}
 	
@@ -44,6 +45,6 @@ public class JudgeAnswerAreneCellTest {
 	@Test
 	public void test_Regex_Wrong() {
 		JudgeAnswerAreneCell cell = new JudgeAnswerAreneCell(new JudgeBot("TestGym"));
-        assertThat(cell.ask(new Tweet("Boulet","@PokeConquerors Saluta!"))).isNull();
+        assertThat(cell.ask(new Tweet("Boulet","@PokeConquerors Gyma?"))).isNull();
 	}
 }

@@ -26,13 +26,20 @@ public class JudgeAnswerWinnerCell implements SmartCell {
 
 		String WinnerPokemon = owner.getOtherPokemon(question.getScreenName());
 
-		if (question.getText().toLowerCase().matches("#ko.*")
-				&& question.getScreenName() != null && owner.isInFight()) {
+		if (isNotNull(question) && isDead(question) && owner.isInFight()) {
 			owner.setInFight(false);
 			return "@" + WinnerPokemon + " #Win +"
 					+ recupGainsXp(WinnerPokemon) + "xp";
 		}
 		return null;
+	}
+
+	private boolean isNotNull(Tweet question) {
+		return question.getScreenName() != null;
+	}
+
+	private boolean isDead(Tweet question) {
+		return question.getText().matches("#(?i)ko.*");
 	}
 
 }

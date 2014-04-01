@@ -11,12 +11,26 @@ public class JudgeAnswerNbFightCell implements SmartCell {
 	}
 
 	public String ask(Tweet question) {
-		if ( question.getText().toLowerCase().matches(".*\\s+fight\\s*?.*") && question.getScreenName() != null) {
-				if(owner.getDate5fight() == null)return "@" + question.getScreenName() + " Nombre de combats de la dernière heure : 0";
+		if (isNotNull(question) && isAFight(question) ) {
+				if(hasNoFights()) {
+					return "@" + question.getScreenName() + " Nombre de combats de la dernière heure : 0";
+				}
 				owner.updateDateList(question.getCreatedAt());
 				return "@" + question.getScreenName() + " Nombre de combats de la dernière heure : " + owner.getDate5fight().size();
 			}	
 	
 		return null;
+	}
+
+	private boolean hasNoFights() {
+		return owner.getDate5fight() == null;
+	}
+
+	private boolean isNotNull(Tweet question) {
+		return question.getScreenName() != null;
+	}
+
+	private boolean isAFight(Tweet question) {
+		return question.getText().matches(".*\\s+(?i)fight\\s*?.*");
 	}
 }

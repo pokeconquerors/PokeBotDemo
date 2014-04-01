@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-
 import twitter4j.Twitter;
 import twitter4j.TwitterException;
 import fr.univaix.iut.pokebattle.smartcell.JudgeAnswerAreneCell;
@@ -25,6 +24,7 @@ public class JudgeBot implements Bot {
 	private Twitter twitter;
 	private List<Date> date5fight = new ArrayList<>();
 	private int uneHeure = 3600000;
+
 	public Twitter getTwitter() {
 		return twitter;
 	}
@@ -41,10 +41,11 @@ public class JudgeBot implements Bot {
 		this.inFight = inFight;
 	}
 
-	public void pushPokemon(String nomPokemon, String nomProprio, String level, String xp) {
+	public void pushPokemon(String nomPokemon, String nomProprio, String level,
+			String xp) {
 		pokemons.add(new String[] { nomPokemon, nomProprio, level, xp });
 	}
-	
+
 	public String getOtherPokemon(String pokemonPerdant) {
 		for (String[] tmpPokemons : pokemons) {
 			if (!tmpPokemons[0].equals(pokemonPerdant)) {
@@ -53,7 +54,7 @@ public class JudgeBot implements Bot {
 		}
 		return null;
 	}
-	
+
 	public String getElementInList(String pokemon, int indice) {
 		for (String[] tmpPokemons : pokemons) {
 			if (tmpPokemons[0].equals(pokemon)) {
@@ -66,15 +67,15 @@ public class JudgeBot implements Bot {
 	public String getPokemon(String pokemon) {
 		return getElementInList(pokemon, 0);
 	}
-	
+
 	public String getProprietaire(String pokemon) {
 		return getElementInList(pokemon, 1);
 	}
-	
+
 	public String getLevel(String pokemon) {
 		return getElementInList(pokemon, 2);
 	}
-	
+
 	public String getXP(String pokemon) {
 		return getElementInList(pokemon, 3);
 	}
@@ -101,7 +102,7 @@ public class JudgeBot implements Bot {
 	 * List of smartcell the questions go through to find an answer.
 	 */
 	private final SmartCell[] smartCells = new SmartCell[] {
-			new JudgeAnswerWinnerCell(this),new JudgeAnswerNbFightCell(this),
+			new JudgeAnswerWinnerCell(this), new JudgeAnswerNbFightCell(this),
 			new JudgeHireCell(this), new JudgeValidateFightCell(this),
 			new JudgeAnswerValidAttaque(this), new JudgeAnswerAreneCell(this),
 			new JudgeAnswerCell() };
@@ -125,30 +126,36 @@ public class JudgeBot implements Bot {
 		return null;
 	}
 
-	public void setArene(String arene){
+	public void setArene(String arene) {
 		this.arene = arene;
 	}
 
-	public String getArene(){
-		return arene;		
+	public String getArene() {
+		return arene;
 	}
+
 	public void update() throws TwitterException {
-		twitter.updateProfile("Pokejuge", "", "","gym : " + getArene());
+		twitter.updateProfile("Pokejuge", "", "", "gym : " + getArene());
 	}
+
 	public boolean hasAlreadyDone5Fights() {
-		if (date5fight == null)return false;
-		if(date5fight.size() == 5)return true;
+		if (date5fight == null)
+			return false;
+		if (date5fight.size() == 5)
+			return true;
 		return false;
 	}
-	public boolean isMoreThanAnHour(Date date1,Date date2){
-		if(date1.getTime() > date2.getTime() + uneHeure){
+
+	public boolean isMoreThanAnHour(Date date1, Date date2) {
+		if (date1.getTime() > date2.getTime() + uneHeure) {
 			return true;
 		}
 		return false;
 	}
-	public void updateDateList(Date datetweet){
-		for(int i = 0; i<date5fight.size(); i++){
-			if(isMoreThanAnHour(datetweet,date5fight.get(i))){
+
+	public void updateDateList(Date datetweet) {
+		for (int i = 0; i < date5fight.size(); i++) {
+			if (isMoreThanAnHour(datetweet, date5fight.get(i))) {
 				date5fight.remove(0);
 			}
 		}
@@ -161,7 +168,8 @@ public class JudgeBot implements Bot {
 	public void setDate5fight(List<Date> l) {
 		this.date5fight = l;
 	}
-	public void addDate5fight(Date d){
+
+	public void addDate5fight(Date d) {
 		date5fight.add(d);
 	}
 }
