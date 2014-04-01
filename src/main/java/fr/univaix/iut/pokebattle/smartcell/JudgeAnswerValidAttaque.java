@@ -27,7 +27,7 @@ public class JudgeAnswerValidAttaque implements SmartCell {
 	public String ask(Tweet question) {
 
 		try {
-			if (question.getText().toLowerCase().contains("#attack")
+			if (question.getText().toLowerCase().matches("@.+ #attack #.+ @.+.*")
 					&& question.getScreenName() != null) {
 
 				String nomAttaque = getElementInArray(question.getText(), 2)

@@ -12,7 +12,7 @@ public class JudgeAnswerAreneCell implements SmartCell {
 	}
 
 	public String ask(Tweet question) {
-		if ( question.getText().toLowerCase().contains(" gym?") && question.getScreenName() != null) {	
+		if ( question.getText().toLowerCase().matches(".*\\s+gym\\s*?.*") && question.getScreenName() != null) {	
 			if(owner.getArene() != null) {
 				return "@" + question.getScreenName() + " my Gym is " + owner.getArene();
 			}

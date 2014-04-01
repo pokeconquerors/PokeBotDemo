@@ -11,7 +11,7 @@ public class JudgeAnswerNbFightCell implements SmartCell {
 	}
 
 	public String ask(Tweet question) {
-		if ( question.getText().toLowerCase().contains(" fight ?") && question.getScreenName() != null) {
+		if ( question.getText().toLowerCase().matches(".*\\s+fight\\s*?.*") && question.getScreenName() != null) {
 				if(owner.getDate5fight() == null)return "@" + question.getScreenName() + " Nombre de combats de la dernière heure : 0";
 				owner.updateDateList(question.getCreatedAt());
 				return "@" + question.getScreenName() + " Nombre de combats de la dernière heure : " + owner.getDate5fight().size();

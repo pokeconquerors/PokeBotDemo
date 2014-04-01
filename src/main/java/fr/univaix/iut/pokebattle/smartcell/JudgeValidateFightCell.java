@@ -18,16 +18,13 @@ public class JudgeValidateFightCell implements SmartCell {
 
 	public String ask(Tweet question) {
 		if (!owner.isInFight()) {
-			if (question.getText().toLowerCase().contains("#fight #ok with")
+			if (question.getText().toLowerCase().matches(".*\\s+#fight #ok with\\s+.*")
 					&& question.getScreenName() != null) {
 				owner.updateDateList(question.getCreatedAt());
 				if(owner.hasAlreadyDone5Fights()){
 					return "@" +question.getScreenName()+ " Conseil du prof chen : pas plus de 5 combat en une heure !";
 				}
 				owner.addDate5fight(question.getCreatedAt());
-				System.out.println("@" + question.getScreenName() + " VS "
-						+ getOppenent(question.getText())
-						+ " => OK ! Let's ready for the next battle !");
 				owner.setInFight(true);			
 				return "@" + question.getScreenName() + " VS "
 						+ getOppenent(question.getText())

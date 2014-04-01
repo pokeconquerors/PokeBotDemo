@@ -34,4 +34,16 @@ public class JudgeAnswerAreneCellTest {
 		JudgeAnswerAreneCell cell = new JudgeAnswerAreneCell(new JudgeBot());
 		assertThat(cell.ask(new Tweet("TwitterTest", "@Gym?"))).isNull();		
 	}
+	
+	@Test
+	public void Test_JudgeAnswerArene_regex() {
+		JudgeAnswerAreneCell cell = new JudgeAnswerAreneCell(new JudgeBot("TestGym"));
+		assertThat(cell.ask(new Tweet("TwitterTest", " Gym ?"))).isNotNull();		
+	}
+	
+	@Test
+	public void test_Regex_Wrong() {
+		JudgeAnswerAreneCell cell = new JudgeAnswerAreneCell(new JudgeBot("TestGym"));
+        assertThat(cell.ask(new Tweet("Boulet","@PokeConquerors Saluta!"))).isNull();
+	}
 }

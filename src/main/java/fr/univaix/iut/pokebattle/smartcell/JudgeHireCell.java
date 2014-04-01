@@ -13,8 +13,8 @@ public class JudgeHireCell implements SmartCell {
 	}
 
 	public String ask(Tweet question) {
-		if (question.getText().toLowerCase().contains(" hire!")) {
-			if (owner.getArene() == null || owner.getArene() == "no Gym") {
+		if (question.getText().toLowerCase().matches(".*\\s+hire\\s*!.*")) {
+			if (owner.getArene() == null || owner.getArene().equals("no Gym")) {
 				owner.setArene("@" + question.getScreenName());
 				try {
 					owner.update();

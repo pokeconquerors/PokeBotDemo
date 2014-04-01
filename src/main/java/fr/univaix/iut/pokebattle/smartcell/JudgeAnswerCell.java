@@ -9,7 +9,7 @@ public class JudgeAnswerCell implements SmartCell {
 	
 	public String ask(Tweet question) {
 
-		if (question.getText().toLowerCase().contains(" salut!")
+		if (question.getText().toLowerCase().matches(".*\\s+salut\\s*!.*")
 				&& question.getScreenName() != null) {			
 			return "@" + question.getScreenName()
 					+ " Salisalut très cher voisin !";
