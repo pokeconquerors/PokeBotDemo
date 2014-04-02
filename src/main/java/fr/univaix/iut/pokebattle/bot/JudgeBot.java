@@ -24,7 +24,7 @@ public class JudgeBot implements Bot {
 	private long id;
 	private Twitter twitter;
 	private List<Date> date5fight = new ArrayList<>();
-	private int uneHeure = 3600000;
+	private static final int UNE_HEURE = 3600000;
 
 	public Twitter getTwitter() {
 		return twitter;
@@ -148,7 +148,7 @@ public class JudgeBot implements Bot {
 	}
 
 	public boolean isMoreThanAnHour(Date date1, Date date2) {
-		if (date1.getTime() > date2.getTime() + uneHeure) {
+		if (date1.getTime() > date2.getTime() + UNE_HEURE) {
 			return true;
 		}
 		return false;
