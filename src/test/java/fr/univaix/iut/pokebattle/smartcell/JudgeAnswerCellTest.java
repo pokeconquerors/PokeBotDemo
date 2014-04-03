@@ -35,4 +35,14 @@ public class JudgeAnswerCellTest {
 	public void testAsk_regex_Wrong_2() {
         assertThat(cell.ask(new Tweet("Boulet","@PokeConquerors Saluta!"))).isNull();
 	}
+	
+	@Test
+	public void testAsk_regex_Wrong_noexclamation() {
+        assertThat(cell.ask(new Tweet("Boulet","@PokeConquerors Salut"))).isNull();
+	}
+	
+	@Test
+	public void testAsk_regex_Wrong_InterroExclamation() {
+        assertThat(cell.ask(new Tweet("Boulet","@PokeConquerors Salut?!"))).isNull();
+	}
 }

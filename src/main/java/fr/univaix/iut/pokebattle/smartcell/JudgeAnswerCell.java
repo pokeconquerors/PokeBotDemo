@@ -21,5 +21,7 @@ public class JudgeAnswerCell implements SmartCell {
 
 	private boolean isAHello(Tweet question) {
 		return question.getText().matches(".*\\s+(?i)salut\\s*!.*");
+		//("(.)*\\s+(?i)salut\\[\\^\\S\\]*\\s*!*(.)*");//(.)*\s+salut[^\S]*\s*\!*(.)*
+		
 	}
 }
