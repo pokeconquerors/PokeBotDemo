@@ -20,7 +20,9 @@ public class JudgeAnswerCell implements SmartCell {
 	}
 
 	private boolean isAHello(Tweet question) {
-		return question.getText().matches(".*\\s+(?i)salut\\s*!.*");
+		return ( question.getText().matches(".*\\s+(?i)salut!.*") ||	// "@PokeConquerors salut! blabla"
+				 question.getText().matches(".*\\s+(?i)salut\\s+.*") || // "@PokeConquerors salut !blabla"
+				 question.getText().matches(".*\\s+(?i)salut")); 		// "@PokeConquerors salut"
 		//("(.)*\\s+(?i)salut\\[\\^\\S\\]*\\s*!*(.)*");//(.)*\s+salut[^\S]*\s*\!*(.)*
 		
 	}

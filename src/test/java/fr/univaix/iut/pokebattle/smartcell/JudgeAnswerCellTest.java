@@ -38,7 +38,7 @@ public class JudgeAnswerCellTest {
 	
 	@Test
 	public void testAsk_regex_Wrong_noexclamation() {
-        assertThat(cell.ask(new Tweet("Boulet","@PokeConquerors Salut"))).isNull();
+        assertThat(cell.ask(new Tweet("Boulet","@PokeConquerors Salut"))).isNotNull();
 	}
 	
 	@Test
