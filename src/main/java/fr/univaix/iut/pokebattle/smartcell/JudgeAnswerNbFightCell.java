@@ -12,18 +12,11 @@ public class JudgeAnswerNbFightCell implements SmartCell {
 
 	public String ask(Tweet question) {
 		if (isNotNull(question) && isAFight(question) ) {
-				if(hasNoFights()) {
-					return "@" + question.getScreenName() + " Nombre de combats de la dernière heure : 0";
-				}
 				owner.updateDateList(question.getCreatedAt());
 				return "@" + question.getScreenName() + " Nombre de combats de la dernière heure : " + owner.getDate5fight().size();
 			}	
 	
 		return null;
-	}
-
-	private boolean hasNoFights() {
-		return owner.getDate5fight() == null;
 	}
 
 	private boolean isNotNull(Tweet question) {

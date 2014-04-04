@@ -62,5 +62,4 @@ public class JudgeAnswerValidAttaque implements SmartCell {
 	private boolean isALaunchAttack(Tweet question) {
 		return question.getText().matches("@.+ #(?i)attack #.+ @.+.*");
 	}
-
 }

@@ -38,6 +38,13 @@ public class JudgeAnswerValidAttaqueTest {
 		assertEquals("#charge", cell.getElementInArray("@NomPokemon #attack #charge @NomAdversaire /cc @TwitterTest @Judge", 2));
 		
 	}
+	
+	@Test
+	public void test_attaque_inconnue() {
+		judge.pushPokemon("Carapuce", "twitterTest1", "1", "70");
+		judge.pushPokemon("Bulbizarre", "twitterTest2", "1", "70");
+		assertEquals("@Bulbizarre -0pv /cc @twitterTest1", cell.ask(new Tweet("twitterTest1", "@Carapuce #attack #AttInconnue @Bulbizarre /cc @twitterTest1 @pokeconquerors")));
+	}
 
 }
 
