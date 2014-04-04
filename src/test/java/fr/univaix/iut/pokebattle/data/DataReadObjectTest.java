@@ -63,5 +63,46 @@ public class DataReadObjectTest {
 		DataObjectPokemon pokemon = dro.getPokemon("bulbizarre");
 		assertEquals("Charge", dro.getAttaqueNom(pokemon.attaques[0]));		
 	}
-
+	
+	@Test
+	public void test_getAttaques_pokemon_exists () {
+		DataObjectAttack[] attaques = dro.getAttaques("bulbizarre");
+		assertThat(attaques).isNotNull();
+	}
+	
+	@Test
+	public void test_getAttaques_pokemon_dont_exist () {
+		DataObjectAttack[] attaques = dro.getAttaques("bulbizarbi");
+		assertThat(attaques).isNull();
+	}
+	
+	@Test
+	public void test_getAttaquePuissance () {
+		DataObjectAttack[] attaques = dro.getAttaques("bulbizarre");
+		DataObjectAttack attaque = attaques[0];
+		assertThat(dro.getAttaquePuissance(attaque)).isNotNull();
+		
+	}
+	
+	@Test
+	public void test_getAttaquePrecision () {
+		DataObjectAttack[] attaques = dro.getAttaques("bulbizarre");
+		DataObjectAttack attaque = attaques[0];
+		assertThat(dro.getAttaquePrecision(attaque)).isNotNull();
+		
+	}
+	
+	@Test
+	public void test_getAttaquePP() {
+		DataObjectAttack[] attaques = dro.getAttaques("bulbizarre");
+		DataObjectAttack attaque = attaques[0];
+		assertThat(dro.getAttaquePP(attaque)).isNotNull();
+		
+	}
+	
+	@Test
+	public void test_getPokedexFile() {
+		assertThat(dro.getPokedexFile()).isNotNull();
+		
+	}
 }
