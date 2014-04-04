@@ -26,12 +26,13 @@ public class JudgeAnswerValidAttaque implements SmartCell {
 
 		if (isNotNull(question) && isALaunchAttack(question) ) {	
 			String nomPokemon = getPokemon(question);
+			owner.IncrNb_Rounds_en_cours();
 			if (isACorrectAttack(question)) {
 				return "@" + owner.getOtherPokemon(nomPokemon) + " -10pv /cc "
-						+ "@" + question.getScreenName();
+						+ "@" + question.getScreenName() + " #" + owner.getNb_Rounds_en_cours();
 			} else {
 				return "@" + owner.getOtherPokemon(nomPokemon) + " -0pv /cc "
-						+ "@" + question.getScreenName();
+						+ "@" + question.getScreenName() + " #" + owner.getNb_Rounds_en_cours();
 			}
 
 		}

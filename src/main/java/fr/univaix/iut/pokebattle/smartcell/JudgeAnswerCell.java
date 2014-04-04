@@ -20,7 +20,5 @@ public class JudgeAnswerCell implements SmartCell {
 		return ( question.getText().matches(".*\\s+(?i)salut!.*") ||	// "@PokeConquerors salut! blabla"
 				 question.getText().matches(".*\\s+(?i)salut\\s+.*") || // "@PokeConquerors salut !blabla"
 				 question.getText().matches(".*\\s+(?i)salut")); 		// "@PokeConquerors salut"
-		//("(.)*\\s+(?i)salut\\[\\^\\S\\]*\\s*!*(.)*");//(.)*\s+salut[^\S]*\s*\!*(.)*
-		
 	}
 }
