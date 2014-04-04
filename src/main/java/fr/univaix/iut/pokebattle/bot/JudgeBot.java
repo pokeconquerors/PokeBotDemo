@@ -150,8 +150,6 @@ public class JudgeBot implements Bot {
 	}
 
 	public boolean hasAlreadyDone5Fights() {
-		if (date5fight == null)
-			return false;
 		if (date5fight.size() == 5)
 			return true;
 		return false;

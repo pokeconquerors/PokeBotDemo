@@ -69,5 +69,15 @@ public class JudgeBotTest {
     	assertThat(judge.isMoreThanAnHour(new Date(3600002), new Date(1))).isTrue();
     }
     
+    @Test
+    public void test_getId() {
+    	JudgeBot judge = new JudgeBot();
+    	judge.setId(0);
+    	assertEquals(0, judge.getId());
+    }
     
+    @Test
+    public void test_getTwitter() {
+    	assertThat(judge.getTwitter()).isNotNull();
+    }
 }
