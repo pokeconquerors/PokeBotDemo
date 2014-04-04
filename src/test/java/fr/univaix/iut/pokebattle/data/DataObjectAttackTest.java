@@ -2,8 +2,6 @@ package fr.univaix.iut.pokebattle.data;
 
 import static org.junit.Assert.*;
 
-import java.util.Arrays;
-
 import org.junit.Test;
 
 public class DataObjectAttackTest {
@@ -18,15 +16,9 @@ public class DataObjectAttackTest {
 		
 	    DataObjectAttack doa = new DataObjectAttack(niveau, nom, puissance, precision, pp);
 	    
-		String attaque = "DataObjectAttack{" +
-                "niveau='" + niveau + '\'' +
-                ", nom='" + nom + '\'' +
-                ", puissance=" + puissance +
-                ", precision=" + precision +
-                ", pp=" + pp +
-                '}';
+		String attaque = "DataObjectAttack{" + "niveau='" + niveau + '\'' + ", nom='" + nom + '\'' + ", puissance=" + puissance +
+                ", precision=" + precision + ", pp=" + pp + '}';
 		
 		assertEquals(attaque, doa.toString());
 	}
-
 }

@@ -116,7 +116,7 @@ public class JudgeBot implements Bot {
 			new JudgeAnswerWinnerCell(this), new JudgeAnswerNbFightCell(this),
 			new JudgeHireCell(this), new JudgeValidateFightCell(this),
 			new JudgeAnswerValidAttaque(this), new JudgeAnswerAreneCell(this),
-			new JudgeAnswerCell(), new JudgeAlwaysAnswersCell() };
+			new JudgeAnswerCell()};
 
 	/**
 	 * Ask something to Bot, it will respond to you.
@@ -134,7 +134,7 @@ public class JudgeBot implements Bot {
 				return answer;
 			}
 		}
-		return null;
+		return new JudgeAlwaysAnswersCell().ask(question);
 	}
 
 	public void setArene(String arene) {

@@ -1,6 +1,5 @@
 package fr.univaix.iut.pokebattle.smartcell;
 
-import twitter4j.TwitterException;
 import fr.univaix.iut.pokebattle.bot.JudgeBot;
 import fr.univaix.iut.pokebattle.twitter.Tweet;
 

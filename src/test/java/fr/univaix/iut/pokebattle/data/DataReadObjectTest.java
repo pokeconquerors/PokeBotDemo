@@ -105,4 +105,13 @@ public class DataReadObjectTest {
 		assertThat(dro.getPokedexFile()).isNotNull();
 		
 	}
+	
+	@Test
+	public void test_getAttaque_notnull() {
+		assertThat(dro.getAttaque("bulbizarre", "charge")).isNotNull();
+	}
+	@Test
+	public void test_getAttaque_null() {
+		assertThat(dro.getAttaque("bulbizarre", "NestPascharge")).isNull();
+	}
 }
