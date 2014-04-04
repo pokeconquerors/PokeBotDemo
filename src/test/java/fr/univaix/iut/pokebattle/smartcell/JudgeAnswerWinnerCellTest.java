@@ -25,6 +25,18 @@ public class JudgeAnswerWinnerCellTest {
 		judge.setInFight(true);
 		assertEquals("@Bulbizare #Win +10xp", cell.ask(new Tweet("Carapuce", "#KO /cc @twitterJudge @nedseb @pcreux")));
 	}
+
+	@Test
+	public void test_NotInFight() {
+		judge.setInFight(false);
+		assertThat(cell.ask(new Tweet("a","aa"))).isNull();
+	}
+	
+	@Test
+	public void test_IsNull() {
+		assertThat(cell.ask(new Tweet("#ko aa")));
+	}
+	
 	
 
 }
