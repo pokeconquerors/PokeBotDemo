@@ -15,13 +15,9 @@ import static org.fest.assertions.Assertions.assertThat;
 
 public class TwitterBotTest {
 
-	static InputStream getResourceAsStream(String fileName) {
-        return PokemonMain.class.getClassLoader().getResourceAsStream(fileName);
-    }
-	
 	@Test
 	public void test_contructor() throws IOException, TUSEException {
-		InputStream inputStream = getResourceAsStream("testCredentials.properties");
+		InputStream inputStream = PokemonMain.class.getClassLoader().getResourceAsStream("testCredentials.properties");
         Credentials credentials = Credentials.loadCredentials(inputStream);
 		TwitterBot twitterbot = new TwitterBot(new JudgeBot(), credentials);
 		twitterbot.startBot();

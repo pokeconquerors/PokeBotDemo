@@ -54,13 +54,17 @@ public class TwitterUserStreamEasyBuilder {
 		this.bot.setId(twitter.getId());
 		String response = bot.ask(new Tweet(status.getUser().getScreenName(), status.getText(),status.getCreatedAt()));
 
-		if (response != null) {
+		if (responseIsNotNull(response)) {
 			DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 			Date date = new Date();
 			System.out.println(response + " " + dateFormat.format(date) + " #PokeBattle");
 			twitter.updateStatus(response + " " + dateFormat.format(date) + " #PokeBattle");
 		}
 	
+	}
+
+	private boolean responseIsNotNull(String response) {
+		return response != null;
 	}
 
 	private boolean isNotANewQuestion(Status status) throws TwitterException {
