@@ -23,12 +23,16 @@ public class JudgeAnswerAreneCell implements SmartCell {
 			return "@" + question.getScreenName() + " my Gym is " + owner.getArene();
 		}
 		owner.setArene("no Gym");
+		System.out.println("Before catch");
 		try {
+			System.out.println("In try");
 			owner.update();
 		} 
-		catch (TwitterException e) {
+		catch (Exception e) {
+			System.out.println("In catch");
 			e.printStackTrace();
 		}
+		System.out.println("After catch");
 		return "@" + question.getScreenName() + " no Gym";
 	}
 

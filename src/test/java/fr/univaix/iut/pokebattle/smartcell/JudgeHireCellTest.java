@@ -35,5 +35,11 @@ public class JudgeHireCellTest {
 		cell.ask(new Tweet("toto", " Hire!"));
 		assertEquals("@titi @toto is my owner",	cell.ask(new Tweet("titi", " Hire!")));
 	}
+	
+	@Test(expected=NullPointerException.class)
+	public void test_Hire_ExceptionUpdate () {
+		JudgeHireCell cell = new JudgeHireCell(new JudgeBot());
+		cell.ask(new Tweet("toto", " Hire!"));		
+	}
 
 }

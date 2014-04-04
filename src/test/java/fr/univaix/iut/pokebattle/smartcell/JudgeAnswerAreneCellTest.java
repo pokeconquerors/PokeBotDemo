@@ -47,4 +47,11 @@ public class JudgeAnswerAreneCellTest {
 		JudgeAnswerAreneCell cell = new JudgeAnswerAreneCell(new JudgeBot("TestGym"));
         assertThat(cell.ask(new Tweet("Boulet","@PokeConquerors Gyma?"))).isNull();
 	}
+	
+	@Test(expected=Exception.class)
+	public void Test_JudgeAnswerArene_Exception() {	
+		JudgeBot  juge = new JudgeBot();
+		JudgeAnswerAreneCell cell = new JudgeAnswerAreneCell(juge);
+		cell.ask(new Tweet("TwitterTest", "@PokeConquerors Gym?"));		
+	}
 }

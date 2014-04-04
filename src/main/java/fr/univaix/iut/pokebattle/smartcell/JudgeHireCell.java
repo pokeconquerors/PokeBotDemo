@@ -35,7 +35,7 @@ public class JudgeHireCell implements SmartCell {
 	private void updateOwnerDescription() {
 		try {
 			owner.update();
-		} catch (TwitterException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
