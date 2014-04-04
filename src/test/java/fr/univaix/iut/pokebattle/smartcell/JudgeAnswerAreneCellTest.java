@@ -48,10 +48,11 @@ public class JudgeAnswerAreneCellTest {
         assertThat(cell.ask(new Tweet("Boulet","@PokeConquerors Gyma?"))).isNull();
 	}
 	
-	@Test(expected=Exception.class)
+	@Test
 	public void Test_JudgeAnswerArene_Exception() {	
 		JudgeBot  juge = new JudgeBot();
 		JudgeAnswerAreneCell cell = new JudgeAnswerAreneCell(juge);
-		cell.ask(new Tweet("TwitterTest", "@PokeConquerors Gym?"));		
+		assertEquals("@TwitterTest no Gym", cell.ask(new Tweet("TwitterTest", "@PokeConquerors Gym?")));	
+		
 	}
 }
