@@ -68,4 +68,6 @@ public class JudgeBotTest {
     public void testisoneHourBetween(){
     	assertThat(judge.isMoreThanAnHour(new Date(3600002), new Date(1))).isTrue();
     }
+    
+    
 }

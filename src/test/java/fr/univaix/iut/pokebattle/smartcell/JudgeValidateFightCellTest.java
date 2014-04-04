@@ -16,19 +16,23 @@ import org.junit.Test;
 public class JudgeValidateFightCellTest {
 	
 	JudgeBot judge = new JudgeBot();
-	JudgeValidateFightCell cell = new JudgeValidateFightCell(judge);
-	JudgeAnswerNbFightCell cell2 = new JudgeAnswerNbFightCell(judge);
+	JudgeInfoFirstOpponentsCell cell = new JudgeInfoFirstOpponentsCell(judge);
+	JudgeValidateFightCell cell2 = new JudgeValidateFightCell(judge);
 	
 	@Test
 	public void testSalut() {
 		judge.setInFight(false);
-        assertEquals("@nedseb VS @pcreux => OK ! Let's ready for the next battle !", cell.ask(new Tweet("nedseb", "@pcreux #fight #ok with @pikachuNyanNian /cc @viviane")));
+		cell.ask(new Tweet("pcreux", "@nedseb #fight with @bulbizare1 /cc @viviane"));
+        assertEquals("Round #1 /cc @nedseb @pikachuNyanNian @pcreux @bulbizare1", cell2.ask(new Tweet("nedseb", "@pcreux #fight #ok with @pikachuNyanNian /cc @viviane")));
     }
 	
 	@Test
 	public void testSalut1() {
-		judge.setInFight(true);
-		assertEquals("Je suis déjà en combat, veuillez me contacter plus tard jeune dresseur bipéde, cordialement", cell.ask(new Tweet("nedseb", "@pcreux #fight #ok with @pikachuNyanNian /cc @viviane")));
+		judge.setInFight(true);	
+		assertEquals("Je suis déjà en combat, veuillez me " +
+					 "contacter plus tard jeune dresseur bipéde," +
+					 " cordialement", 
+					 cell2.ask(new Tweet("nedseb", "@pcreux #fight #ok with @pikachuNyanNian /cc @viviane")));
     }
 	
 	@Test
@@ -41,6 +45,6 @@ public class JudgeValidateFightCellTest {
 		judge.setDate5fight(l);
     	Tweet t =new Tweet("Boulet","@PokeConquerors #fight #ok with f");
     	t.setCreatedAt(new Date(33333));
-		assertEquals("@Boulet Conseil du prof chen : pas plus de 5 combat en une heure !", cell.ask(t));
+		assertEquals("@Boulet Conseil du prof chen : pas plus de 5 combat en une heure !", cell2.ask(t));
 	}
 }

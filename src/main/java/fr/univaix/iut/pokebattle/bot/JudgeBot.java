@@ -25,7 +25,8 @@ public class JudgeBot implements Bot {
 	private Twitter twitter;
 	private List<Date> date5fight = new ArrayList<>();
 	private static final int UNE_HEURE = 3600000;
-
+	private int Nb_Rounds_en_cours = 0;
+	
 	public Twitter getTwitter() {
 		return twitter;
 	}
@@ -56,17 +57,26 @@ public class JudgeBot implements Bot {
 		return null;
 	}
 
-	public String getElementInList(String pokemon, int indice) {
+	public String getElementInList(String testeur, int indice, int caseToLook) {
 		for (String[] tmpPokemons : pokemons) {
-			if (tmpPokemons[0].equals(pokemon)) {
+			if (tmpPokemons[caseToLook].equals(testeur)) {
 				return tmpPokemons[indice];
 			}
 		}
 		return null;
 	}
+	
+	public String getElementInList(String pokemon, int indice) {
+		return getElementInList(pokemon, indice, 0);
+	}
 
 	public String getPokemon(String pokemon) {
 		return getElementInList(pokemon, 0);
+	}
+	
+	public String getPokemonFromProprio(String proprietaire) {
+		String tmp = getElementInList(proprietaire, 0, 1);
+		return tmp;
 	}
 
 	public String getProprietaire(String pokemon) {
@@ -172,5 +182,18 @@ public class JudgeBot implements Bot {
 
 	public void addDate5fight(Date d) {
 		date5fight.add(d);
+	}
+
+	public int getNb_Rounds_en_cours() {
+		return Nb_Rounds_en_cours;
+	}
+
+	
+	public void IncrNb_Rounds_en_cours() {
+		++Nb_Rounds_en_cours;
+	}
+	
+	public void ReinitNb_Rounds_en_cours() {
+		Nb_Rounds_en_cours = 0;
 	}
 }

@@ -15,6 +15,11 @@ public class JudgeValidateFightCell implements SmartCell {
 		String[] tab = text.split(" ");
 		return tab[0];
 	}
+	
+	public String getPoke(String text) {
+		String[] tab = text.split(" ");
+		return tab[4];
+	}
 
 	public String ask(Tweet question) {
 		if (!owner.isInFight()) {
@@ -24,10 +29,13 @@ public class JudgeValidateFightCell implements SmartCell {
 					return "@" +question.getScreenName()+ " Conseil du prof chen : pas plus de 5 combat en une heure !";
 				}
 				owner.addDate5fight(question.getCreatedAt());
-				owner.setInFight(true);			
-				return "@" + question.getScreenName() + " VS "
-						+ getOppenent(question.getText())
-						+ " => OK ! Let's ready for the next battle !";
+				owner.setInFight(true);
+				String proprio = getOppenent(question.getText()).substring(1);
+				owner.pushPokemon(getPoke(question.getText()), question.getScreenName(), null, null);
+				owner.IncrNb_Rounds_en_cours();
+				return "Round #" + owner.getNb_Rounds_en_cours() + " /cc @" + owner.getProprietaire(getPoke(question.getText()))  
+						+ " " + owner.getPokemon(getPoke(question.getText())) + " " + getOppenent(question.getText())
+						+ " " + owner.getPokemonFromProprio(proprio);
 			}
 		}
 		else if (isOkToFight(question) && isNotNull(question)) {
