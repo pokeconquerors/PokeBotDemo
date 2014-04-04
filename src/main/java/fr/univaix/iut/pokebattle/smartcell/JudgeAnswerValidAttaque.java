@@ -18,7 +18,6 @@ public class JudgeAnswerValidAttaque implements SmartCell {
 	DataReadObject dro = DataReadObject.getInstance();
 
 	public String getElementInArray(String text, int indice) {
-		System.out.println(text);
 		String[] tab = text.split(" ");
 		return tab[indice];
 	}
