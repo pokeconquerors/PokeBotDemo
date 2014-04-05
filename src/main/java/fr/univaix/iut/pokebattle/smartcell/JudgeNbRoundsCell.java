@@ -3,7 +3,7 @@ package fr.univaix.iut.pokebattle.smartcell;
 import fr.univaix.iut.pokebattle.bot.JudgeBot;
 import fr.univaix.iut.pokebattle.twitter.Tweet;
 
-public class JudgeNbRoundsCell {
+public class JudgeNbRoundsCell implements SmartCell{
 	
 	private JudgeBot owner;
 	
@@ -12,10 +12,14 @@ public class JudgeNbRoundsCell {
 	}
 	
 	public String ask(Tweet question) {
-		if (question.getText().toLowerCase().contains("round ?")) {
+		if (isARoundQuestion(question)) {
 			return "Le round en cours est : #" + owner.getNb_Rounds_en_cours();
 		}
-		else return "Demande incorrecte, la vrai demande est : Round ?";
+		return null;
+	}
+
+	private boolean isARoundQuestion(Tweet question) {
+		return question.getText().matches(".*(?i)round\\s*\\?.*");
 	}
 
 }

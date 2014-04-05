@@ -15,7 +15,7 @@ public class JudgeNbRoundsCellTest {
 	@Test
 	public void testEchec(){
 		judge.setInFight(false);
-        assertEquals("Demande incorrecte, la vrai demande est : Round ?", cell.ask(new Tweet("nedseb", "Round?")));
+        assertEquals(null, cell.ask(new Tweet("nedseb", "Round")));
     }
 	
 	@Test

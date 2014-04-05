@@ -13,6 +13,7 @@ import fr.univaix.iut.pokebattle.smartcell.JudgeAnswerNbFightCell;
 import fr.univaix.iut.pokebattle.smartcell.JudgeAnswerWinnerCell;
 import fr.univaix.iut.pokebattle.smartcell.JudgeHireCell;
 import fr.univaix.iut.pokebattle.smartcell.JudgeAnswerValidAttaque;
+import fr.univaix.iut.pokebattle.smartcell.JudgeNbRoundsCell;
 import fr.univaix.iut.pokebattle.smartcell.JudgeOverBidCell;
 import fr.univaix.iut.pokebattle.smartcell.JudgeValidateFightCell;
 import fr.univaix.iut.pokebattle.smartcell.SmartCell;
@@ -114,7 +115,7 @@ public class JudgeBot implements Bot {
 	/**
 	 * List of smartcell the questions go through to find an answer.
 	 */
-	private final SmartCell[] smartCells = new SmartCell[] { new JudgeOverBidCell(this),
+	private final SmartCell[] smartCells = new SmartCell[] { new JudgeOverBidCell(this), new JudgeNbRoundsCell(this),
 			new JudgeAnswerWinnerCell(this), new JudgeAnswerNbFightCell(this),
 			new JudgeHireCell(this), new JudgeValidateFightCell(this),
 			new JudgeAnswerValidAttaque(this), new JudgeAnswerAreneCell(this),
