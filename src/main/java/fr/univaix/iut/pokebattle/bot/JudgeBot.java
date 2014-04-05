@@ -13,6 +13,7 @@ import fr.univaix.iut.pokebattle.smartcell.JudgeAnswerNbFightCell;
 import fr.univaix.iut.pokebattle.smartcell.JudgeAnswerWinnerCell;
 import fr.univaix.iut.pokebattle.smartcell.JudgeHireCell;
 import fr.univaix.iut.pokebattle.smartcell.JudgeAnswerValidAttaque;
+import fr.univaix.iut.pokebattle.smartcell.JudgeOverBidCell;
 import fr.univaix.iut.pokebattle.smartcell.JudgeValidateFightCell;
 import fr.univaix.iut.pokebattle.smartcell.SmartCell;
 import fr.univaix.iut.pokebattle.twitter.Tweet;
@@ -26,6 +27,7 @@ public class JudgeBot implements Bot {
 	private List<Date> date5fight = new ArrayList<>();
 	private static final int UNE_HEURE = 3600000;
 	private int Nb_Rounds_en_cours = 0;
+	private int salaire = 0;	
 	
 	public Twitter getTwitter() {
 		return twitter;
@@ -112,7 +114,7 @@ public class JudgeBot implements Bot {
 	/**
 	 * List of smartcell the questions go through to find an answer.
 	 */
-	private final SmartCell[] smartCells = new SmartCell[] {
+	private final SmartCell[] smartCells = new SmartCell[] { new JudgeOverBidCell(this),
 			new JudgeAnswerWinnerCell(this), new JudgeAnswerNbFightCell(this),
 			new JudgeHireCell(this), new JudgeValidateFightCell(this),
 			new JudgeAnswerValidAttaque(this), new JudgeAnswerAreneCell(this),
@@ -193,5 +195,18 @@ public class JudgeBot implements Bot {
 	
 	public void ReinitNb_Rounds_en_cours() {
 		Nb_Rounds_en_cours = 0;
+	}
+
+	public boolean isInterestedBy(int montant) {
+		if(montant >= (getSalaire()+100) && montant <= (getSalaire()+1000)) return true;
+		return false;
+	}
+
+	public int getSalaire() {
+		return salaire;
+	}
+	
+	public void setSalaire(int montant) {
+		salaire = montant;
 	}
 }
