@@ -14,8 +14,9 @@ public class JudgeAnswersAfterHimSelfCell implements SmartCell{
 	@Override
 	public String ask(Tweet question) {
 		if(isNotNull(question) && isTweetOfMe(question)) {
-			if(owner.isTimeToNextRound(question.getText()))
+			if(owner.isTimeToNextRound(question.getText())) {
 				return owner.getCallForNextRound();
+			}
 		}
 		return null;
 	}

@@ -40,7 +40,6 @@ public class JudgeValidateFightCell implements SmartCell {
 	}
 
 	private String getReturnMessage(Tweet question) {
-		System.out.println(owner.getCallForNextRound());
 		return owner.getCallForNextRound();
 	}
 

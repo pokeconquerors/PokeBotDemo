@@ -3,7 +3,7 @@ package fr.univaix.iut.pokebattle.smartcell;
 import fr.univaix.iut.pokebattle.bot.JudgeBot;
 import fr.univaix.iut.pokebattle.twitter.Tweet;
 
-	public class JudgeInfoFirstOpponentsCell {
+public class JudgeInfoFirstOpponentsCell implements SmartCell{
 		private JudgeBot owner;
 	
 	public JudgeInfoFirstOpponentsCell(JudgeBot owner) {

@@ -14,6 +14,7 @@ import fr.univaix.iut.pokebattle.smartcell.JudgeAnswerWinnerCell;
 import fr.univaix.iut.pokebattle.smartcell.JudgeAnswersAfterHimSelfCell;
 import fr.univaix.iut.pokebattle.smartcell.JudgeHireCell;
 import fr.univaix.iut.pokebattle.smartcell.JudgeAnswerValidAttaqueCell;
+import fr.univaix.iut.pokebattle.smartcell.JudgeInfoFirstOpponentsCell;
 import fr.univaix.iut.pokebattle.smartcell.JudgeNbRoundsCell;
 import fr.univaix.iut.pokebattle.smartcell.JudgeOverBidCell;
 import fr.univaix.iut.pokebattle.smartcell.JudgeValidateFightCell;
@@ -107,7 +108,7 @@ public class JudgeBot implements Bot {
 	/**
 	 * List of smartcell the questions go through to find an answer.
 	 */
-	private final SmartCell[]	smartCells	= new SmartCell[] { new JudgeOverBidCell(this),
+	private final SmartCell[]	smartCells	= new SmartCell[] { new JudgeOverBidCell(this), new JudgeInfoFirstOpponentsCell(this),
 			new JudgeAnswersAfterHimSelfCell(this), new JudgeNbRoundsCell(this), new JudgeAnswerWinnerCell(this),
 			new JudgeAnswerNbFightCell(this), new JudgeHireCell(this), new JudgeValidateFightCell(this),
 			new JudgeAnswerValidAttaqueCell(this), new JudgeAnswerAreneCell(this), new JudgeAnswerCell(), };
@@ -214,17 +215,25 @@ public class JudgeBot implements Bot {
 
 	@Override
 	public boolean isTimeToNextRound(String text) {
-		String tmpText = text.toLowerCase();
-		String[] pokemon1 = pokemons.get(0);
-		String[] pokemon2 = pokemons.get(1);
-		String round = "#" + getNb_Rounds_en_cours();
-		if (tmpText.contains(pokemon1[0].toLowerCase()) && tmpText.contains(pokemon1[1].toLowerCase())
-				&& tmpText.contains(round.toLowerCase()))
-			return true;
-		if (tmpText.contains(pokemon2[0].toLowerCase()) && tmpText.contains(pokemon2[1].toLowerCase())
-				&& tmpText.contains(round.toLowerCase()))
-			return true;
-		return false;
+		try {
+			String tmpText = text.toLowerCase();
+			String[] pokemon1 = pokemons.get(0);
+			String[] pokemon2 = pokemons.get(1);
+			String round = "#" + getNb_Rounds_en_cours();
+			if(tmpText.contains("round "+round))
+				return false;
+			if (tmpText.contains(pokemon1[0].toLowerCase()) && tmpText.contains(pokemon1[1].toLowerCase())
+					&& tmpText.contains(round.toLowerCase()))
+				return true;
+			if (tmpText.contains(pokemon2[0].toLowerCase()) && tmpText.contains(pokemon2[1].toLowerCase())
+					&& tmpText.contains(round.toLowerCase()))
+				return true;
+			return false;
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+			return false;
+		}
 	}
 
 	@Override
