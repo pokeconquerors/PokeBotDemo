@@ -21,7 +21,7 @@ public class JudgeHireCell implements SmartCell {
 			} 
 			else {
 				return "@" + question.getScreenName() + " " + owner.getArene()
-						+ " is my owner";
+						+ " is my owner but maybe ...";
 			}
 		}
 		return null;

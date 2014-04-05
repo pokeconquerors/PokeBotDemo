@@ -15,7 +15,7 @@ public class JudgeAnswerAreneCellTest {
 	@Test
 	public void Test_JudgeAnswerArene_Viridian() {
 		JudgeAnswerAreneCell cell = new JudgeAnswerAreneCell(new JudgeBot("ViridianGym"));
-		assertEquals("@TwitterTest my Gym is ViridianGym", cell.ask(new Tweet("TwitterTest", "@PokeConquerors Gym?")));		
+		assertEquals("@TwitterTest my Gym is ViridianGym but maybe ...", cell.ask(new Tweet("TwitterTest", "@PokeConquerors Gym?")));		
 	}
 	
 	@Test
