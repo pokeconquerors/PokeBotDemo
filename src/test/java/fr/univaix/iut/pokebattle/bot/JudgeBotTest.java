@@ -4,6 +4,7 @@ import java.util.Date;
 
 import fr.univaix.iut.pokebattle.twitter.Tweet;
 
+import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -21,8 +22,15 @@ public class JudgeBotTest {
 		TwitterFactory factory = new TwitterFactory();
 		Twitter twitter = factory.getInstance();
 		judge = new JudgeBot();
+		judge.setScreenName("PokeConquerors");
 		judge.setTwitter(twitter);
 	}
+	
+	@Before
+	public void setUp_2 () {
+		judgeBot.setScreenName("PokeConquerors");
+	}
+	
     @Test
     public void testAsk() throws Exception {
         assertThat(judgeBot.ask(new Tweet("@PokeConquerors Salut"))).isNotNull();
@@ -80,4 +88,12 @@ public class JudgeBotTest {
     public void test_getTwitter() {
     	assertThat(judge.getTwitter()).isNotNull();
     }
+    
+    @Test
+    public void test_ElementInList() {
+		JudgeBot judge = new JudgeBot();
+		judge.pushPokemon("bulbizarbi", "nebsed", null, null);
+		judge.pushPokemon("bulbizarre", "nedseb", null, null);
+		assertEquals(null, judge.getElementInList("BulbiVraimentZarbi", 0, 0));
+	}
 }

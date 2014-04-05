@@ -10,25 +10,36 @@ import org.slf4j.LoggerFactory;
 public class PokemonMain {
     private static final Logger LOGGER = LoggerFactory.getLogger(PokemonMain.class);
 
-    private PokemonMain() {
-
+    public static void definePokedexFile(String pokedexFile) {
+    	String tmpPokedexFile = (pokedexFile != null ? pokedexFile : "pokedex.json");
+    	DataReadObject.getInstance().setPokedexFile(tmpPokedexFile);     	
     }
-
-    private static void initialisation() {
-    	DataReadObject.getInstance().setPokedexFile("pokedex.json");     	
+    
+    public PokemonMain() {
+    	
     }
     
     public static void main(String[] args) {
-    	try {
-    		initialisation();
-    	}
-    	catch (Exception e) {
-    		LOGGER.error("Erreur d'initialisation\n" + e.getMessage());
-    	}
-    	try {
+		String pokedexFile = getPokedexFile(args);
+		definePokedexFile(pokedexFile);
+
+		try {
             BotRunner.runBot(new JudgeBot(), "twitter4j.properties");
         } catch (TUSEException e) {
             LOGGER.error("Erreur sérieuse dans le BotRunner", e);
         }
     }
+
+	private static String getPokedexFile(String[] args) {
+		return getFromArgs(args, "pokedexFile=");
+	}
+	
+	private static String getFromArgs(String[] args, String element) {
+		for (String string : args) {
+			if(string.contains(element)) {
+				return string.replaceAll(element,"");
+			}
+		}
+		return null;
+	}
 }

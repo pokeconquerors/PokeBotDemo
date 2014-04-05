@@ -8,10 +8,10 @@ import fr.univaix.iut.pokebattle.twitter.Tweet;
 /**
  * Reply to all.
  */
-public class JudgeAnswerValidAttaque implements SmartCell {
+public class JudgeAnswerValidAttaqueCell implements SmartCell {
 	private JudgeBot owner;
 
-	public JudgeAnswerValidAttaque(JudgeBot owner) {
+	public JudgeAnswerValidAttaqueCell(JudgeBot owner) {
 		this.owner = owner;
 	}
 

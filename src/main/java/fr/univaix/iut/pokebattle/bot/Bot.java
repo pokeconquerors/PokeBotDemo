@@ -9,5 +9,8 @@ public interface Bot {
     Twitter getTwitter();
     long getId();
     void setId(long id);
+	boolean isTimeToNextRound(String text);
+	void setScreenName(String screenName);
+	String getScreenName();
 }
 		

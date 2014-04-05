@@ -17,8 +17,8 @@ import fr.univaix.iut.pokebattle.twitter.Tweet;
 	
 	public String ask(Tweet question) {
 		if (question.getText().toLowerCase().contains(" #fight with ")) {
-			owner.pushPokemon(getPokemon1(question.getText()), question.getScreenName(), null, null);	
-			return "Pokemon = " + owner.getPokemon(getPokemon1(question.getText())) + ", Proprio = @" + owner.getProprietaire(getPokemon1(question.getText())) ;
+			owner.pushPokemon(getPokemon1(question.getText()), "@"+question.getScreenName(), null, null);	
+			return "Pokemon = " + owner.getPokemonFromList(getPokemon1(question.getText())) + ", Proprio = " + owner.getProprietaireFromList(getPokemon1(question.getText())) ;
 		}
 		return null;
 		

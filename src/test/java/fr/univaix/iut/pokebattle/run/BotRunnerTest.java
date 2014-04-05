@@ -8,7 +8,6 @@ import java.io.InputStream;
 import org.junit.Test;
 
 import fr.univaix.iut.pokebattle.bot.JudgeBot;
-import fr.univaix.iut.pokebattle.tuse.TUSEException;
 
 public class BotRunnerTest {
 
@@ -47,6 +46,12 @@ public class BotRunnerTest {
 		catch (Exception e) {
 			assertThat(e).isNotNull();
 		}
+	}
+	
+	@Test
+	public void test_BotRunner() {
+		BotRunner botRunner = new BotRunner();
+		assertTrue(botRunner != null);
 	}
 
 }

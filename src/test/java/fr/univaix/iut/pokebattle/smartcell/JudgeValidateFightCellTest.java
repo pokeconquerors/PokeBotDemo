@@ -23,7 +23,8 @@ public class JudgeValidateFightCellTest {
 	public void testSalut() {
 		judge.setInFight(false);
 		cell.ask(new Tweet("pcreux", "@nedseb #fight with @bulbizare1 /cc @viviane"));
-        assertEquals("Round #1 /cc @nedseb @pikachuNyanNian @pcreux @bulbizare1", cell2.ask(new Tweet("nedseb", "@pcreux #fight #ok with @pikachuNyanNian /cc @viviane")));
+        assertEquals("Round #1 /cc @pcreux @bulbizare1 @nedseb @pikachuNyanNian", 
+        			 cell2.ask(new Tweet("nedseb", "@pcreux #fight #ok with @pikachuNyanNian /cc @viviane")));
     }
 	
 	@Test

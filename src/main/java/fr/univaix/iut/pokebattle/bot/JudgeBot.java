@@ -11,8 +11,9 @@ import fr.univaix.iut.pokebattle.smartcell.JudgeAnswerAreneCell;
 import fr.univaix.iut.pokebattle.smartcell.JudgeAnswerCell;
 import fr.univaix.iut.pokebattle.smartcell.JudgeAnswerNbFightCell;
 import fr.univaix.iut.pokebattle.smartcell.JudgeAnswerWinnerCell;
+import fr.univaix.iut.pokebattle.smartcell.JudgeAnswersAfterHimSelfCell;
 import fr.univaix.iut.pokebattle.smartcell.JudgeHireCell;
-import fr.univaix.iut.pokebattle.smartcell.JudgeAnswerValidAttaque;
+import fr.univaix.iut.pokebattle.smartcell.JudgeAnswerValidAttaqueCell;
 import fr.univaix.iut.pokebattle.smartcell.JudgeNbRoundsCell;
 import fr.univaix.iut.pokebattle.smartcell.JudgeOverBidCell;
 import fr.univaix.iut.pokebattle.smartcell.JudgeValidateFightCell;
@@ -20,16 +21,17 @@ import fr.univaix.iut.pokebattle.smartcell.SmartCell;
 import fr.univaix.iut.pokebattle.twitter.Tweet;
 
 public class JudgeBot implements Bot {
-	private boolean inFight = false;
-	private String arene = null;
-	private List<String[]> pokemons = new ArrayList<String[]>();
-	private long id;
-	private Twitter twitter;
-	private List<Date> date5fight = new ArrayList<>();
-	private static final int UNE_HEURE = 3600000;
-	private int Nb_Rounds_en_cours = 0;
-	private int salaire = 0;	
-	
+	private boolean				inFight				= false;
+	private String				arene				= null;
+	private List<String[]>		pokemons			= new ArrayList<String[]>();
+	private long				id;
+	private Twitter				twitter;
+	private List<Date>			date5fight			= new ArrayList<>();
+	private static final int	UNE_HEURE			= 3600000;
+	private int					Nb_Rounds_en_cours	= 0;
+	private int					salaire				= 0;
+	private String				screenName			= null;
+
 	public Twitter getTwitter() {
 		return twitter;
 	}
@@ -46,51 +48,41 @@ public class JudgeBot implements Bot {
 		this.inFight = inFight;
 	}
 
-	public void pushPokemon(String nomPokemon, String nomProprio, String level,
-			String xp) {
+	public void pushPokemon(String nomPokemon, String nomProprio, String level, String xp) {
 		pokemons.add(new String[] { nomPokemon, nomProprio, level, xp });
 	}
 
 	public String getOtherPokemon(String pokemonPerdant) {
 		for (String[] tmpPokemons : pokemons) {
-			if (!tmpPokemons[0].equals(pokemonPerdant)) {
-				return tmpPokemons[0];
-			}
+			if (!tmpPokemons[0].equals(pokemonPerdant)) { return tmpPokemons[0]; }
 		}
 		return null;
 	}
 
 	public String getElementInList(String testeur, int indice, int caseToLook) {
 		for (String[] tmpPokemons : pokemons) {
-			if (tmpPokemons[caseToLook].equals(testeur)) {
-				return tmpPokemons[indice];
-			}
+			if (tmpPokemons[caseToLook].equals(testeur)) { return tmpPokemons[indice]; }
 		}
 		return null;
 	}
-	
+
 	public String getElementInList(String pokemon, int indice) {
 		return getElementInList(pokemon, indice, 0);
 	}
 
-	public String getPokemon(String pokemon) {
+	public String getPokemonFromList(String pokemon) {
 		return getElementInList(pokemon, 0);
 	}
-	
-	public String getPokemonFromProprio(String proprietaire) {
-		String tmp = getElementInList(proprietaire, 0, 1);
-		return tmp;
-	}
 
-	public String getProprietaire(String pokemon) {
+	public String getProprietaireFromList(String pokemon) {
 		return getElementInList(pokemon, 1);
 	}
 
-	public String getLevel(String pokemon) {
+	public String getLevelFromList(String pokemon) {
 		return getElementInList(pokemon, 2);
 	}
 
-	public String getXP(String pokemon) {
+	public String getXPFromList(String pokemon) {
 		return getElementInList(pokemon, 3);
 	}
 
@@ -115,11 +107,10 @@ public class JudgeBot implements Bot {
 	/**
 	 * List of smartcell the questions go through to find an answer.
 	 */
-	private final SmartCell[] smartCells = new SmartCell[] { new JudgeOverBidCell(this), new JudgeNbRoundsCell(this),
-			new JudgeAnswerWinnerCell(this), new JudgeAnswerNbFightCell(this),
-			new JudgeHireCell(this), new JudgeValidateFightCell(this),
-			new JudgeAnswerValidAttaque(this), new JudgeAnswerAreneCell(this),
-			new JudgeAnswerCell()};
+	private final SmartCell[]	smartCells	= new SmartCell[] { new JudgeOverBidCell(this),
+			new JudgeAnswersAfterHimSelfCell(this), new JudgeNbRoundsCell(this), new JudgeAnswerWinnerCell(this),
+			new JudgeAnswerNbFightCell(this), new JudgeHireCell(this), new JudgeValidateFightCell(this),
+			new JudgeAnswerValidAttaqueCell(this), new JudgeAnswerAreneCell(this), new JudgeAnswerCell(), };
 
 	/**
 	 * Ask something to Bot, it will respond to you.
@@ -133,9 +124,7 @@ public class JudgeBot implements Bot {
 	public String ask(Tweet question) {
 		for (SmartCell cell : smartCells) {
 			String answer = cell.ask(question);
-			if (answer != null) {
-				return answer;
-			}
+			if (answer != null) { return answer; }
 		}
 		return new JudgeAlwaysAnswersCell().ask(question);
 	}
@@ -159,9 +148,7 @@ public class JudgeBot implements Bot {
 	}
 
 	public boolean isMoreThanAnHour(Date date1, Date date2) {
-		if (date1.getTime() > date2.getTime() + UNE_HEURE) {
-			return true;
-		}
+		if (date1.getTime() > date2.getTime() + UNE_HEURE) { return true; }
 		return false;
 	}
 
@@ -189,25 +176,64 @@ public class JudgeBot implements Bot {
 		return Nb_Rounds_en_cours;
 	}
 
-	
 	public void IncrNb_Rounds_en_cours() {
 		++Nb_Rounds_en_cours;
 	}
-	
+
 	public void ReinitNb_Rounds_en_cours() {
 		Nb_Rounds_en_cours = 0;
 	}
 
 	public boolean isInterestedBy(int montant) {
-		if(montant >= (getSalaire()+100) && montant <= (getSalaire()+1000)) return true;
+		if (montant >= (getSalaire() + 100) && montant <= (getSalaire() + 1000))
+			return true;
 		return false;
 	}
 
 	public int getSalaire() {
 		return salaire;
 	}
-	
+
 	public void setSalaire(int montant) {
 		salaire = montant;
+	}
+
+	private String getFromTab(int indice, String text) {
+		String[] tab = text.split(" ");
+		return tab[indice];
+	}
+
+	public String getPoke(String textToSplit) {
+		return getFromTab(4, textToSplit);
+	}
+
+	public String getCallForNextRound() {
+		return "Round #" + getNb_Rounds_en_cours() + " /cc " + pokemons.get(0)[1] + " " + pokemons.get(0)[0] + " "
+				+ pokemons.get(1)[1] + " " + pokemons.get(1)[0];
+	}
+
+	@Override
+	public boolean isTimeToNextRound(String text) {
+		String tmpText = text.toLowerCase();
+		String[] pokemon1 = pokemons.get(0);
+		String[] pokemon2 = pokemons.get(1);
+		String round = "#" + getNb_Rounds_en_cours();
+		if (tmpText.contains(pokemon1[0].toLowerCase()) && tmpText.contains(pokemon1[1].toLowerCase())
+				&& tmpText.contains(round.toLowerCase()))
+			return true;
+		if (tmpText.contains(pokemon2[0].toLowerCase()) && tmpText.contains(pokemon2[1].toLowerCase())
+				&& tmpText.contains(round.toLowerCase()))
+			return true;
+		return false;
+	}
+
+	@Override
+	public void setScreenName(String screenName) {
+		this.screenName = screenName;
+	}
+
+	@Override
+	public String getScreenName() {
+		return screenName;
 	}
 }

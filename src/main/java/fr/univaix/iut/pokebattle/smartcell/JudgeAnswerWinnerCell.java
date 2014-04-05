@@ -15,8 +15,8 @@ public class JudgeAnswerWinnerCell implements SmartCell {
 
 	public int recupGainsXp(String pokemon) {
 		int Exp;
-		float ExpVal = Float.parseFloat(owner.getXP(pokemon));
-		float Level = Float.parseFloat(owner.getLevel(pokemon));
+		float ExpVal = Float.parseFloat(owner.getXPFromList(pokemon));
+		float Level = Float.parseFloat(owner.getLevelFromList(pokemon));
 		Exp = (int) (ExpVal * (Level / 7));
 
 		return Exp;

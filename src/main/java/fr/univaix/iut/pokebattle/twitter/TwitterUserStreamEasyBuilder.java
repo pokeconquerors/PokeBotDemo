@@ -47,12 +47,17 @@ public class TwitterUserStreamEasyBuilder {
 
 	private void processNewQuestion(Status status, Bot bot) throws TwitterException {
 		if (isNotANewQuestion(status)) {
-			LOGGER.info("Ignored status change");
-			return;
+			if (isTweetOfMe(status) && bot.isTimeToNextRound(status.getText())) {
+			}
+			else {
+				LOGGER.info("Ignored status change");
+				return;
+			}
 		}
 		this.bot.setTwitter(twitter);
 		this.bot.setId(twitter.getId());
-		String response = bot.ask(new Tweet(status.getUser().getScreenName(), status.getText(),status.getCreatedAt()));
+		this.bot.setScreenName(twitter.getScreenName());
+		String response = bot.ask(new Tweet(status.getUser().getScreenName(), status.getText(), status.getCreatedAt()));
 
 		if (responseIsNotNull(response)) {
 			DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
@@ -60,7 +65,7 @@ public class TwitterUserStreamEasyBuilder {
 			System.out.println(response + " " + dateFormat.format(date) + " #PokeBattle");
 			twitter.updateStatus(response + " " + dateFormat.format(date) + " #PokeBattle");
 		}
-	
+
 	}
 
 	private boolean responseIsNotNull(String response) {
