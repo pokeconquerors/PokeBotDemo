@@ -6,13 +6,13 @@ public class JudgeAlwaysAnswersCell implements SmartCell {
     public JudgeAlwaysAnswersCell() {
     }
 
-    public String ask(Tweet question) {
+    public final String ask(final Tweet question) {
         if (isNotNull(question)) { return "@" + question.getScreenName()
                 + " Bienvenue dans le monde fascinant des pokémons"; }
         return "Un pokemon sauvage apparait";
     }
 
-    private boolean isNotNull(Tweet question) {
+    private boolean isNotNull(final Tweet question) {
         return question.getScreenName() != null;
     }
 }

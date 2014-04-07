@@ -6,11 +6,11 @@ import fr.univaix.iut.pokebattle.twitter.Tweet;
 public class JudgeValidateFightCell implements SmartCell {
     private JudgeBot owner;
 
-    public JudgeValidateFightCell(JudgeBot owner) {
+    public JudgeValidateFightCell(final JudgeBot owner) {
         this.owner = owner;
     }
 
-    public String ask(Tweet question) {
+    public final String ask(final Tweet question) {
         if (!owner.isInFight()) {
             if (isOkToFight(question) && isNotNull(question)) {
                 owner.updateDateList(question.getCreatedAt());
@@ -21,30 +21,34 @@ public class JudgeValidateFightCell implements SmartCell {
                 startFight(question);
                 return getReturnMessage(question);
             }
-        } else if (isOkToFight(question) && isNotNull(question)) { return "Je suis déjà en combat, veuillez me contacter plus tard jeune dresseur bipéde, cordialement"; }
+        } else if (isOkToFight(question) && isNotNull(question)) {
+            return "Je suis déjà en combat, "
+                    + "veuillez me contacter plus tard jeune "
+                    + "dresseur bipéde, cordialement";
+            }
         return null;
     }
 
-    private void startFight(Tweet question) {
+    private void startFight(final Tweet question) {
         owner.addDate5fight(question.getCreatedAt());
         owner.setInFight(true);
         owner.incrNbRoundsEnCours();
     }
 
-    private void addNewPokemon(Tweet question) {
+    private void addNewPokemon(final Tweet question) {
         owner.pushPokemon(owner.getPoke(question.getText()),
                 "@" + question.getScreenName(), null, null);
     }
 
-    private String getReturnMessage(Tweet question) {
+    private String getReturnMessage(final Tweet question) {
         return owner.getCallForNextRound();
     }
 
-    private boolean isNotNull(Tweet question) {
+    private boolean isNotNull(final Tweet question) {
         return question.getScreenName() != null;
     }
 
-    private boolean isOkToFight(Tweet question) {
+    private boolean isOkToFight(final Tweet question) {
         return question.getText().matches(".*\\s+#fight #ok with\\s+.*");
     }
 }

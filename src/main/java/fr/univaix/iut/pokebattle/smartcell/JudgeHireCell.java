@@ -7,11 +7,11 @@ public class JudgeHireCell implements SmartCell {
 
     private JudgeBot owner;
 
-    public JudgeHireCell(JudgeBot owner) {
+    public JudgeHireCell(final JudgeBot owner) {
         this.owner = owner;
     }
 
-    public String ask(Tweet question) {
+    public final String ask(final Tweet question) {
         if (isNotNull(question) && isHiring(question)) {
             if (hasNoArena()) {
                 owner.setArene("@" + question.getScreenName());
@@ -38,11 +38,11 @@ public class JudgeHireCell implements SmartCell {
         }
     }
 
-    private boolean isNotNull(Tweet question) {
+    private boolean isNotNull(final Tweet question) {
         return (question.getScreenName() != null);
     }
 
-    private boolean isHiring(Tweet question) {
+    private boolean isHiring(final Tweet question) {
         return question.getText().matches(".*\\s+(?i)hire\\s*!.*");
     }
 }

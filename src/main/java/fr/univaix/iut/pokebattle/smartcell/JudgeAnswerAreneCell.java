@@ -6,16 +6,16 @@ import fr.univaix.iut.pokebattle.twitter.Tweet;
 public class JudgeAnswerAreneCell implements SmartCell {
     private JudgeBot owner;
 
-    public JudgeAnswerAreneCell(JudgeBot owner) {
+    public JudgeAnswerAreneCell(final JudgeBot owner) {
         this.owner = owner;
     }
 
-    public String ask(Tweet question) {
+    public final String ask(Tweet question) {
         if (isNotNull(question) && isAnArena(question)) { return getGymMessage(question); }
         return null;
     }
 
-    private String getGymMessage(Tweet question) {
+    private String getGymMessage(final Tweet question) {
         if (hasGym()) { return "@" + question.getScreenName() + " my Gym is "
                 + owner.getArene() + " but maybe ..."; }
         owner.setArene("no Gym");
@@ -31,11 +31,11 @@ public class JudgeAnswerAreneCell implements SmartCell {
         return owner.getArene() != null;
     }
 
-    private boolean isNotNull(Tweet question) {
+    private boolean isNotNull(final Tweet question) {
         return question.getScreenName() != null;
     }
 
-    private boolean isAnArena(Tweet question) {
+    private boolean isAnArena(final Tweet question) {
         return question.getText().matches(".*\\s+[gG][yY][mM]\\s*\\?.*");
     }
 }

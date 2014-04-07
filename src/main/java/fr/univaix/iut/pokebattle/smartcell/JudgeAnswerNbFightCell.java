@@ -6,11 +6,11 @@ import fr.univaix.iut.pokebattle.twitter.Tweet;
 public class JudgeAnswerNbFightCell implements SmartCell {
     private JudgeBot owner;
 
-    public JudgeAnswerNbFightCell(JudgeBot owner) {
+    public JudgeAnswerNbFightCell(final JudgeBot owner) {
         this.owner = owner;
     }
 
-    public String ask(Tweet question) {
+    public final String ask(final Tweet question) {
         if (isNotNull(question) && isAFight(question)) {
             owner.updateDateList(question.getCreatedAt());
             return "@" + question.getScreenName()
@@ -21,11 +21,11 @@ public class JudgeAnswerNbFightCell implements SmartCell {
         return null;
     }
 
-    private boolean isNotNull(Tweet question) {
+    private boolean isNotNull(final Tweet question) {
         return question.getScreenName() != null;
     }
 
-    private boolean isAFight(Tweet question) {
+    private boolean isAFight(final Tweet question) {
         return question.getText().matches(".*\\s+(?i)fight\\s*?.*");
     }
 }

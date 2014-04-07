@@ -11,7 +11,7 @@ public class JudgeAnswersAfterHimSelfCell implements SmartCell {
     }
 
     @Override
-    public String ask(Tweet question) {
+    public final String ask(final Tweet question) {
         if (isNotNull(question) && isTweetOfMe(question)) {
             if (owner.isTimeToNextRound(question.getText())) { return owner
                     .getCallForNextRound(); }
@@ -19,12 +19,12 @@ public class JudgeAnswersAfterHimSelfCell implements SmartCell {
         return null;
     }
 
-    private boolean isTweetOfMe(Tweet question) {
+    private boolean isTweetOfMe(final Tweet question) {
         return question.getScreenName().toLowerCase()
                 .equals(owner.getScreenName().toLowerCase());
     }
 
-    private boolean isNotNull(Tweet question) {
+    private boolean isNotNull(final Tweet question) {
         return question.getScreenName() != null;
     }
 }

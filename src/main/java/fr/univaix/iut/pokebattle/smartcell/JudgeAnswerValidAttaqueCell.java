@@ -11,18 +11,18 @@ import fr.univaix.iut.pokebattle.twitter.Tweet;
 public class JudgeAnswerValidAttaqueCell implements SmartCell {
     private JudgeBot owner;
 
-    public JudgeAnswerValidAttaqueCell(JudgeBot owner) {
+    public JudgeAnswerValidAttaqueCell(final JudgeBot owner) {
         this.owner = owner;
     }
 
     DataReadObject dro = DataReadObject.getInstance();
 
-    public String getElementInArray(String text, int indice) {
+    public final String getElementInArray(final String text, final int indice) {
         String[] tab = text.split(" ");
         return tab[indice];
     }
 
-    public String ask(Tweet question) {
+    public final String ask(final Tweet question) {
 
         if (isNotNull(question) && isALaunchAttack(question)) {
             String nomPokemon = getPokemon(question);
@@ -41,26 +41,26 @@ public class JudgeAnswerValidAttaqueCell implements SmartCell {
         return null;
     }
 
-    private boolean isACorrectAttack(Tweet question) {
+    private boolean isACorrectAttack(final Tweet question) {
         String nomAttaque = getAttaque(question);
         String nomPokemon = getPokemon(question);
         DataObjectAttack attaque = dro.getAttaque(nomPokemon, nomAttaque);
         return attaque != null;
     }
 
-    private String getPokemon(Tweet question) {
+    private String getPokemon(final Tweet question) {
         return getElementInArray(question.getText(), 0).substring(1);
     }
 
-    private String getAttaque(Tweet question) {
+    private String getAttaque(final Tweet question) {
         return getElementInArray(question.getText(), 2).substring(1);
     }
 
-    private boolean isNotNull(Tweet question) {
+    private boolean isNotNull(final Tweet question) {
         return question.getScreenName() != null;
     }
 
-    private boolean isALaunchAttack(Tweet question) {
+    private boolean isALaunchAttack(final Tweet question) {
         return question.getText().matches("@.+ #(?i)attack #.+ @.+.*");
     }
 

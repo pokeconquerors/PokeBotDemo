@@ -11,7 +11,7 @@ public class JudgeOverBidCell implements SmartCell {
     }
 
     @Override
-    public String ask(Tweet question) {
+    public final String ask(final Tweet question) {
         if (isNotNull(question) && isAnOverBid(question)) {
             int montant = getMontant(question.getText());
             if (owner.isInterestedBy(montant)) {
@@ -25,7 +25,7 @@ public class JudgeOverBidCell implements SmartCell {
         return null;
     }
 
-    private String hire(Tweet question) {
+    private String hire(final Tweet question) {
         JudgeHireCell cell = new JudgeHireCell(owner);
         owner.setArene(null);
         String hireMess = cell.ask(
@@ -34,16 +34,17 @@ public class JudgeOverBidCell implements SmartCell {
         return hireMess;
     }
 
-    private int getMontant(String text) {
+    private int getMontant(final String text) {
         String[] splitedText = text.split("\\s+");
         for (String tmpText : splitedText) {
-            if (isANumber(tmpText))
+            if (isANumber(tmpText)) {
                 return Integer.parseInt(tmpText);
+            }
         }
         return 0;
     }
 
-    private boolean isANumber(String text) {
+    private boolean isANumber(final String text) {
         for (char c : text.toCharArray()) {
             if (!Character.isDigit(c)) {
                 System.out.println(c);
@@ -53,11 +54,11 @@ public class JudgeOverBidCell implements SmartCell {
         return true;
     }
 
-    private boolean isAnOverBid(Tweet question) {
+    private boolean isAnOverBid(final Tweet question) {
         return question.getText().matches(".*(?i)overbid\\s+.*");
     }
 
-    private boolean isNotNull(Tweet question) {
+    private boolean isNotNull(final Tweet question) {
         return question.getScreenName() != null;
     }
 }
