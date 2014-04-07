@@ -117,9 +117,6 @@ public class JudgeBot implements Bot {
         this.id = id;
     }
 
-    /**
-     * List of smartcell the questions go through to find an answer.
-     */
     private final SmartCell[] smartCells = new SmartCell[] {
             new JudgeOverBidCell(this), new JudgeInfoFirstOpponentsCell(this),
             new JudgeAnswersAfterHimSelfCell(this),
