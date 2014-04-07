@@ -5,7 +5,7 @@ import java.io.InputStreamReader;
 
 import com.google.gson.Gson;
 
-public class DataReadObject {
+public final class DataReadObject {
     private static DataReadObject instance;
     private DataObjectPokemon[]   pokemons;
     private String                pokedexFile = "pokedex.json";
@@ -14,7 +14,7 @@ public class DataReadObject {
         return pokedexFile;
     }
 
-    public void setPokedexFile(String pokedexFile) {
+    public void setPokedexFile(final String pokedexFile) {
         this.pokedexFile = pokedexFile;
     }
 
@@ -29,27 +29,28 @@ public class DataReadObject {
         return pokemons;
     }
 
-    public DataObjectPokemon getPokemon(int position) {
+    public DataObjectPokemon getPokemon(final int position) {
         return pokemons[position];
     }
 
-    public DataObjectPokemon getPokemon(String nomPokemon) {
+    public DataObjectPokemon getPokemon(final String nomPokemon) {
         for (DataObjectPokemon pokemon : pokemons) {
-            if (pokemon.nom.toLowerCase().equals(nomPokemon.toLowerCase()))
+            if (pokemon.nom.toLowerCase().equals(nomPokemon.toLowerCase())) {
                 return pokemon;
+            }
         }
         return null;
     }
 
-    public void setPokemons(DataObjectPokemon[] pokemons) {
+    public void setPokemons(final DataObjectPokemon[] pokemons) {
         this.pokemons = pokemons;
     }
 
     private DataReadObject() {
-        ChargerJson();
+        chargerJson();
     }
 
-    private void ChargerJson() {
+    private void chargerJson() {
 
         Gson gson = new Gson();
 
@@ -60,44 +61,46 @@ public class DataReadObject {
         setPokemons(gson.fromJson(lecteur, DataObjectPokemon[].class));
     }
 
-    public DataObjectAttack[] getAttaques(String nomPokemon) {
+    public DataObjectAttack[] getAttaques(final String nomPokemon) {
         for (DataObjectPokemon pokemon : pokemons) {
-            if (pokemon.nom.toLowerCase().equals(nomPokemon.toLowerCase()))
+            if (pokemon.nom.toLowerCase().equals(nomPokemon.toLowerCase())) {
                 return pokemon.attaques;
+            }
         }
         return null;
     }
 
-    public DataObjectAttack getAttaque(String nomPokemon, String nomAttaque) {
+    public DataObjectAttack getAttaque(final String nomPokemon, final String nomAttaque) {
         return getAttaque(nomAttaque, getPokemon(nomPokemon));
     }
 
-    private DataObjectAttack getAttaque(String nomAttaque,
-            DataObjectPokemon pokemon) {
+    private DataObjectAttack getAttaque(final String nomAttaque,
+            final DataObjectPokemon pokemon) {
         for (DataObjectAttack attaque : pokemon.attaques) {
-            if (attaque.nom.toLowerCase().equals(nomAttaque.toLowerCase()))
+            if (attaque.nom.toLowerCase().equals(nomAttaque.toLowerCase())) {
                 return attaque;
+            }
         }
         return null;
     }
 
-    public String getAttaqueNom(DataObjectAttack attaque) {
+    public String getAttaqueNom(final DataObjectAttack attaque) {
         return attaque.nom;
     }
 
-    public String getAttaqueNiveau(DataObjectAttack attaque) {
+    public String getAttaqueNiveau(final DataObjectAttack attaque) {
         return attaque.niveau;
     }
 
-    public String getAttaquePuissance(DataObjectAttack attaque) {
+    public String getAttaquePuissance(final DataObjectAttack attaque) {
         return attaque.puissance;
     }
 
-    public String getAttaquePrecision(DataObjectAttack attaque) {
+    public String getAttaquePrecision(final DataObjectAttack attaque) {
         return attaque.precision;
     }
 
-    public String getAttaquePP(DataObjectAttack attaque) {
+    public String getAttaquePP(final DataObjectAttack attaque) {
         return attaque.pp;
     }
 }

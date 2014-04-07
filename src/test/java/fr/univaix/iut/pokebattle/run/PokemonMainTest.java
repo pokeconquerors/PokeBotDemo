@@ -28,11 +28,4 @@ public class PokemonMainTest {
         assertEquals("pokedex.json", DataReadObject.getInstance()
                 .getPokedexFile());
     }
-
-    @Test
-    public void test_PokemonMain() {
-        PokemonMain pokemonMain = new PokemonMain();
-        assertTrue(pokemonMain != null);
-    }
-
 }

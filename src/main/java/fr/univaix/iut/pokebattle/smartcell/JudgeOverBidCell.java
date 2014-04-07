@@ -6,7 +6,7 @@ import fr.univaix.iut.pokebattle.twitter.Tweet;
 public class JudgeOverBidCell implements SmartCell {
     private JudgeBot owner = null;
 
-    public JudgeOverBidCell(JudgeBot owner) {
+    public JudgeOverBidCell(final JudgeBot owner) {
         this.owner = owner;
     }
 
@@ -18,9 +18,10 @@ public class JudgeOverBidCell implements SmartCell {
                 owner.setSalaire(montant);
                 return "@" + question.getScreenName()
                         + " Nous allons bien nous entendre ! " + hire(question);
-            } else
+            } else {
                 return "@" + question.getScreenName()
                         + " Sale Radin ! Retourne à l'âge de Pierre";
+            }
         }
         return null;
     }

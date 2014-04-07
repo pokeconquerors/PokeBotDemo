@@ -24,10 +24,10 @@ public class DataObjectPokemon {
     public DataObjectPokemon() {
     }
 
-    public DataObjectPokemon(String nom, String espece, float taille,
-            float poids, float fmratio, String effortval, String type1,
-            String type2, int expval, int expmax, int captureval,
-            String capspe1, String capspe2, String couleur, int forme,
+    public DataObjectPokemon(final String nom, final  String espece, final  float taille, final
+            float poids, final  float fmratio, final  String effortval, final  String type1, final
+            String type2, final  int expval, final  int expmax, final  int captureval, final
+            String capspe1, final  String capspe2, final  String couleur, final  int forme, final
             DataObjectAttack[] attaques) {
         this.nom = nom;
         this.espece = espece;
@@ -48,7 +48,7 @@ public class DataObjectPokemon {
     }
 
     @Override
-    public String toString() {
+    public final String toString() {
         return "DataObjectPokemon{" + "nom='" + nom + '\'' + ", espece='"
                 + espece + '\'' + ", taille=" + taille + ", poids=" + poids
                 + ", fmratio=" + fmratio + ", effortval='" + effortval + '\''

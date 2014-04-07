@@ -61,7 +61,7 @@ public class JudgeBot implements Bot {
 
     public final void pushPokemon(final String nomPokemon,
             final String nomProprio, final String level, final String xp) {
-        pokemons.add(new String[] { nomPokemon, nomProprio, level, xp });
+        pokemons.add(new String[] {nomPokemon, nomProprio, level, xp});
     }
 
     public final String getOtherPokemon(final String pokemonPerdant) {

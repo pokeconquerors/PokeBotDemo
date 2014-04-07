@@ -7,34 +7,34 @@ public class Tweet {
     private String screenName;
     private Date   createdAt;
 
-    public Tweet(String text) {
+    public Tweet(final String text) {
         this.text = text;
     }
 
-    public Tweet(String screenName, String text) {
+    public Tweet(final String screenName, final String text) {
         this.screenName = screenName;
         this.text = text;
     }
 
-    public Tweet(String screenName, String text, Date createdAt) {
+    public Tweet(final String screenName, final String text, final Date createdAt) {
         this.screenName = screenName;
         this.text = text;
         this.setCreatedAt(createdAt);
     }
 
-    public String getScreenName() {
+    public final String getScreenName() {
         return screenName;
     }
 
-    public String getText() {
+    public final String getText() {
         return text;
     }
 
-    public Date getCreatedAt() {
+    public final Date getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(Date createdAt) {
+    public final void setCreatedAt(final Date createdAt) {
         this.createdAt = createdAt;
     }
 }

@@ -8,12 +8,11 @@ import fr.univaix.iut.pokebattle.twitter.TwitterBot;
 import java.io.IOException;
 import java.io.InputStream;
 
-public class BotRunner {
-    public BotRunner() {
+public final class BotRunner {
 
-    }
+    private BotRunner() { }
 
-    public static void runBot(Bot bot, String credentialsFileName)
+    public static void runBot(final Bot bot, final String credentialsFileName)
             throws TUSEException {
         try (InputStream inputStream = getResourceAsStream(credentialsFileName)) {
             Credentials credentials = Credentials.loadCredentials(inputStream);
@@ -24,7 +23,7 @@ public class BotRunner {
         }
     }
 
-    static InputStream getResourceAsStream(String fileName) {
+    static InputStream getResourceAsStream(final String fileName) {
         return PokemonMain.class.getClassLoader().getResourceAsStream(fileName);
     }
 }

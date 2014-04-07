@@ -6,7 +6,7 @@ import fr.univaix.iut.pokebattle.twitter.Tweet;
 public class JudgeAnswersAfterHimSelfCell implements SmartCell {
     private JudgeBot owner = null;
 
-    public JudgeAnswersAfterHimSelfCell(JudgeBot owner) {
+    public JudgeAnswersAfterHimSelfCell(final JudgeBot owner) {
         this.owner = owner;
     }
 

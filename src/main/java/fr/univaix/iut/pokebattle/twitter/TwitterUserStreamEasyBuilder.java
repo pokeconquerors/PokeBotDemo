@@ -24,17 +24,17 @@ public class TwitterUserStreamEasyBuilder {
     private Twitter             twitter;
     private Bot                 bot;
 
-    public TwitterUserStreamEasyBuilder(Credentials credentials,
-            Twitter twitter, Bot bot) {
+    public TwitterUserStreamEasyBuilder(final Credentials credentials,
+            final Twitter twitter, final Bot bot) {
         this.credentials = credentials;
         this.twitter = twitter;
         this.bot = bot;
     }
 
-    public TwitterUserStreamEasy build() {
+    public final TwitterUserStreamEasy build() {
         UserStreamListener listener = new UserStreamAdapter() {
             @Override
-            public void onStatus(Status status) {
+            public void onStatus(final Status status) {
                 LOGGER.info("TwitterUserStreamEasyExample.onStatus()");
                 try {
                     processNewQuestion(status, bot);
@@ -46,10 +46,10 @@ public class TwitterUserStreamEasyBuilder {
         return new TwitterUserStreamEasy(listener, credentials);
     }
 
-    private void processNewQuestion(Status status, Bot bot)
+    private void processNewQuestion(final Status status, final Bot bot)
             throws TwitterException {
         if (isNotANewQuestion(status)) {
-            if (isTweetOfMe(status) && bot.isTimeToNextRound(status.getText())) {} else {
+            if (isAnInterestingTweetOfMe(status, bot)) {
                 LOGGER.info("Ignored status change");
                 return;
             }
@@ -71,20 +71,25 @@ public class TwitterUserStreamEasyBuilder {
 
     }
 
-    private boolean responseIsNotNull(String response) {
+    private boolean isAnInterestingTweetOfMe(final Status status, final Bot bot)
+            throws TwitterException {
+        return !(isTweetOfMe(status) && bot.isTimeToNextRound(status.getText()));
+    }
+
+    private boolean responseIsNotNull(final String response) {
         return response != null;
     }
 
-    private boolean isNotANewQuestion(Status status) throws TwitterException {
+    private boolean isNotANewQuestion(final Status status) throws TwitterException {
         return isTweetOfMe(status) || !isTweetForMe(status);
     }
 
-    private boolean isTweetForMe(Status status) throws TwitterException {
+    private boolean isTweetForMe(final Status status) throws TwitterException {
         return status.getText().toLowerCase()
                 .contains(twitter.getScreenName().toLowerCase());
     }
 
-    private boolean isTweetOfMe(Status status) throws TwitterException {
+    private boolean isTweetOfMe(final Status status) throws TwitterException {
         return status.getUser().getId() == twitter.getId();
     }
 }

@@ -10,7 +10,7 @@ public class JudgeAnswerAreneCell implements SmartCell {
         this.owner = owner;
     }
 
-    public final String ask(Tweet question) {
+    public final String ask(final Tweet question) {
         if (isNotNull(question) && isAnArena(question)) { return getGymMessage(question); }
         return null;
     }

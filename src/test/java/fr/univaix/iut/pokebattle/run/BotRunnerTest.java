@@ -1,7 +1,7 @@
 package fr.univaix.iut.pokebattle.run;
 
-import static org.junit.Assert.*;
 import static org.fest.assertions.Assertions.assertThat;
+import static org.junit.Assert.assertTrue;
 
 import java.io.InputStream;
 
@@ -45,11 +45,4 @@ public class BotRunnerTest {
             assertThat(e).isNotNull();
         }
     }
-
-    @Test
-    public void test_BotRunner() {
-        BotRunner botRunner = new BotRunner();
-        assertTrue(botRunner != null);
-    }
-
 }

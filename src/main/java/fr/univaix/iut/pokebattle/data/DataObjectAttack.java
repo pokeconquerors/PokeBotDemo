@@ -7,8 +7,8 @@ public class DataObjectAttack {
     String precision;
     String pp;
 
-    public DataObjectAttack(String niveau, String nom, String puissance,
-            String precision, String pp) {
+    public DataObjectAttack(final String niveau, final String nom, final String puissance,
+            final String precision, final String pp) {
         this.niveau = niveau;
         this.nom = nom;
         this.puissance = puissance;
@@ -17,7 +17,7 @@ public class DataObjectAttack {
     }
 
     @Override
-    public String toString() {
+    public final String toString() {
         return "DataObjectAttack{" + "niveau='" + niveau + '\'' + ", nom='"
                 + nom + '\'' + ", puissance=" + puissance + ", precision="
                 + precision + ", pp=" + pp + '}';
