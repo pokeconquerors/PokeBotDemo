@@ -1,4 +1,3 @@
-
 package fr.univaix.iut.pokebattle.data;
 
 import java.util.Arrays;

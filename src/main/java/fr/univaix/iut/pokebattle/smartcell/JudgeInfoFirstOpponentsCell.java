@@ -4,18 +4,19 @@ import fr.univaix.iut.pokebattle.bot.JudgeBot;
 import fr.univaix.iut.pokebattle.twitter.Tweet;
 
 public class JudgeInfoFirstOpponentsCell implements SmartCell {
-    private JudgeBot owner;
+    private static final int POSITION_POKEMON_IN_SPLITTAB = 3;
+    private JudgeBot         owner;
 
-    public JudgeInfoFirstOpponentsCell(JudgeBot owner) {
+    public JudgeInfoFirstOpponentsCell(final JudgeBot owner) {
         this.owner = owner;
     }
 
-    public String getPokemon1(String text) {
+    public final String getPokemon1(final String text) {
         String[] tab = text.split(" ");
-        return tab[3];
+        return tab[POSITION_POKEMON_IN_SPLITTAB];
     }
 
-    public String ask(Tweet question) {
+    public final String ask(final Tweet question) {
         if (question.getText().toLowerCase().contains(" #fight with ")) {
             owner.pushPokemon(getPokemon1(question.getText()),
                     "@" + question.getScreenName(), null, null);

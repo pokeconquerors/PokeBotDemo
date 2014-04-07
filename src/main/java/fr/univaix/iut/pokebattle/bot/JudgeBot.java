@@ -59,26 +59,22 @@ public class JudgeBot implements Bot {
         this.inFight = inFight;
     }
 
-    public final void pushPokemon(final String nomPokemon, final String nomProprio,
-            final String level, final String xp) {
-        pokemons.add(new String[] {nomPokemon, nomProprio, level, xp});
+    public final void pushPokemon(final String nomPokemon,
+            final String nomProprio, final String level, final String xp) {
+        pokemons.add(new String[] { nomPokemon, nomProprio, level, xp });
     }
 
     public final String getOtherPokemon(final String pokemonPerdant) {
         for (String[] tmpPokemons : pokemons) {
-            if (!tmpPokemons[0].equals(pokemonPerdant)) {
-                return tmpPokemons[0];
-            }
+            if (!tmpPokemons[0].equals(pokemonPerdant)) { return tmpPokemons[0]; }
         }
         return null;
     }
 
-    public final String getElementInList(final String testeur, final int indice,
-            final int caseToLook) {
+    public final String getElementInList(final String testeur,
+            final int indice, final int caseToLook) {
         for (String[] tmpPokemons : pokemons) {
-            if (tmpPokemons[caseToLook].equals(testeur)) {
-                return tmpPokemons[indice];
-            }
+            if (tmpPokemons[caseToLook].equals(testeur)) { return tmpPokemons[indice]; }
         }
         return null;
     }
@@ -124,20 +120,20 @@ public class JudgeBot implements Bot {
     /**
      * List of smartcell the questions go through to find an answer.
      */
-    private final SmartCell[] smartCells = new SmartCell[] {new JudgeOverBidCell(this),
-            new JudgeInfoFirstOpponentsCell(this), new JudgeAnswersAfterHimSelfCell(this),
+    private final SmartCell[] smartCells = new SmartCell[] {
+            new JudgeOverBidCell(this), new JudgeInfoFirstOpponentsCell(this),
+            new JudgeAnswersAfterHimSelfCell(this),
             new JudgeNbRoundsCell(this), new JudgeAnswerWinnerCell(this),
             new JudgeAnswerNbFightCell(this), new JudgeHireCell(this),
-            new JudgeValidateFightCell(this), new JudgeAnswerValidAttaqueCell(this),
-            new JudgeAnswerAreneCell(this), new JudgeAnswerCell()};
+            new JudgeValidateFightCell(this),
+            new JudgeAnswerValidAttaqueCell(this),
+            new JudgeAnswerAreneCell(this), new JudgeAnswerCell() };
 
     @Override
     public final String ask(final Tweet question) {
         for (SmartCell cell : smartCells) {
             String answer = cell.ask(question);
-            if (answer != null) {
-                return answer;
-            }
+            if (answer != null) { return answer; }
         }
         return new JudgeAlwaysAnswersCell().ask(question);
     }
@@ -155,16 +151,12 @@ public class JudgeBot implements Bot {
     }
 
     public final boolean hasAlreadyDone5Fights() {
-        if (date5fight.size() == NB_MAX_FIGHT) {
-            return true;
-        }
+        if (date5fight.size() == NB_MAX_FIGHT) { return true; }
         return false;
     }
 
     public final boolean isMoreThanAnHour(final Date date1, final Date date2) {
-        if (date1.getTime() > date2.getTime() + UNE_HEURE) {
-            return true;
-        }
+        if (date1.getTime() > date2.getTime() + UNE_HEURE) { return true; }
         return false;
     }
 
@@ -201,9 +193,8 @@ public class JudgeBot implements Bot {
     }
 
     public final boolean isInterestedBy(final int montant) {
-        if (isSupThanMinimumAccepted(montant) && isInfThanMaximumAccepted(montant)) {
-            return true;
-        }
+        if (isSupThanMinimumAccepted(montant)
+                && isInfThanMaximumAccepted(montant)) { return true; }
         return false;
     }
 
@@ -233,33 +224,26 @@ public class JudgeBot implements Bot {
     }
 
     public final String getCallForNextRound() {
-        return "Round #" + getNbRoundsencours() + " /cc " + pokemons.get(0)[1] + " "
-                + pokemons.get(0)[0] + " " + pokemons.get(1)[1] + " " + pokemons.get(1)[0];
+        return "Round #" + getNbRoundsencours() + " /cc " + pokemons.get(0)[1]
+                + " " + pokemons.get(0)[0] + " " + pokemons.get(1)[1] + " "
+                + pokemons.get(1)[0];
     }
 
     @Override
     public final boolean isTimeToNextRound(final String text) {
-        if (isPokemonsNull()) {
-            return false;
-        }
+        if (isPokemonsNull()) { return false; }
         String tmpText = text.toLowerCase();
         String[] pokemon1 = pokemons.get(0);
-        if (isPokemonsContainOnePokemon()) {
-            return false;
-        }
+        if (isPokemonsContainOnePokemon()) { return false; }
         String[] pokemon2 = pokemons.get(1);
         String round = "#" + getNbRoundsencours();
-        if (tmpText.contains("round " + round)) {
-            return false;
-        }
-        if (isContainIn(tmpText, pokemon1[0]) && isContainIn(tmpText, pokemon1[1])
-                && isContainIn(tmpText, round)) {
-            return true;
-        }
-        if (isContainIn(tmpText, pokemon2[0]) && isContainIn(tmpText, pokemon2[1])
-                && isContainIn(tmpText, round)) {
-            return true;
-        }
+        if (tmpText.contains("round " + round)) { return false; }
+        if (isContainIn(tmpText, pokemon1[0])
+                && isContainIn(tmpText, pokemon1[1])
+                && isContainIn(tmpText, round)) { return true; }
+        if (isContainIn(tmpText, pokemon2[0])
+                && isContainIn(tmpText, pokemon2[1])
+                && isContainIn(tmpText, round)) { return true; }
         return false;
     }
 
