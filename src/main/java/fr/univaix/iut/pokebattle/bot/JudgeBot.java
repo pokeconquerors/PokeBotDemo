@@ -125,7 +125,9 @@ public class JudgeBot implements Bot {
 	public String ask(Tweet question) {
 		for (SmartCell cell : smartCells) {
 			String answer = cell.ask(question);
-			if (answer != null) { return answer; }
+			if (answer != null) { 
+				return answer; 
+			}
 		}
 		return new JudgeAlwaysAnswersCell().ask(question);
 	}
@@ -216,6 +218,7 @@ public class JudgeBot implements Bot {
 	@Override
 	public boolean isTimeToNextRound(String text) {
 		try {
+			if(isPokemonsNull()) return false;
 			String tmpText = text.toLowerCase();
 			String[] pokemon1 = pokemons.get(0);
 			String[] pokemon2 = pokemons.get(1);
@@ -234,6 +237,10 @@ public class JudgeBot implements Bot {
 			e.printStackTrace();
 			return false;
 		}
+	}
+
+	private boolean isPokemonsNull() {
+		return pokemons == null || pokemons.size() <= 0;
 	}
 
 	@Override
