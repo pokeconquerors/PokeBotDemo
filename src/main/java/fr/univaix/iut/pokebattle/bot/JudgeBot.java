@@ -217,26 +217,27 @@ public class JudgeBot implements Bot {
 
 	@Override
 	public boolean isTimeToNextRound(String text) {
-		try {
-			if(isPokemonsNull()) return false;
-			String tmpText = text.toLowerCase();
-			String[] pokemon1 = pokemons.get(0);
-			String[] pokemon2 = pokemons.get(1);
-			String round = "#" + getNb_Rounds_en_cours();
-			if(tmpText.contains("round "+round))
-				return false;
-			if (isContainIn(tmpText, pokemon1[0]) && isContainIn(tmpText, pokemon1[1])
-					&& tmpText.contains(round.toLowerCase()))
-				return true;
-			if (isContainIn(tmpText, pokemon2[0]) && isContainIn(tmpText, pokemon2[1])
-					&& tmpText.contains(round.toLowerCase()))
-				return true;
+		if(isPokemonsNull()) return false;
+		String tmpText = text.toLowerCase();
+		String[] pokemon1 = pokemons.get(0);
+		if(isPokemonsContainOnePokemon()) return false;
+		String[] pokemon2 = pokemons.get(1);
+		String round = "#" + getNb_Rounds_en_cours();
+		if(tmpText.contains("round "+round))
 			return false;
-		}
-		catch(Exception e) {
-			e.printStackTrace();
-			return false;
-		}
+		if (isContainIn(tmpText, pokemon1[0]) && 
+			isContainIn(tmpText, pokemon1[1]) && 
+			isContainIn(tmpText, round))
+			return true;
+		if (isContainIn(tmpText, pokemon2[0]) && 
+			isContainIn(tmpText, pokemon2[1]) &&
+			isContainIn(tmpText, round))
+			return true;
+		return false;
+	}
+
+	private boolean isPokemonsContainOnePokemon() {
+		return pokemons.size() == 1;
 	}
 
 	private boolean isContainIn(String tmpText, String pokemon) {
