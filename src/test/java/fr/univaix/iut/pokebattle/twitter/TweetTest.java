@@ -8,14 +8,14 @@ import static org.fest.assertions.Assertions.assertThat;
 import static org.junit.Assert.assertEquals;
 
 public class TweetTest {
-    
+
     @Test
     public void testCreateTweetNoOwnerNoDate() {
-    	 Tweet tweet = new Tweet("coucou !");
-         assertEquals(null, tweet.getScreenName());
-         assertEquals("coucou !", tweet.getText());
+        Tweet tweet = new Tweet("coucou !");
+        assertEquals(null, tweet.getScreenName());
+        assertEquals("coucou !", tweet.getText());
     }
-    
+
     @Test
     public void testCreateTweetOwnerNoDate() {
         Tweet tweet = new Tweet("nedseb", "coucou !");
@@ -25,8 +25,8 @@ public class TweetTest {
 
     @Test
     public void testCreateTweetOwnerDate() {
-    	Tweet tweet = new Tweet("TwitterTest", "Coucou!", new Date());
-    	assertThat(tweet.getCreatedAt()).isNotNull();
+        Tweet tweet = new Tweet("TwitterTest", "Coucou!", new Date());
+        assertThat(tweet.getCreatedAt()).isNotNull();
     }
 
 }

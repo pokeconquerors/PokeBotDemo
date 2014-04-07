@@ -11,7 +11,8 @@ public class TwitterBot {
 
     public TwitterBot(final Bot bot, Credentials credentials) {
         Twitter twitter = new TwitterBuilder(credentials).build();
-        this.twitterUserStreamEasy = new TwitterUserStreamEasyBuilder(credentials, twitter, bot).build();
+        this.twitterUserStreamEasy = new TwitterUserStreamEasyBuilder(
+                credentials, twitter, bot).build();
     }
 
     public void startBot() throws TUSEException {

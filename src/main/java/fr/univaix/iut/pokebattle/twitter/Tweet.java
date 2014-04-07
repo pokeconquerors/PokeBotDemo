@@ -5,7 +5,7 @@ import java.util.Date;
 public class Tweet {
     private String text;
     private String screenName;
-    private Date createdAt;
+    private Date   createdAt;
 
     public Tweet(String text) {
         this.text = text;
@@ -17,12 +17,12 @@ public class Tweet {
     }
 
     public Tweet(String screenName, String text, Date createdAt) {
-    	this.screenName = screenName;
+        this.screenName = screenName;
         this.text = text;
         this.setCreatedAt(createdAt);
-	}
+    }
 
-	public String getScreenName() {
+    public String getScreenName() {
         return screenName;
     }
 
@@ -30,11 +30,11 @@ public class Tweet {
         return text;
     }
 
-	public Date getCreatedAt() {
-		return createdAt;
-	}
+    public Date getCreatedAt() {
+        return createdAt;
+    }
 
-	public void setCreatedAt(Date createdAt) {
-		this.createdAt =createdAt;
-	}
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
+    }
 }

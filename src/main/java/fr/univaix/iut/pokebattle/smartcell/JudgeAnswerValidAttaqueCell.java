@@ -9,59 +9,59 @@ import fr.univaix.iut.pokebattle.twitter.Tweet;
  * Reply to all.
  */
 public class JudgeAnswerValidAttaqueCell implements SmartCell {
-	private JudgeBot owner;
+    private JudgeBot owner;
 
-	public JudgeAnswerValidAttaqueCell(JudgeBot owner) {
-		this.owner = owner;
-	}
+    public JudgeAnswerValidAttaqueCell(JudgeBot owner) {
+        this.owner = owner;
+    }
 
-	DataReadObject dro = DataReadObject.getInstance();
+    DataReadObject dro = DataReadObject.getInstance();
 
-	public String getElementInArray(String text, int indice) {
-		String[] tab = text.split(" ");
-		return tab[indice];
-	}
+    public String getElementInArray(String text, int indice) {
+        String[] tab = text.split(" ");
+        return tab[indice];
+    }
 
-	public String ask(Tweet question) {
+    public String ask(Tweet question) {
 
-		if (isNotNull(question) && isALaunchAttack(question) ) {	
-			String nomPokemon = getPokemon(question);
-			owner.IncrNb_Rounds_en_cours();
-			if (isACorrectAttack(question)) {
-				return "@" + owner.getOtherPokemon(nomPokemon) + " -10pv /cc "
-						+ "@" + question.getScreenName() + " #" + owner.getNb_Rounds_en_cours();
-			} else {
-				return "@" + owner.getOtherPokemon(nomPokemon) + " -0pv /cc "
-						+ "@" + question.getScreenName() + " #" + owner.getNb_Rounds_en_cours();
-			}
+        if (isNotNull(question) && isALaunchAttack(question)) {
+            String nomPokemon = getPokemon(question);
+            owner.IncrNb_Rounds_en_cours();
+            if (isACorrectAttack(question)) {
+                return "@" + owner.getOtherPokemon(nomPokemon) + " -10pv /cc "
+                        + "@" + question.getScreenName() + " #"
+                        + owner.getNb_Rounds_en_cours();
+            } else {
+                return "@" + owner.getOtherPokemon(nomPokemon) + " -0pv /cc "
+                        + "@" + question.getScreenName() + " #"
+                        + owner.getNb_Rounds_en_cours();
+            }
 
-		}
-		return null;
-	}
+        }
+        return null;
+    }
 
-	private boolean isACorrectAttack(Tweet question) {
-		String nomAttaque = getAttaque(question);
-		String nomPokemon = getPokemon(question);
-		DataObjectAttack attaque = dro.getAttaque(nomPokemon, nomAttaque);
-		return attaque != null;
-	}
+    private boolean isACorrectAttack(Tweet question) {
+        String nomAttaque = getAttaque(question);
+        String nomPokemon = getPokemon(question);
+        DataObjectAttack attaque = dro.getAttaque(nomPokemon, nomAttaque);
+        return attaque != null;
+    }
 
-	private String getPokemon(Tweet question) {
-		return getElementInArray(question.getText(), 0)
-				.substring(1);
-	}
+    private String getPokemon(Tweet question) {
+        return getElementInArray(question.getText(), 0).substring(1);
+    }
 
-	private String getAttaque(Tweet question) {
-		return getElementInArray(question.getText(), 2)
-				.substring(1);
-	}
+    private String getAttaque(Tweet question) {
+        return getElementInArray(question.getText(), 2).substring(1);
+    }
 
-	private boolean isNotNull(Tweet question) {
-		return question.getScreenName() != null;
-	}
+    private boolean isNotNull(Tweet question) {
+        return question.getScreenName() != null;
+    }
 
-	private boolean isALaunchAttack(Tweet question) {
-		return question.getText().matches("@.+ #(?i)attack #.+ @.+.*");
-	}
+    private boolean isALaunchAttack(Tweet question) {
+        return question.getText().matches("@.+ #(?i)attack #.+ @.+.*");
+    }
 
 }

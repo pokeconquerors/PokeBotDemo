@@ -17,16 +17,18 @@ import fr.univaix.iut.pokebattle.run.PokemonMain;
 import fr.univaix.iut.pokebattle.tuse.Credentials;
 
 public class TwitterUserStreamEasyBuilderTest {
-	Twitter twitter = null;
-	Credentials credentials = null;
-	
-	@Test
-	public void test() throws IOException {
-		InputStream inputStream = PokemonMain.class.getClassLoader().getResourceAsStream("testCredentials.properties");
+    Twitter     twitter     = null;
+    Credentials credentials = null;
+
+    @Test
+    public void test() throws IOException {
+        InputStream inputStream = PokemonMain.class.getClassLoader()
+                .getResourceAsStream("testCredentials.properties");
         credentials = Credentials.loadCredentials(inputStream);
         TwitterFactory factory = new TwitterFactory();
-		twitter = factory.getInstance();
-		TwitterUserStreamEasyBuilder tuseb = new TwitterUserStreamEasyBuilder(credentials, twitter, new JudgeBot());
-		assertThat(tuseb).isNotNull();
-	}
+        twitter = factory.getInstance();
+        TwitterUserStreamEasyBuilder tuseb = new TwitterUserStreamEasyBuilder(
+                credentials, twitter, new JudgeBot());
+        assertThat(tuseb).isNotNull();
+    }
 }

@@ -4,42 +4,38 @@ import fr.univaix.iut.pokebattle.bot.JudgeBot;
 import fr.univaix.iut.pokebattle.twitter.Tweet;
 
 public class JudgeAnswerAreneCell implements SmartCell {
-	private JudgeBot owner;
-	
-	public JudgeAnswerAreneCell(JudgeBot owner) {
-		this.owner = owner;
-	}
+    private JudgeBot owner;
 
-	public String ask(Tweet question) {
-		if (isNotNull(question) && isAnArena(question)) {	
-			return getGymMessage(question);	
-		}
-		return null;
-	}
+    public JudgeAnswerAreneCell(JudgeBot owner) {
+        this.owner = owner;
+    }
 
-	private String getGymMessage(Tweet question) {
-		if(hasGym()) {
-			return "@" + question.getScreenName() + " my Gym is " + owner.getArene() +" but maybe ...";
-		}
-		owner.setArene("no Gym");
-		try {
-			owner.update();
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-		}
-		return "@" + question.getScreenName() + " no Gym";
-	}
+    public String ask(Tweet question) {
+        if (isNotNull(question) && isAnArena(question)) { return getGymMessage(question); }
+        return null;
+    }
 
-	private boolean hasGym() {
-		return owner.getArene() != null;
-	}
+    private String getGymMessage(Tweet question) {
+        if (hasGym()) { return "@" + question.getScreenName() + " my Gym is "
+                + owner.getArene() + " but maybe ..."; }
+        owner.setArene("no Gym");
+        try {
+            owner.update();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "@" + question.getScreenName() + " no Gym";
+    }
 
-	private boolean isNotNull(Tweet question) {
-		return question.getScreenName() != null;
-	}
+    private boolean hasGym() {
+        return owner.getArene() != null;
+    }
 
-	private boolean isAnArena(Tweet question) {
-		return question.getText().matches(".*\\s+[gG][yY][mM]\\s*\\?.*");
-	}
+    private boolean isNotNull(Tweet question) {
+        return question.getScreenName() != null;
+    }
+
+    private boolean isAnArena(Tweet question) {
+        return question.getText().matches(".*\\s+[gG][yY][mM]\\s*\\?.*");
+    }
 }

@@ -15,13 +15,14 @@ import static org.fest.assertions.Assertions.assertThat;
 
 public class TwitterBotTest {
 
-	@Test
-	public void test_contructor() throws IOException, TUSEException {
-		InputStream inputStream = PokemonMain.class.getClassLoader().getResourceAsStream("testCredentials.properties");
+    @Test
+    public void test_contructor() throws IOException, TUSEException {
+        InputStream inputStream = PokemonMain.class.getClassLoader()
+                .getResourceAsStream("testCredentials.properties");
         Credentials credentials = Credentials.loadCredentials(inputStream);
-		TwitterBot twitterbot = new TwitterBot(new JudgeBot(), credentials);
-		twitterbot.startBot();
-		assertThat(twitterbot).isNotNull();
-	}
+        TwitterBot twitterbot = new TwitterBot(new JudgeBot(), credentials);
+        twitterbot.startBot();
+        assertThat(twitterbot).isNotNull();
+    }
 
 }
