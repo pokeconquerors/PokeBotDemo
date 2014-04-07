@@ -80,11 +80,13 @@ Checkstyle configuration that checks the sun coding conventions.
     <module name="FinalClass"/>
     <module name="HideUtilityClassConstructor"/>
     <module name="InterfaceIsType"/>
-    <module name="VisibilityModifier"/>
     <module name="ArrayTypeStyle"/>
     <module name="FinalParameters"/>
     <module name="TodoComment"/>
     <module name="UpperEll"/>
+    <module name="LineLength">
+      <property name="max" value="100"/>
+    </module>
   </module>
   <module name="JavadocPackage">
     <property name="severity" value="ignore"/>
