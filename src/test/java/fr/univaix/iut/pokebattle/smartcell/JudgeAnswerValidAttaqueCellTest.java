@@ -20,8 +20,8 @@ public class JudgeAnswerValidAttaqueCellTest {
 
     @Test
     public void test_regex() {
-        judge.pushPokemon("Carapuce", "twitterTest1", "1", "70");
-        judge.pushPokemon("Bulbizarre", "twitterTest2", "1", "70");
+        judge.pushPokemon("@Carapuce", "twitterTest1", "1", "70");
+        judge.pushPokemon("@Bulbizarre", "twitterTest2", "1", "70");
         assertEquals(
                 "@Bulbizarre -10pv /cc @twitterTest1 #1",
                 cell.ask(new Tweet("twitterTest1",
@@ -30,8 +30,8 @@ public class JudgeAnswerValidAttaqueCellTest {
 
     @Test
     public void test_PokemonOK() {
-        judge.pushPokemon("Carapuce", "twitterTest1", "1", "70");
-        judge.pushPokemon("Bulbizarre", "twitterTest2", "1", "70");
+        judge.pushPokemon("@Carapuce", "twitterTest1", "1", "70");
+        judge.pushPokemon("@Bulbizarre", "twitterTest2", "1", "70");
         assertEquals(
                 "@Bulbizarre -10pv /cc @twitterTest1 #1",
                 cell.ask(new Tweet("twitterTest1",
@@ -50,8 +50,8 @@ public class JudgeAnswerValidAttaqueCellTest {
 
     @Test
     public void test_attaque_inconnue() {
-        judge.pushPokemon("Carapuce", "twitterTest1", "1", "70");
-        judge.pushPokemon("Bulbizarre", "twitterTest2", "1", "70");
+        judge.pushPokemon("@Carapuce", "twitterTest1", "1", "70");
+        judge.pushPokemon("@Bulbizarre", "twitterTest2", "1", "70");
         assertEquals(
                 "@Bulbizarre -0pv /cc @twitterTest1 #1",
                 cell.ask(new Tweet("twitterTest1",
