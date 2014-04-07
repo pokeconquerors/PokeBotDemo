@@ -19,8 +19,8 @@ public class JudgeAnswerCellTest {
 
     @Test
     public void testAsk_regex_OneWhiteSpace() {
-        assertEquals("@Boulet Salisalut très cher voisin !",
-                cell.ask(new Tweet("Boulet", "@PokeConquerors Salut !")));
+        assertEquals("@Boulet2 Salisalut très cher voisin !",
+                cell.ask(new Tweet("Boulet2", "@PokeConquerors Salut !")));
     }
 
     @Test
