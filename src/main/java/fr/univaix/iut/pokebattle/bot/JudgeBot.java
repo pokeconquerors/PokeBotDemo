@@ -225,10 +225,10 @@ public class JudgeBot implements Bot {
 			String round = "#" + getNb_Rounds_en_cours();
 			if(tmpText.contains("round "+round))
 				return false;
-			if (tmpText.contains(pokemon1[0].toLowerCase()) && tmpText.contains(pokemon1[1].toLowerCase())
+			if (isContainIn(tmpText, pokemon1[0]) && isContainIn(tmpText, pokemon1[1])
 					&& tmpText.contains(round.toLowerCase()))
 				return true;
-			if (tmpText.contains(pokemon2[0].toLowerCase()) && tmpText.contains(pokemon2[1].toLowerCase())
+			if (isContainIn(tmpText, pokemon2[0]) && isContainIn(tmpText, pokemon2[1])
 					&& tmpText.contains(round.toLowerCase()))
 				return true;
 			return false;
@@ -237,6 +237,10 @@ public class JudgeBot implements Bot {
 			e.printStackTrace();
 			return false;
 		}
+	}
+
+	private boolean isContainIn(String tmpText, String pokemon) {
+		return tmpText.toLowerCase().contains(pokemon.toLowerCase());
 	}
 
 	private boolean isPokemonsNull() {
