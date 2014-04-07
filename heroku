@@ -1,0 +1,10 @@
+heroku :
+
+ce foutre dans le projet :
+ ssh-keygen -t rsa
+ heroku keys:add
+ git remote add heroku git@heroku.com:judgepcs.git
+ git push heroku master
+
+login : chebrous@yahoo.fr
+mdp : aabbcccc11
