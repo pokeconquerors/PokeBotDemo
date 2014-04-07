@@ -10,4 +10,5 @@ public interface SmartCell {
      *         or null.
      */
     String ask(Tweet question);
+    String getKeyWord();
 }

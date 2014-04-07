@@ -18,7 +18,12 @@ public class JudgeNbRoundsCell implements SmartCell {
     }
 
     private boolean isARoundQuestion(final Tweet question) {
-        return question.getText().matches(".*(?i)round\\s*\\?.*");
+        return question.getText().matches(getKeyWord());
+    }
+
+    @Override
+    public String getKeyWord() {
+        return ".*(?i)round\\s*\\?.*";
     }
 
 }

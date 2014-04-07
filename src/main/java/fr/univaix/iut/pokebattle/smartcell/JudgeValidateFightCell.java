@@ -49,6 +49,11 @@ public class JudgeValidateFightCell implements SmartCell {
     }
 
     private boolean isOkToFight(final Tweet question) {
-        return question.getText().matches(".*\\s+#fight #ok with\\s+.*");
+        return question.getText().matches(getKeyWord());
+    }
+
+    @Override
+    public String getKeyWord() {
+       return ".*\\s+#fight #ok with\\s+.*";
     }
 }

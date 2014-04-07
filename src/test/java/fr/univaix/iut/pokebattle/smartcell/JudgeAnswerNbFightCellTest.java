@@ -80,4 +80,9 @@ public class JudgeAnswerNbFightCellTest {
         assertEquals("@Boulet Nombre de combats de la dernière heure : 1",
                 cell.ask(t));
     }
+    
+    @Test
+    public void test_KeyWord() {
+        assertEquals(".*\\s+(?i)fight\\s*?.*", cell.getKeyWord());
+    }
 }

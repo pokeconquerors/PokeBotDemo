@@ -26,6 +26,11 @@ public class JudgeAnswerNbFightCell implements SmartCell {
     }
 
     private boolean isAFight(final Tweet question) {
-        return question.getText().matches(".*\\s+(?i)fight\\s*?.*");
+        return question.getText().matches(getKeyWord());
+    }
+
+    @Override
+    public String getKeyWord() {
+        return ".*\\s+(?i)fight\\s*?.*";
     }
 }

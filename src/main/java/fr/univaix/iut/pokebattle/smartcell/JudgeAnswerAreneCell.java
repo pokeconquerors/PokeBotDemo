@@ -36,6 +36,11 @@ public class JudgeAnswerAreneCell implements SmartCell {
     }
 
     private boolean isAnArena(final Tweet question) {
-        return question.getText().matches(".*\\s+(?i)gym\\s*\\?.*");
+        return question.getText().matches(getKeyWord());
+    }
+
+    @Override
+    public String getKeyWord() {
+      return ".*\\s+(?i)gym\\s*\\?.*";
     }
 }

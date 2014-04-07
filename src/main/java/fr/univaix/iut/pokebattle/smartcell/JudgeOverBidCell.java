@@ -56,10 +56,15 @@ public class JudgeOverBidCell implements SmartCell {
     }
 
     private boolean isAnOverBid(final Tweet question) {
-        return question.getText().matches(".*(?i)overbid\\s+.*");
+        return question.getText().matches(getKeyWord());
     }
 
     private boolean isNotNull(final Tweet question) {
         return question.getScreenName() != null;
+    }
+
+    @Override
+    public String getKeyWord() {
+       return ".*(?i)overbid\\s+.*";
     }
 }

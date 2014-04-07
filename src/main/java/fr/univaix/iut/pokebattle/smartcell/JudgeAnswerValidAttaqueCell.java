@@ -61,7 +61,12 @@ public class JudgeAnswerValidAttaqueCell implements SmartCell {
     }
 
     private boolean isALaunchAttack(final Tweet question) {
-        return question.getText().matches("@.+ #(?i)attack #.+ @.+.*");
+        return question.getText().matches(getKeyWord());
+    }
+
+    @Override
+    public String getKeyWord() {
+       return "@.+ #(?i)attack #.+ @.+.*";
     }
 
 }

@@ -41,7 +41,12 @@ public class JudgeAnswerWinnerCell implements SmartCell {
     }
 
     private boolean isDead(final Tweet question) {
-        return question.getText().matches("#(?i)ko.*");
+        return question.getText().matches(getKeyWord());
+    }
+
+    @Override
+    public String getKeyWord() {
+       return "#(?i)ko.*";
     }
 
 }

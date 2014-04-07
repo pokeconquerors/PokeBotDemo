@@ -17,7 +17,7 @@ public class JudgeInfoFirstOpponentsCell implements SmartCell {
     }
 
     public final String ask(final Tweet question) {
-        if (question.getText().toLowerCase().contains(" #fight with ")) {
+        if (isFightWith(question)) {
             owner.pushPokemon(getPokemon1(question.getText()),
                     "@" + question.getScreenName(), null, null);
             return "Pokemon = "
@@ -28,5 +28,14 @@ public class JudgeInfoFirstOpponentsCell implements SmartCell {
         }
         return null;
 
+    }
+
+    private boolean isFightWith(final Tweet question) {
+        return question.getText().matches(getKeyWord());
+    }
+
+    @Override
+    public String getKeyWord() {
+        return ".*(?i)#fight with .*";
     }
 }

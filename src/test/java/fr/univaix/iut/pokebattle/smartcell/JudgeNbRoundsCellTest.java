@@ -32,5 +32,10 @@ public class JudgeNbRoundsCellTest {
         assertEquals("Le round en cours est : #1",
                 cell.ask(new Tweet("nedseb", "Round ?")));
     }
+    
+    @Test
+    public void test_KeyWord() {
+        assertEquals(".*(?i)round\\s*\\?.*", cell.getKeyWord());
+    }
 
 }

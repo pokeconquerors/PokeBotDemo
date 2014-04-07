@@ -57,5 +57,11 @@ public class JudgeAnswerValidAttaqueCellTest {
                 cell.ask(new Tweet("twitterTest1",
                         "@Carapuce #attack #AttInconnue @Bulbizarre /cc @twitterTest1 @pokeconquerors")));
     }
+    
+    @Test
+    public void test_KeyWord() {
+        assertEquals("@.+ #(?i)attack #.+ @.+.*", cell.getKeyWord());
+    }
+    
 
 }

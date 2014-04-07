@@ -5,6 +5,7 @@ import static org.fest.assertions.Assertions.assertThat;
 
 import org.junit.Test;
 
+import fr.univaix.iut.pokebattle.bot.JudgeBot;
 import fr.univaix.iut.pokebattle.twitter.Tweet;
 
 public class JudgeAnswerCellTest {
@@ -51,5 +52,10 @@ public class JudgeAnswerCellTest {
     public void testAsk_regex_Wrong_InterroExclamation() {
         assertThat(cell.ask(new Tweet("Boulet", "@PokeConquerors Salut?!")))
                 .isNull();
+    }
+    
+    @Test
+    public void test_KeyWord() {
+        assertEquals(".*\\s+(?i)salut", cell.getKeyWord());
     }
 }

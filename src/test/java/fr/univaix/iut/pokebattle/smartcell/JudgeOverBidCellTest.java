@@ -62,4 +62,10 @@ public class JudgeOverBidCellTest {
         assertEquals("@RischTwitter me paie 900", judge.getArene()
                 + " me paie " + judge.getSalaire());
     }
+    
+    @Test
+    public void test_KeyWord()  {
+       assertEquals(".*(?i)overbid\\s+.*", cell.getKeyWord()); 
+       
+    }
 }

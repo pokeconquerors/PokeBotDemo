@@ -42,5 +42,11 @@ public class JudgeHireCellTest {
         JudgeHireCell cell = new JudgeHireCell(new JudgeBot());
         cell.ask(new Tweet("toto", " Hire!"));
     }
+    
+    @Test
+    public void test_KeyWord() {
+        JudgeHireCell cell = new JudgeHireCell(new JudgeBot());
+        assertEquals(".*\\s+(?i)hire\\s*!.*", cell.getKeyWord());
+    }
 
 }

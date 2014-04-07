@@ -37,5 +37,10 @@ public class JudgeAnswerWinnerCellTest {
     public void test_IsNull() {
         assertThat(cell.ask(new Tweet("#ko aa")));
     }
+    
+    @Test
+    public void test_KeyWord()  {
+        assertEquals("#(?i)ko.*", cell.getKeyWord());
+    }
 
 }

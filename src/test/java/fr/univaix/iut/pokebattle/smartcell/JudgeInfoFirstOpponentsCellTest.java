@@ -18,5 +18,10 @@ public class JudgeInfoFirstOpponentsCellTest {
                 cell.ask(new Tweet("pcreux",
                         "@nedseb #fight with @bulbizare1 /cc @viviane")));
     }
+    
+    @Test
+    public void test_KeyWord() {
+        assertEquals(".*(?i)#fight with .*", cell.getKeyWord());
+    }
 
 }

@@ -61,4 +61,10 @@ public class JudgeAnswerAreneCellTest {
                 cell.ask(new Tweet("TwitterTest", "@PokeConquerors Gym?")));
 
     }
+    
+    @Test
+    public void test_KeyWord() {
+        JudgeAnswerAreneCell cell = new JudgeAnswerAreneCell(new JudgeBot());
+        assertEquals(".*\\s+(?i)gym\\s*\\?.*", cell.getKeyWord());
+    }
 }

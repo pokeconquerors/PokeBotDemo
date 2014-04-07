@@ -43,6 +43,11 @@ public class JudgeHireCell implements SmartCell {
     }
 
     private boolean isHiring(final Tweet question) {
-        return question.getText().matches(".*\\s+(?i)hire\\s*!.*");
+        return question.getText().matches(getKeyWord());
+    }
+
+    @Override
+    public String getKeyWord() {
+     return ".*\\s+(?i)hire\\s*!.*";
     }
 }

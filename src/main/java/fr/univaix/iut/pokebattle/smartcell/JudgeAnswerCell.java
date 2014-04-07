@@ -17,6 +17,11 @@ public class JudgeAnswerCell implements SmartCell {
     private boolean isAHello(final Tweet question) {
         return (question.getText().matches(".*\\s+(?i)salut!.*")
                 || question.getText().matches(".*\\s+(?i)salut\\s+.*")
-                || question.getText().matches(".*\\s+(?i)salut"));
+                || question.getText().matches(getKeyWord()));
+    }
+
+    @Override
+    public String getKeyWord() {
+        return ".*\\s+(?i)salut";
     }
 }

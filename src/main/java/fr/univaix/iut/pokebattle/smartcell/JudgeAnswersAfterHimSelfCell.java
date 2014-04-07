@@ -27,4 +27,9 @@ public class JudgeAnswersAfterHimSelfCell implements SmartCell {
     private boolean isNotNull(final Tweet question) {
         return question.getScreenName() != null;
     }
+
+    @Override
+    public String getKeyWord() {
+        return null;
+    }
 }

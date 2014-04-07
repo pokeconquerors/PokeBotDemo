@@ -68,4 +68,9 @@ public class JudgeAnswersAfterHimSelfCellTest {
         assertEquals(null, HimSelfcell.ask(new Tweet("PokeConquerors",
                 "Round #1 /cc @nebsed @bulbizarbi @nedseb @bulbizarre")));
     }
+    
+    @Test
+    public void test_KeyWord() {
+        assertEquals(null, cell.getKeyWord());
+    }
 }

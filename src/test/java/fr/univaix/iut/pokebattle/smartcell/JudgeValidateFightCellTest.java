@@ -55,4 +55,9 @@ public class JudgeValidateFightCellTest {
                 "@Boulet Conseil du prof chen : pas plus de 5 combat en une heure !",
                 cell2.ask(t));
     }
+    
+    @Test
+    public void test_KeyWord() {
+        assertEquals(".*(?i)#fight with .*", cell.getKeyWord());
+    }
 }

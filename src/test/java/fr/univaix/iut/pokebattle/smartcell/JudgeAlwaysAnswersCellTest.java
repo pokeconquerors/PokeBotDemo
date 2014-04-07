@@ -32,5 +32,10 @@ public class JudgeAlwaysAnswersCellTest {
         assertEquals("@Sacha Bienvenue dans le monde fascinant des pokémons",
                 cell.ask(new Tweet("Sacha", "")));
     }
+    
+    @Test
+    public void test_KeyWord() {
+        assertEquals("<no Keyword>", cell.getKeyWord());
+    }
 
 }
