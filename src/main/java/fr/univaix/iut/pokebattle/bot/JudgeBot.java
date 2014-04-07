@@ -66,8 +66,8 @@ public class JudgeBot implements Bot {
 
     public final String getOtherPokemon(final String pokemonPerdant) {
         for (String[] tmpPokemons : pokemons) {
-            if (!tmpPokemons[0].contains(pokemonPerdant)) { 
-                return tmpPokemons[0]; 
+            if (!tmpPokemons[0].contains(pokemonPerdant)) {
+                return tmpPokemons[0];
             }
         }
         return null;
