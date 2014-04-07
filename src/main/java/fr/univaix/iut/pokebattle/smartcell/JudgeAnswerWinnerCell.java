@@ -28,7 +28,7 @@ public class JudgeAnswerWinnerCell implements SmartCell {
 
         if (isNotNull(question) && isDead(question) && owner.isInFight()) {
             owner.setInFight(false);
-            owner.ReinitNb_Rounds_en_cours();
+            owner.reinitNbRoundsEnCours();
             return "@" + WinnerPokemon + " #Win +"
                     + recupGainsXp(WinnerPokemon) + "xp";
         }

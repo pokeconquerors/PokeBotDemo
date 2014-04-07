@@ -5,9 +5,8 @@
     This configuration file was written by the eclipse-cs plugin configuration editor
 -->
 <!--
-    Checkstyle-Configuration: PokeConquerors_CheckStyle
-    Description: 
-Checkstyle configuration that checks the sun coding conventions.
+    Checkstyle-Configuration: checkstyle_PokeConquerors
+    Description: none
 -->
 <module name="Checker">
   <property name="severity" value="warning"/>
@@ -44,7 +43,6 @@ Checkstyle configuration that checks the sun coding conventions.
     <module name="UnusedImports"/>
     <module name="MethodLength"/>
     <module name="ParameterNumber"/>
-    <module name="LineLength"/>
     <module name="EmptyForIteratorPad"/>
     <module name="MethodParamPad"/>
     <module name="NoWhitespaceAfter"/>
@@ -85,7 +83,7 @@ Checkstyle configuration that checks the sun coding conventions.
     <module name="TodoComment"/>
     <module name="UpperEll"/>
     <module name="LineLength">
-      <property name="max" value="100"/>
+      <property name="max" value="120"/>
     </module>
   </module>
   <module name="JavadocPackage">

@@ -28,7 +28,7 @@ public class JudgeValidateFightCell implements SmartCell {
     private void startFight(Tweet question) {
         owner.addDate5fight(question.getCreatedAt());
         owner.setInFight(true);
-        owner.IncrNb_Rounds_en_cours();
+        owner.incrNbRoundsEnCours();
     }
 
     private void addNewPokemon(Tweet question) {
