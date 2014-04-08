@@ -103,9 +103,9 @@ public class JudgeBotTest {
 
     @Test
     public void test_ElementInList() {
-        JudgeBot judge = new JudgeBot();
-        judge.pushPokemon("bulbizarbi", "nebsed", null, null);
-        judge.pushPokemon("bulbizarre", "nedseb", null, null);
-        assertEquals(null, judge.getElementInList("BulbiVraimentZarbi", 0, 0));
+        JudgeBot judge2 = new JudgeBot();
+        judge2.pushPokemon("bulbizarbi", "nebsed", null, null);
+        judge2.pushPokemon("bulbizarre", "nedseb", null, null);
+        assertEquals(null, judge2.getElementInList("BulbiVraimentZarbi", 0, 0));
     }
 }

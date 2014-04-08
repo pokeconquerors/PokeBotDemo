@@ -53,7 +53,7 @@ public class JudgeValidateFightCell implements SmartCell {
     }
 
     @Override
-    public String getKeyWord() {
+    public final String getKeyWord() {
        return ".*\\s+#fight #ok with\\s+.*";
     }
 }

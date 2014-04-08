@@ -22,7 +22,7 @@ public class JudgeNbRoundsCell implements SmartCell {
     }
 
     @Override
-    public String getKeyWord() {
+    public final String getKeyWord() {
         return ".*(?i)round\\s*\\?.*";
     }
 

@@ -1,46 +1,44 @@
 package fr.univaix.iut.pokebattle.smartcell;
 
-import java.awt.List;
-
 import fr.univaix.iut.pokebattle.bot.JudgeBot;
 import fr.univaix.iut.pokebattle.twitter.Tweet;
 
 public class JudgeAnswerHelpCell implements SmartCell {
-	private JudgeBot owner = null;
-	
-	public JudgeAnswerHelpCell (JudgeBot owner) {
-		this.owner = owner;
-	}
-	
-	@Override
-	public String ask(Tweet question) {
-		if(isNotNull(question) && isAskToHelp(question)) {
-			return getHelpMessage();
-		}
-		return null;
-	}
+    private JudgeBot owner = null;
 
-	private boolean isAskToHelp(Tweet question) {
-		return question.getText().matches(getKeyWord());
-	}
+    public JudgeAnswerHelpCell(final JudgeBot owner) {
+        this.owner = owner;
+    }
 
-	private boolean isNotNull(Tweet question) {
-		return question.getScreenName() != null;
-	}
+    @Override
+    public final String ask(final Tweet question) {
+        if (isNotNull(question) && isAskToHelp(question)) {
+            return getHelpMessage();
+        }
+        return null;
+    }
 
-	private String getHelpMessage() {
-		String tmp = "";
-		SmartCell[] smartcells = owner.getSmartCells();
-		for (SmartCell smartcell : smartcells) {
-			tmp += smartcell.getKeyWord() + " ";
-		}
-		System.out.println(tmp);
-		return tmp;
-	}
+    private boolean isAskToHelp(final Tweet question) {
+        return question.getText().matches(getKeyWord());
+    }
 
-	@Override
-	public String getKeyWord() {
-		return ".*\\s+(?i)help.*";
-	}
+    private boolean isNotNull(final Tweet question) {
+        return question.getScreenName() != null;
+    }
+
+    private String getHelpMessage() {
+        String tmp = "";
+        SmartCell[] smartcells = owner.getSmartCells();
+        for (SmartCell smartcell : smartcells) {
+            tmp += smartcell.getKeyWord() + " ";
+        }
+        System.out.println(tmp);
+        return tmp;
+    }
+
+    @Override
+    public final String getKeyWord() {
+        return ".*\\s+(?i)help.*";
+    }
 
 }

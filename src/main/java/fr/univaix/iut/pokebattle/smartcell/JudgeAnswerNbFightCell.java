@@ -30,7 +30,7 @@ public class JudgeAnswerNbFightCell implements SmartCell {
     }
 
     @Override
-    public String getKeyWord() {
+    public final String getKeyWord() {
         return ".*\\s+(?i)fight\\s*?.*";
     }
 }

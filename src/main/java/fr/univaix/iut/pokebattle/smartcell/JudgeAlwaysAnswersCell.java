@@ -17,7 +17,7 @@ public class JudgeAlwaysAnswersCell implements SmartCell {
     }
 
     @Override
-    public String getKeyWord() {
+    public final String getKeyWord() {
         return "<no Keyword>";
     }
 }

@@ -47,7 +47,7 @@ public class JudgeHireCell implements SmartCell {
     }
 
     @Override
-    public String getKeyWord() {
+    public final String getKeyWord() {
      return ".*\\s+(?i)hire\\s*!.*";
     }
 }

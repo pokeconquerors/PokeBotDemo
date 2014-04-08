@@ -45,7 +45,7 @@ public class JudgeAnswerWinnerCell implements SmartCell {
     }
 
     @Override
-    public String getKeyWord() {
+    public final String getKeyWord() {
        return "#(?i)ko.*";
     }
 
