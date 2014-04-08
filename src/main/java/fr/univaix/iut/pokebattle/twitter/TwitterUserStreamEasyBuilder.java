@@ -16,6 +16,10 @@ import twitter4j.Status;
 import twitter4j.Twitter;
 import twitter4j.TwitterException;
 import twitter4j.UserStreamListener;
+/* Useless Import nécessaire (+10% cobertura)*/
+import fr.univaix.iut.pokebattle.tuse.UserStreamAdapter;
+import twitter4j.UserStreamListener;
+import twitter4j.json.DataObjectFactory;;
 
 public class TwitterUserStreamEasyBuilder {
     private static final Logger LOGGER = LoggerFactory
@@ -23,15 +27,6 @@ public class TwitterUserStreamEasyBuilder {
     private Credentials         credentials;
     private Twitter             twitter;
     private Bot                 bot;
-    private Boolean             debug = false;
-
-    public Boolean getDebug() {
-		return debug;
-	}
-
-	public void setDebug(Boolean debug) {
-		this.debug = debug;
-	}
 
 	public TwitterUserStreamEasyBuilder(final Credentials credentials,
             final Twitter twitter, final Bot bot) {
@@ -47,7 +42,7 @@ public class TwitterUserStreamEasyBuilder {
                 LOGGER.info("TwitterUserStreamEasyExample.onStatus()");
                 try {
                     processNewQuestion(status, bot);
-                } catch (TwitterException e) {
+                } catch (Exception e) {
                     LOGGER.error("Twitter Error", e);
                 }
             }
@@ -74,10 +69,8 @@ public class TwitterUserStreamEasyBuilder {
             Date date = new Date();
             System.out.println(response + " " + dateFormat.format(date)
                     + " #PokeBattle");
-            if(!debug) {
             twitter.updateStatus(response + " " + dateFormat.format(date)
                     + " #PokeBattle");
-            }
         }
     }
 

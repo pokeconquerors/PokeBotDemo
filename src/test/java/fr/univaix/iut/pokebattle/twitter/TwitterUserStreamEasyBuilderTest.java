@@ -12,14 +12,11 @@ import twitter4j.Status;
 import twitter4j.Twitter;
 import twitter4j.TwitterException;
 import twitter4j.TwitterFactory;
+import twitter4j.UserStreamListener;
 import fr.univaix.iut.pokebattle.bot.JudgeBot;
 import fr.univaix.iut.pokebattle.run.PokemonMain;
 import fr.univaix.iut.pokebattle.tuse.Credentials;
-/* Useless Import nécessaire (+10% cobertura)*/
 import fr.univaix.iut.pokebattle.tuse.UserStreamAdapter;
-import twitter4j.UserStreamListener;
-import twitter4j.json.DataObjectFactory;;
-
 
 public class TwitterUserStreamEasyBuilderTest {
     Twitter     twitter     = null;
@@ -49,7 +46,6 @@ public class TwitterUserStreamEasyBuilderTest {
         TwitterUserStreamEasyBuilder tuseb = new TwitterUserStreamEasyBuilder(
                 credentials, twitter, juge);
         Status status = twitter.showStatus(twitter.getId());
-        tuseb.setDebug(true);
         tuseb.processNewQuestion(status, juge);
         assertThat(tuseb.isNotANewQuestion(status)).isTrue();
     }
@@ -76,11 +72,21 @@ public class TwitterUserStreamEasyBuilderTest {
       JudgeBot judge = new JudgeBot();
       TwitterUserStreamEasyBuilder tuseb = new TwitterUserStreamEasyBuilder(
               credentials, twitter, judge);
-      tuseb.setDebug(true);
       ResponseList<Status> statu = twitter.getUserTimeline(2389060057L);
-      
+      UserStreamListener listener = new UserStreamAdapter();
+      listener.onStatus(statu.get(6));
       tuseb.processNewQuestion(statu.get(6), judge);
       assertThat(tuseb.isNotANewQuestion(statu.get(6))).isFalse();
    }
+  @Test
+  public void test_process_except() throws IOException, TwitterException {
+     //JudgeBot judge = new JudgeBot();
+     TwitterUserStreamEasyBuilder tuseb = new TwitterUserStreamEasyBuilder(
+             credentials, twitter, null);
+     ResponseList<Status> statu = twitter.getUserTimeline(2389060057L);
+     UserStreamListener listener = new UserStreamAdapter();
+     listener.onStatus(null);
+     assertThat(tuseb.isNotANewQuestion(statu.get(6))).isFalse();
+  }
 }   
 
