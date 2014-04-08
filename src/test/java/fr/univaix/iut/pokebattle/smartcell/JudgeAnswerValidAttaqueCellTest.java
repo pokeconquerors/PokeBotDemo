@@ -59,5 +59,14 @@ public class JudgeAnswerValidAttaqueCellTest {
 		assertEquals("@Bulbizarre -0pv /cc @twitterTest2 #1 PENALITE : SKIP NEXT ROUND", 
 				cell.ask(new Tweet("Bulbizarre", "@Carapuce #attack #charge /cc @twitterTest1 @twitterTest2 @pokeconquerors #2")));
 	}
+	
+	@Test
+	public void test_o_O() {
+	    judge.pushPokemon("@Carapuce", "twitterTest1", "1", "70");
+        judge.pushPokemon("@Bulbizarre", "twitterTest2", "1", "70");        
+        cell.ask(new Tweet("Carapuce", "@twitterTest1 o_O ? /cc @twitterTest2 @pokeconquerors @Bulbizarre #1"));
+        assertEquals("@Bulbizarre -0pv /cc @twitterTest2 #1", 
+                cell.ask(new Tweet("Bulbizarre", "@Carapuce #attack #charge /cc @twitterTest1 @twitterTest2 @pokeconquerors #1")));
+	}
 
 }

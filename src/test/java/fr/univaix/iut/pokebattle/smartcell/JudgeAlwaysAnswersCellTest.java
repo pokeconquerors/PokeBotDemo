@@ -38,5 +38,13 @@ public class JudgeAlwaysAnswersCellTest {
     public void test_KeyWord() {
         assertEquals("<no Keyword>", cell.getKeyWord());
     }
+    
+    @Test
+    public void test_null() {
+        JudgeBot judge = new JudgeBot();
+        cell = new JudgeAlwaysAnswersCell(judge);
+        judge.setWait(true);
+        assertEquals(null, cell.ask(new Tweet("")));
+    }
 
 }

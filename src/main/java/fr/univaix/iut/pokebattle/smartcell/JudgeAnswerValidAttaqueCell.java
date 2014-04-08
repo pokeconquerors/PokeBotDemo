@@ -26,7 +26,6 @@ public class JudgeAnswerValidAttaqueCell implements SmartCell {
     }
 
     public final String ask(final Tweet question) {
-
         if (isNotNull(question) && isALaunchAttackFromPokemon(question)) {
             String nomPokemon = question.getScreenName();
             String adversairePokemon = owner.getOtherPokemon(nomPokemon);
@@ -60,8 +59,7 @@ public class JudgeAnswerValidAttaqueCell implements SmartCell {
         return "" + adversairePokemon + " -0pv /cc " + "@"
                 + owner.getProprietaireFromList(adversairePokemon) + " #"
                 + owner.getIdRoundsEnCours() + (isWeirdSmiley(question)
-                        ? ""
-                        : getPenalityMessage());
+                        ? "" : getPenalityMessage());
     }
 
     private String getCorrectLostPV(final String adversairePokemon) {
@@ -75,12 +73,13 @@ public class JudgeAnswerValidAttaqueCell implements SmartCell {
     }
 
     private boolean isWeirdSmiley(final Tweet question) {
-
         return question.getText().contains("o_O ?");
     }
 
     private boolean isACorrectTweet(final Tweet question) {
-        return isGoodRound(question) && isNotWeirdSmiley(question);
+        boolean round = isGoodRound(question);
+        boolean weird = isNotWeirdSmiley(question);
+        return  round && weird;
     }
 
     private boolean isGoodRound(final Tweet question) {
@@ -111,7 +110,7 @@ public class JudgeAnswerValidAttaqueCell implements SmartCell {
     }
 
     private boolean isALaunchAttackFromPokemon(final Tweet question) {
-        return question.getText().matches(getKeyWord()) && getCC(question).equals("/cc");
+        return (question.getText().matches(getKeyWord()) || question.getText().contains("o_O ?")) && getCC(question).equals("/cc");
     }
 
     private String getCC(final Tweet question) {
