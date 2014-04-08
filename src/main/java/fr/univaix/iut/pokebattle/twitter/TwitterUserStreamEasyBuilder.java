@@ -46,7 +46,7 @@ public class TwitterUserStreamEasyBuilder {
         return new TwitterUserStreamEasy(listener, credentials);
     }
 
-    private void processNewQuestion(final Status status, final Bot bot)
+    void processNewQuestion(final Status status, final Bot bot)
             throws TwitterException {
         if (isNotANewQuestion(status)) {
             if (isAnInterestingTweetOfMe(status, bot)) {
@@ -80,7 +80,7 @@ public class TwitterUserStreamEasyBuilder {
         return response != null;
     }
 
-    private boolean isNotANewQuestion(final Status status) throws TwitterException {
+    boolean isNotANewQuestion(final Status status) throws TwitterException {
         return isTweetOfMe(status) || !isTweetForMe(status);
     }
 
