@@ -1,5 +1,7 @@
 package fr.univaix.iut.pokebattle.run;
 
+import java.io.IOException;
+
 import fr.univaix.iut.pokebattle.bot.JudgeBot;
 import fr.univaix.iut.pokebattle.data.DataReadObject;
 import fr.univaix.iut.pokebattle.tuse.TUSEException;
@@ -27,7 +29,7 @@ public final class PokemonMain {
 
         try {
             BotRunner.runBot(new JudgeBot(), "twitter4j.properties");
-        } catch (TUSEException e) {
+        } catch (TUSEException | IOException e) {
             LOGGER.error("Erreur sérieuse dans le BotRunner", e);
         }
     }

@@ -49,7 +49,7 @@ public class TwitterUserStreamEasyBuilder {
     public void processNewQuestion(final Status status, final Bot bot)
             throws TwitterException {
         if (isNotANewQuestion(status)) {
-            if (isAnInterestingTweetOfMe(status, bot)) {
+            if (isNotAnInterestingTweetOfMe(status, bot)) {
                 LOGGER.info("Ignored status change");
                 return;
             }
@@ -71,7 +71,7 @@ public class TwitterUserStreamEasyBuilder {
 
     }
 
-    private boolean isAnInterestingTweetOfMe(final Status status, final Bot bot)
+    private boolean isNotAnInterestingTweetOfMe(final Status status, final Bot bot)
             throws TwitterException {
         return !(isTweetOfMe(status) && bot.isTimeToNextRound(status.getText()));
     }

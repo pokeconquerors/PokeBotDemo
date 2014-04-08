@@ -3,6 +3,7 @@ package fr.univaix.iut.pokebattle.run;
 import static org.fest.assertions.Assertions.assertThat;
 import static org.junit.Assert.assertTrue;
 
+import java.io.IOException;
 import java.io.InputStream;
 
 import org.junit.Test;
@@ -19,19 +20,19 @@ public class BotRunnerTest {
     }
 
     @Test(expected=NullPointerException.class)
-    public void test_runBot_error() throws TUSEException {
+    public void test_runBot_error() throws TUSEException, IOException {
         JudgeBot judge = new JudgeBot();
         BotRunner.runBot(judge, "testCredentialsErreur.properties");
     }
 
     @Test(expected=Exception.class)
-    public void test_runBot_noerror() throws TUSEException {
+    public void test_runBot_noerror() throws TUSEException, IOException {
         JudgeBot judge = new JudgeBot();
         BotRunner.runBot(judge, "testCredentialsErreur.properties");
     }
 
     @Test(expected=Exception.class)
-    public void test_runBot_NoJudge() throws TUSEException {
+    public void test_runBot_NoJudge() throws TUSEException, IOException {
             BotRunner.runBot(null, "testCredentialsErreur.properties");
     }
 }

@@ -13,14 +13,11 @@ public final class BotRunner {
     private BotRunner() { }
 
     public static void runBot(final Bot bot, final String credentialsFileName)
-            throws TUSEException {
-        try (InputStream inputStream = getResourceAsStream(credentialsFileName)) {
+            throws TUSEException, IOException {
+        InputStream inputStream = getResourceAsStream(credentialsFileName);
             Credentials credentials = Credentials.loadCredentials(inputStream);
             TwitterBot twitterBot = new TwitterBot(bot, credentials);
             twitterBot.startBot();
-        } catch (IOException e) {
-            throw new TUSEException("Input error on credentials loading", e);
-        }
     }
 
     static InputStream getResourceAsStream(final String fileName) {
