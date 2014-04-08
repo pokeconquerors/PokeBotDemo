@@ -7,6 +7,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static org.fest.assertions.Assertions.assertThat;
+import twitter4j.ResponseList;
 import twitter4j.Status;
 import twitter4j.Twitter;
 import twitter4j.TwitterException;
@@ -64,6 +65,15 @@ public class TwitterUserStreamEasyBuilderTest {
        String response = null;
        assertThat(tuseb.responseIsNotNull(response)).isFalse();
    }
- 
+  @Test
+   public void test_process_false() throws IOException, TwitterException {
+      JudgeBot judge = new JudgeBot();
+      TwitterUserStreamEasyBuilder tuseb = new TwitterUserStreamEasyBuilder(
+              credentials, twitter, judge);
+      ResponseList<Status> statu = twitter.getUserTimeline(2389060057L);
+      
+      tuseb.processNewQuestion(statu.get(6), judge);
+      assertThat(tuseb.isNotANewQuestion(statu.get(6))).isFalse();
+   }
 }   
 
