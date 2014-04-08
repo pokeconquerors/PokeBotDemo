@@ -1,46 +1,37 @@
 package fr.univaix.iut.pokebattle.run;
 
 import static org.fest.assertions.Assertions.assertThat;
+import static org.junit.Assert.assertTrue;
+
 import java.io.InputStream;
 
 import org.junit.Test;
 
 import fr.univaix.iut.pokebattle.bot.JudgeBot;
+import fr.univaix.iut.pokebattle.tuse.TUSEException;
 
 public class BotRunnerTest {
 
     @Test
     public void test_Constructeur() {
-        InputStream is = BotRunner
-                .getResourceAsStream("testCredentials.properties");
+        InputStream is = BotRunner.getResourceAsStream("testCredentials.properties");
         assertThat(is).isNotNull();
     }
 
-    @Test
-    public void test_runBot_error() {
-        try {
-            BotRunner
-                    .runBot(new JudgeBot(), "testCredentialsErreur.properties");
-        } catch (Exception e) {
-            assertThat(e).isNotNull();
-        }
-    }
-
-    @Test
-    public void test_runBot_noerror() {
+    @Test(expected=NullPointerException.class)
+    public void test_runBot_error() throws TUSEException {
         JudgeBot judge = new JudgeBot();
-        try {
-            BotRunner.runBot(judge, "testCredentialsErreur.properties");
-        } catch (Exception e) {}
-        assertThat(judge).isNotNull();
+        BotRunner.runBot(judge, "testCredentialsErreur.properties");
     }
 
-    @Test
-    public void test_runBot_NoJudge() {
-        try {
+    @Test(expected=Exception.class)
+    public void test_runBot_noerror() throws TUSEException {
+        JudgeBot judge = new JudgeBot();
+        BotRunner.runBot(judge, "testCredentialsErreur.properties");
+    }
+
+    @Test(expected=Exception.class)
+    public void test_runBot_NoJudge() throws TUSEException {
             BotRunner.runBot(null, "testCredentialsErreur.properties");
-        } catch (Exception e) {
-            assertThat(e).isNotNull();
-        }
     }
 }
