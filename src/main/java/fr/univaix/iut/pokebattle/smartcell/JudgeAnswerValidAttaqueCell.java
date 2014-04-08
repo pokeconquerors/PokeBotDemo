@@ -9,64 +9,92 @@ import fr.univaix.iut.pokebattle.twitter.Tweet;
  * Reply to all.
  */
 public class JudgeAnswerValidAttaqueCell implements SmartCell {
-    private JudgeBot owner;
+	private static final int	POSITION_CC	= 3;
+	private static final int	POSITION_ATTAQUE	= 2;
+	private static final int	POSITION_NUM_ROUND	= 7;
+	private JudgeBot	owner;
 
-    public JudgeAnswerValidAttaqueCell(final JudgeBot owner) {
-        this.owner = owner;
-    }
+	public JudgeAnswerValidAttaqueCell(final JudgeBot owner) {
+		this.owner = owner;
+	}
 
-    DataReadObject dro = DataReadObject.getInstance();
+	DataReadObject	dro	= DataReadObject.getInstance();
 
-    public final String getElementInArray(final String text, final int indice) {
-        String[] tab = text.split(" ");
-        return tab[indice];
-    }
+	public final String getElementInArray(final String text, final int indice) {
+		String[] tab = text.split(" ");
+		return tab[indice];
+	}
 
-    public final String ask(final Tweet question) {
+	public final String ask(final Tweet question) {
 
-        if (isNotNull(question) && isALaunchAttack(question)) {
-            String nomPokemon = getPokemon(question);
-            owner.incrNbRoundsEnCours();
-            if (isACorrectAttack(question)) {
-                return "" + owner.getOtherPokemon(nomPokemon) + " -10pv /cc "
-                        + "@" + question.getScreenName() + " #"
-                        + owner.getNbRoundsencours();
-            } else {
-                return "" + owner.getOtherPokemon(nomPokemon) + " -0pv /cc "
-                        + "@" + question.getScreenName() + " #"
-                        + owner.getNbRoundsencours();
-            }
+		if (isNotNull(question) && isALaunchAttackFromPokemon(question)) {
+			String nomPokemon = question.getScreenName();
+			String adversairePokemon = owner.getOtherPokemon(nomPokemon);
+			owner.incrIdRoundsEnCours();
+			if (isACorrectTweet(question) && isACorrectAttack(question)) {
+				return "" + adversairePokemon + " -10pv /cc " + "@"
+						+ owner.getProprietaireFromList(adversairePokemon)+ " #" + owner.getIdRoundsEnCours();
+			}
+			else {
+				return "" + adversairePokemon + " -0pv /cc " + "@"
+						+ owner.getProprietaireFromList(adversairePokemon)+ " #" + owner.getIdRoundsEnCours()
+						+ (isWeirdSmiley(question) ? "": getPenalityMessage());
+			}
+		}
+		return null;
+	}
 
-        }
-        return null;
-    }
+	private String getPenalityMessage() {
+		return " Tu ne respectes pas la convention d'attaque, tu passes le prochain tour";
+	}
 
-    private boolean isACorrectAttack(final Tweet question) {
-        String nomAttaque = getAttaque(question);
-        String nomPokemon = getPokemon(question);
-        DataObjectAttack attaque = dro.getAttaque(nomPokemon, nomAttaque);
-        return attaque != null;
-    }
+	private boolean isWeirdSmiley(Tweet question) {
+		
+		return question.getText().contains("o_O ?");
+	}
 
-    private String getPokemon(final Tweet question) {
-        return getElementInArray(question.getText(), 0).substring(1);
-    }
+	private boolean isACorrectTweet(final Tweet question) {
+		return isGoodRound(question) && isNotWeirdSmiley(question);
+	}
 
-    private String getAttaque(final Tweet question) {
-        return getElementInArray(question.getText(), 2).substring(1);
-    }
+	private boolean isGoodRound(final Tweet question) {
+		return getNumRound(question).equals("" + owner.getIdRoundsEnCours());
+	}
 
-    private boolean isNotNull(final Tweet question) {
-        return question.getScreenName() != null;
-    }
+	private boolean isNotWeirdSmiley(final Tweet question) {
+		return !isWeirdSmiley(question);
+	}
 
-    private boolean isALaunchAttack(final Tweet question) {
-        return question.getText().matches(getKeyWord());
-    }
+	private String getNumRound(Tweet question) {
+		return getElementInArray(question.getText(), POSITION_NUM_ROUND).substring(1);
+	}
 
-    @Override
-    public final String getKeyWord() {
-       return "@.+ #(?i)attack #.+ @.+.*";
-    }
+	private boolean isACorrectAttack(final Tweet question) {
+		String nomAttaque = getAttaque(question);
+		String nomPokemon = question.getScreenName();
+		DataObjectAttack attaque = dro.getAttaque(nomPokemon, nomAttaque);
+		return attaque != null;
+	}
+
+	private String getAttaque(Tweet question) {
+		return getElementInArray(question.getText(), POSITION_ATTAQUE).substring(1);
+	}
+
+	private boolean isNotNull(final Tweet question) {
+		return question.getScreenName() != null;
+	}
+
+	private boolean isALaunchAttackFromPokemon(final Tweet question) {
+		return question.getText().matches(getKeyWord()) && getCC(question).equals("/cc");
+	}
+
+	private String getCC(Tweet question) {
+		return getElementInArray(question.getText(), POSITION_CC);
+	}
+	
+	@Override
+	public final String getKeyWord() {
+		return "@.+ #(?i)attack #.+ @.+.*";
+	}
 
 }

@@ -17,7 +17,7 @@ public class JudgeAnswersAfterHimSelfCellTest {
         judge = new JudgeBot();
         cell = new JudgeAnswersAfterHimSelfCell(judge);
         judge.setScreenName("PokeConquerors");
-        judge.incrNbRoundsEnCours();
+        judge.incrIdRoundsEnCours();
         judge.pushPokemon("@bulbizarre", "@nedseb", null, null);
     }
 
@@ -50,7 +50,7 @@ public class JudgeAnswersAfterHimSelfCellTest {
         JudgeAnswersAfterHimSelfCell HimSelfcell = new JudgeAnswersAfterHimSelfCell(
                 judgeBot);
         judgeBot.setScreenName("PokeConquerors");
-        judgeBot.incrNbRoundsEnCours();
+        judgeBot.incrIdRoundsEnCours();
         judgeBot.pushPokemon("@bulbizarre", "@nedseb", null, null);
         assertEquals(null, HimSelfcell.ask(new Tweet("PokeConquerors",
                 "@bulbiVraimentZarbi -10pc /cc @nedseb #1")));
@@ -62,7 +62,7 @@ public class JudgeAnswersAfterHimSelfCellTest {
         JudgeAnswersAfterHimSelfCell HimSelfcell = new JudgeAnswersAfterHimSelfCell(
                 judgeBot);
         judgeBot.setScreenName("PokeConquerors");
-        judgeBot.incrNbRoundsEnCours();
+        judgeBot.incrIdRoundsEnCours();
         judgeBot.pushPokemon("@bulbizarre", "@nedseb", null, null);
         judgeBot.pushPokemon("@bulbizarbi", "@nebsed", null, null);
         assertEquals(null, HimSelfcell.ask(new Tweet("PokeConquerors",

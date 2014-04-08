@@ -40,7 +40,7 @@ public class JudgeBot implements Bot {
     private Twitter          twitter;
     private List<Date>       date5fight               = new ArrayList<>();
     private static final int UNE_HEURE                = 3600000;
-    private int              nbRoundsEnCours          = 0;
+    private int              idRoundsEnCours          = 0;
     private int              salaire                  = 0;
     private String           screenName               = null;
 
@@ -183,16 +183,16 @@ public class JudgeBot implements Bot {
         date5fight.add(d);
     }
 
-    public final int getNbRoundsencours() {
-        return nbRoundsEnCours;
+    public final int getIdRoundsEnCours() {
+        return idRoundsEnCours;
     }
 
-    public final void incrNbRoundsEnCours() {
-        ++nbRoundsEnCours;
+    public final void incrIdRoundsEnCours() {
+        ++idRoundsEnCours;
     }
 
-    public final void reinitNbRoundsEnCours() {
-        nbRoundsEnCours = 0;
+    public final void reInitIdRoundsEnCours() {
+        idRoundsEnCours = 0;
     }
 
     public final boolean isInterestedBy(final int montant) {
@@ -227,7 +227,7 @@ public class JudgeBot implements Bot {
     }
 
     public final String getCallForNextRound() {
-        return "Round #" + getNbRoundsencours() + " /cc " + pokemons.get(0)[1]
+        return "Round #" + getIdRoundsEnCours() + " /cc " + pokemons.get(0)[1]
                 + " " + pokemons.get(0)[0] + " " + pokemons.get(1)[1] + " "
                 + pokemons.get(1)[0];
     }
@@ -239,7 +239,7 @@ public class JudgeBot implements Bot {
         String[] pokemon1 = pokemons.get(0);
         if (isPokemonsContainOnePokemon()) { return false; }
         String[] pokemon2 = pokemons.get(1);
-        String round = "#" + getNbRoundsencours();
+        String round = "#" + getIdRoundsEnCours();
         if (tmpText.contains("round " + round)) { return false; }
         if (isContainIn(tmpText, pokemon1[0])
                 && isContainIn(tmpText, pokemon1[1])

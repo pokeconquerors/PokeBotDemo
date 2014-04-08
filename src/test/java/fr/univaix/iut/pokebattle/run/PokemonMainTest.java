@@ -1,6 +1,7 @@
 package fr.univaix.iut.pokebattle.run;
 
 import static org.junit.Assert.*;
+import static org.fest.assertions.Assertions.assertThat;
 
 import org.junit.Test;
 
@@ -27,5 +28,15 @@ public class PokemonMainTest {
         PokemonMain.main(new String[] { "" });
         assertEquals("pokedex.json", DataReadObject.getInstance()
                 .getPokedexFile());
+    }
+    
+    @Test
+    public void test_getInstance() {
+    	assertThat(PokemonMain.getInstance()).isNotNull();
+    }
+    
+    @Test
+    public void test_runbot() {
+    	 PokemonMain.main(new String[] { "propertiesFile=marchePasTwitter4j.properties" });
     }
 }

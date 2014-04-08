@@ -32,4 +32,9 @@ public class BotRunnerTest {
     @Test(expected=Exception.class)
     public void test_runBot_NoJudge() throws TUSEException, IOException {
             BotRunner.runBot(null, "testCredentialsErreur.properties"); }
+    
+    @Test
+    public void test_getInstance() {
+    	assertThat(BotRunner.getInstance()).isNotNull();
+    }
 }

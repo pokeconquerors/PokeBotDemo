@@ -9,9 +9,13 @@ import java.io.IOException;
 import java.io.InputStream;
 
 public final class BotRunner {
-
+	private static BotRunner instance = null;
     private BotRunner() { }
 
+    public static BotRunner getInstance() {
+    	return (instance != null ? instance : new BotRunner());
+    }
+    
     public static void runBot(final Bot bot, final String credentialsFileName)
             throws TUSEException, IOException {
         InputStream inputStream = getResourceAsStream(credentialsFileName);

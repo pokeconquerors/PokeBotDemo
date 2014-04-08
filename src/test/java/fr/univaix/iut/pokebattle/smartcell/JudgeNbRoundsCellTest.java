@@ -28,7 +28,7 @@ public class JudgeNbRoundsCellTest {
     @Test
     public void testRound1() {
         judge.setInFight(false);
-        judge.incrNbRoundsEnCours();
+        judge.incrIdRoundsEnCours();
         assertEquals("Le round en cours est : #1",
                 cell.ask(new Tweet("nedseb", "Round ?")));
     }

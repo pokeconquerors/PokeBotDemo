@@ -13,7 +13,7 @@ public class JudgeNbRoundsCell implements SmartCell {
 
     public final String ask(final Tweet question) {
         if (isARoundQuestion(question)) { return "Le round en cours est : #"
-                + owner.getNbRoundsencours(); }
+                + owner.getIdRoundsEnCours(); }
         return null;
     }
 
