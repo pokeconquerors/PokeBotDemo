@@ -22,8 +22,10 @@ public class JudgeAnswerValidAttaqueCellTest {
 	public void test_PokemonOK() {
 		judge.pushPokemon("@Carapuce", "twitterTest1", "1", "70");
 		judge.pushPokemon("@Bulbizarre", "twitterTest2", "1", "70");
-		assertEquals("@Bulbizarre -10pv /cc @twitterTest2 #1", cell.ask(new Tweet("Carapuce",
-				"@Bulbizarre #attack #charge /cc @twitterTest2 @twitterTest1 @pokeconquerors #1")));
+		cell.ask(new Tweet("Carapuce",
+				"@Bulbizarre #attack #charge /cc @twitterTest2 @twitterTest1 @pokeconquerors #1"));
+		assertEquals("@Bulbizarre -10pv /cc @twitterTest2 #1", cell.ask(new Tweet("Bulbizarre",
+				"@Carapuce #attack #charge /cc @twitterTest1 @twitterTest2 @pokeconquerors #1")));
 	}
 
 	@Test
@@ -37,9 +39,11 @@ public class JudgeAnswerValidAttaqueCellTest {
 	public void test_attaque_inconnue() {
 		judge.pushPokemon("@Carapuce", "twitterTest1", "1", "70");
 		judge.pushPokemon("@Bulbizarre", "twitterTest2", "1", "70");
-		assertEquals("@Carapuce -0pv /cc @twitterTest1 #1 Tu ne respectes pas la convention d'attaque, tu passes le prochain tour",
-				cell.ask(new Tweet("Bulbizarre",
-						"@Carapuce #attack #AttInconnue /cc @TwitterTest2 @twitterTest1 @pokeconquerors #1")));
+		cell.ask(new Tweet("Bulbizarre",
+				"@Carapuce #attack #AttInconnue /cc @TwitterTest2 @twitterTest1 @pokeconquerors #1"));
+		assertEquals("@Carapuce -0pv /cc @twitterTest1 #1 PENALITE : SKIP NEXT ROUND",
+				cell.ask(new Tweet("Carapuce",
+						"@Bulbizarre #attack #AttInconnue /cc @TwitterTest1 @twitterTest2 @pokeconquerors #1")));
 	}
 
 	@Test
@@ -48,13 +52,12 @@ public class JudgeAnswerValidAttaqueCellTest {
 	}
 
 	@Test
-	public void aaa() {
+	public void test_Penalite() {
 		judge.pushPokemon("@Carapuce", "twitterTest1", "1", "70");
-		judge.pushPokemon("@Bulbizarre", "twitterTest2", "1", "70");
-		assertEquals(
-				"@Bulbizarre -0pv /cc @twitterTest2 #1 Tu ne respectes pas la convention d'attaque, tu passes le prochain tour",
-				cell.ask(new Tweet("Carapuce",
-						"@Bulbizarre #attack #charge /cc @twitterTest2 @twitterTest1 @pokeconquerors #2")));
+		judge.pushPokemon("@Bulbizarre", "twitterTest2", "1", "70");		
+		cell.ask(new Tweet("Carapuce", "@Bulbizarre #attack #charge /cc @twitterTest2 @twitterTest1 @pokeconquerors #2"));
+		assertEquals("@Bulbizarre -0pv /cc @twitterTest2 #1 PENALITE : SKIP NEXT ROUND", 
+				cell.ask(new Tweet("Bulbizarre", "@Carapuce #attack #charge /cc @twitterTest1 @twitterTest2 @pokeconquerors #2")));
 	}
 
 }

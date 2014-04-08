@@ -6,6 +6,7 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
+import fr.univaix.iut.pokebattle.bot.JudgeBot;
 import fr.univaix.iut.pokebattle.twitter.Tweet;
 
 public class JudgeAlwaysAnswersCellTest {
@@ -14,7 +15,7 @@ public class JudgeAlwaysAnswersCellTest {
 
     @Before
     public void setUp() {
-        cell = new JudgeAlwaysAnswersCell();
+        cell = new JudgeAlwaysAnswersCell(new JudgeBot());
     }
 
     @Test

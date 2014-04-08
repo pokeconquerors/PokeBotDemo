@@ -9,19 +9,22 @@ import java.io.IOException;
 import java.io.InputStream;
 
 public final class BotRunner {
-	private static BotRunner instance = null;
+    private static BotRunner instance = null;
+
     private BotRunner() { }
 
     public static BotRunner getInstance() {
-    	return (instance != null ? instance : new BotRunner());
+        return (instance != null
+                ? instance
+                : new BotRunner());
     }
-    
+
     public static void runBot(final Bot bot, final String credentialsFileName)
             throws TUSEException, IOException {
         InputStream inputStream = getResourceAsStream(credentialsFileName);
-            Credentials credentials = Credentials.loadCredentials(inputStream);
-            TwitterBot twitterBot = new TwitterBot(bot, credentials);
-            twitterBot.startBot();
+        Credentials credentials = Credentials.loadCredentials(inputStream);
+        TwitterBot twitterBot = new TwitterBot(bot, credentials);
+        twitterBot.startBot();
     }
 
     static InputStream getResourceAsStream(final String fileName) {

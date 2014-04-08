@@ -33,8 +33,7 @@ public class JudgeBotTest {
 
     @Test
     public void testAsk() throws Exception {
-        assertThat(judgeBot.ask(new Tweet("@PokeConquerors Salut")))
-                .isNotNull();
+        assertThat(judgeBot.ask(new Tweet("@PokeConquerors Salut"))).isNotNull();
     }
 
     @Test

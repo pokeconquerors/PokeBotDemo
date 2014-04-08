@@ -16,20 +16,19 @@ import twitter4j.Status;
 import twitter4j.Twitter;
 import twitter4j.TwitterException;
 import twitter4j.UserStreamListener;
-/* Useless Import nécessaire (+10% cobertura)*/
+/* Useless Import nécessaire (+10% cobertura) */
 import fr.univaix.iut.pokebattle.tuse.UserStreamAdapter;
 import twitter4j.UserStreamListener;
-import twitter4j.json.DataObjectFactory;;
+import twitter4j.json.DataObjectFactory;
 
 public class TwitterUserStreamEasyBuilder {
-    private static final Logger LOGGER = LoggerFactory
-                                               .getLogger(TwitterBot.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(TwitterBot.class);
     private Credentials         credentials;
     private Twitter             twitter;
     private Bot                 bot;
 
-	public TwitterUserStreamEasyBuilder(final Credentials credentials,
-            final Twitter twitter, final Bot bot) {
+    public TwitterUserStreamEasyBuilder(final Credentials credentials, final Twitter twitter,
+            final Bot bot) {
         this.credentials = credentials;
         this.twitter = twitter;
         this.bot = bot;
@@ -61,22 +60,20 @@ public class TwitterUserStreamEasyBuilder {
         this.bot.setTwitter(twitter);
         this.bot.setId(twitter.getId());
         this.bot.setScreenName(twitter.getScreenName());
-        String response = bot.ask(new Tweet(status.getUser().getScreenName(),
-                status.getText(), status.getCreatedAt()));
+        String response = bot.ask(new Tweet(status.getUser().getScreenName(), status.getText(),
+                status.getCreatedAt()));
 
         if (responseIsNotNull(response)) {
             DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
             Date date = new Date();
-            System.out.println(response + " " + dateFormat.format(date)
-                    + " #PokeBattle");
-            twitter.updateStatus(response + " " + dateFormat.format(date)
-                    + " #PokeBattle");
+            System.out.println(response + " " + dateFormat.format(date) + " #PokeBattle");
+            twitter.updateStatus(response + " " + dateFormat.format(date) + " #PokeBattle");
         }
     }
 
     private boolean isNotAnInterestingTweetOfMe(final Status status, final Bot bot)
             throws TwitterException {
-        return !(isTweetOfMe(status) && bot.isTimeToNextRound(status.getText()));
+        return !(isTweetOfMe(status) && bot.isAnInterestingTweetOfMe(status.getText()));
     }
 
     public final boolean responseIsNotNull(final String response) {
@@ -88,8 +85,7 @@ public class TwitterUserStreamEasyBuilder {
     }
 
     private boolean isTweetForMe(final Status status) throws TwitterException {
-        return status.getText().toLowerCase()
-                .contains(twitter.getScreenName().toLowerCase());
+        return status.getText().toLowerCase().contains(twitter.getScreenName().toLowerCase());
     }
 
     public final boolean isTweetOfMe(final Status status) throws TwitterException {

@@ -43,6 +43,16 @@ public class JudgeBot implements Bot {
     private int              idRoundsEnCours          = 0;
     private int              salaire                  = 0;
     private String           screenName               = null;
+    private String           tweetMemoryResultat      = null;
+    private Boolean          wait                     = false;
+
+    public final void setTweetMemoryResultat(final String tweetMemoryResultat) {
+        this.tweetMemoryResultat = tweetMemoryResultat;
+    }
+
+    public final String getTweetMemoryResultat() {
+        return this.tweetMemoryResultat;
+    }
 
     public final Twitter getTwitter() {
         return twitter;
@@ -60,22 +70,26 @@ public class JudgeBot implements Bot {
         this.inFight = inFight;
     }
 
-    public final void pushPokemon(final String nomPokemon,
-            final String nomProprio, final String level, final String xp) {
+    public final void pushPokemon(final String nomPokemon, final String nomProprio,
+            final String level, final String xp) {
         pokemons.add(new String[] {nomPokemon, nomProprio, level, xp});
     }
 
     public final String getOtherPokemon(final String pokemonPerdant) {
         for (String[] tmpPokemons : pokemons) {
-            if (!tmpPokemons[0].contains(pokemonPerdant)) { return tmpPokemons[0]; }
+            if (!tmpPokemons[0].contains(pokemonPerdant)) {
+                return tmpPokemons[0];
+            }
         }
         return null;
     }
 
-    public final String getElementInList(final String testeur,
-            final int indice, final int caseToLook) {
+    public final String getElementInList(final String testeur, final int indice,
+            final int caseToLook) {
         for (String[] tmpPokemons : pokemons) {
-            if (tmpPokemons[caseToLook].equals(testeur)) { return tmpPokemons[indice]; }
+            if (tmpPokemons[caseToLook].equals(testeur)) {
+                return tmpPokemons[indice];
+            }
         }
         return null;
     }
@@ -118,15 +132,12 @@ public class JudgeBot implements Bot {
         this.id = id;
     }
 
-    private final SmartCell[] smartCells = new SmartCell[] {
-            new JudgeOverBidCell(this), new JudgeInfoFirstOpponentsCell(this),
-            new JudgeAnswersAfterHimSelfCell(this),
+    private final SmartCell[] smartCells = new SmartCell[] {new JudgeOverBidCell(this),
+            new JudgeInfoFirstOpponentsCell(this), new JudgeAnswersAfterHimSelfCell(this),
             new JudgeNbRoundsCell(this), new JudgeAnswerWinnerCell(this),
             new JudgeAnswerNbFightCell(this), new JudgeHireCell(this),
-            new JudgeValidateFightCell(this),
-            new JudgeAnswerValidAttaqueCell(this),
-            new JudgeAnswerAreneCell(this), new JudgeAnswerCell(),
-            new JudgeAnswerHelpCell(this) };
+            new JudgeValidateFightCell(this), new JudgeAnswerValidAttaqueCell(this),
+            new JudgeAnswerAreneCell(this), new JudgeAnswerCell(), new JudgeAnswerHelpCell(this)};
 
     public final SmartCell[] getSmartCells() {
         return smartCells;
@@ -136,9 +147,11 @@ public class JudgeBot implements Bot {
     public final String ask(final Tweet question) {
         for (SmartCell cell : smartCells) {
             String answer = cell.ask(question);
-            if (answer != null) { return answer; }
+            if (answer != null) {
+                return answer;
+            }
         }
-        return new JudgeAlwaysAnswersCell().ask(question);
+        return new JudgeAlwaysAnswersCell(this).ask(question);
     }
 
     public final void setArene(final String arene) {
@@ -154,12 +167,16 @@ public class JudgeBot implements Bot {
     }
 
     public final boolean hasAlreadyDone5Fights() {
-        if (date5fight.size() == NB_MAX_FIGHT) { return true; }
+        if (date5fight.size() == NB_MAX_FIGHT) {
+            return true;
+        }
         return false;
     }
 
     public final boolean isMoreThanAnHour(final Date date1, final Date date2) {
-        if (date1.getTime() > date2.getTime() + UNE_HEURE) { return true; }
+        if (date1.getTime() > date2.getTime() + UNE_HEURE) {
+            return true;
+        }
         return false;
     }
 
@@ -188,7 +205,9 @@ public class JudgeBot implements Bot {
     }
 
     public final void incrIdRoundsEnCours() {
-        ++idRoundsEnCours;
+        if (!wait) {
+            ++idRoundsEnCours;
+        }
     }
 
     public final void reInitIdRoundsEnCours() {
@@ -196,8 +215,9 @@ public class JudgeBot implements Bot {
     }
 
     public final boolean isInterestedBy(final int montant) {
-        if (isSupThanMinimumAccepted(montant)
-                && isInfThanMaximumAccepted(montant)) { return true; }
+        if (isSupThanMinimumAccepted(montant) && isInfThanMaximumAccepted(montant)) {
+            return true;
+        }
         return false;
     }
 
@@ -227,27 +247,42 @@ public class JudgeBot implements Bot {
     }
 
     public final String getCallForNextRound() {
-        return "Round #" + getIdRoundsEnCours() + " /cc " + pokemons.get(0)[1]
-                + " " + pokemons.get(0)[0] + " " + pokemons.get(1)[1] + " "
-                + pokemons.get(1)[0];
+        return "Round #" + getIdRoundsEnCours() + " /cc " + pokemons.get(0)[1] + " "
+                + pokemons.get(0)[0] + " " + pokemons.get(1)[1] + " " + pokemons.get(1)[0];
+    }
+
+    public final boolean isTimeToNextRound(final String text) {
+        if (isPokemonsNull()) {
+            return false;
+        }
+        String tmpText = text.toLowerCase();
+        String[] pokemon1 = pokemons.get(0);
+        if (isPokemonsContainOnePokemon()) {
+            return false;
+        }
+        String[] pokemon2 = pokemons.get(1);
+        String round = "#" + getIdRoundsEnCours();
+        if (tmpText.contains("round " + round)) {
+            return false;
+        }
+        if (isContainIn(tmpText, pokemon1[0]) && isContainIn(tmpText, pokemon1[1])
+                && isContainIn(tmpText, round)) {
+            return true;
+        }
+        if (isContainIn(tmpText, pokemon2[0]) && isContainIn(tmpText, pokemon2[1])
+                && isContainIn(tmpText, round)) {
+            return true;
+        }
+        return false;
     }
 
     @Override
-    public final boolean isTimeToNextRound(final String text) {
-        if (isPokemonsNull()) { return false; }
-        String tmpText = text.toLowerCase();
-        String[] pokemon1 = pokemons.get(0);
-        if (isPokemonsContainOnePokemon()) { return false; }
-        String[] pokemon2 = pokemons.get(1);
-        String round = "#" + getIdRoundsEnCours();
-        if (tmpText.contains("round " + round)) { return false; }
-        if (isContainIn(tmpText, pokemon1[0])
-                && isContainIn(tmpText, pokemon1[1])
-                && isContainIn(tmpText, round)) { return true; }
-        if (isContainIn(tmpText, pokemon2[0])
-                && isContainIn(tmpText, pokemon2[1])
-                && isContainIn(tmpText, round)) { return true; }
-        return false;
+    public final boolean isAnInterestingTweetOfMe(final String text) {
+        return isTimeToNextRound(text) || isTimeToEndRound(text);
+    }
+
+    public final boolean isTimeToEndRound(final String text) {
+        return wait;
     }
 
     private boolean isPokemonsContainOnePokemon() {
@@ -270,5 +305,17 @@ public class JudgeBot implements Bot {
     @Override
     public final String getScreenName() {
         return screenName;
+    }
+
+    public final String getCallForNextResult() {
+        return tweetMemoryResultat;
+    }
+
+    public final boolean getWait() {
+        return wait;
+    }
+
+    public final void setWait(final boolean wait) {
+        this.wait = wait;
     }
 }

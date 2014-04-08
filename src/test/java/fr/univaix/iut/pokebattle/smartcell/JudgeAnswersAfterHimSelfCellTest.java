@@ -73,4 +73,20 @@ public class JudgeAnswersAfterHimSelfCellTest {
     public void test_KeyWord() {
         assertEquals(null, cell.getKeyWord());
     }
+    
+    @Test
+    public void test_NextResult() {
+    	JudgeBot judge =  new JudgeBot();
+    	JudgeAnswersAfterHimSelfCell HimSelfcell = new JudgeAnswersAfterHimSelfCell(
+				judge);
+		judge.setScreenName("PokeConquerors");
+    	judge.setTweetMemoryResultat("aaa");
+    	JudgeAnswerValidAttaqueCell cellValid = new JudgeAnswerValidAttaqueCell(judge);
+		judge.pushPokemon("@Carapuce", "twitterTest1", "1", "70");
+		judge.pushPokemon("@Bulbizarre", "twitterTest2", "1", "70");	
+    	cellValid.ask(new Tweet("Carapuce", "@Bulbizarre #attack #charge /cc @twitterTest2 @twitterTest1 @pokeconquerors #1"));
+		cellValid.ask(new Tweet("Bulbizarre", "@Carapuce #attack #charge /cc @twitterTest1 @twitterTest2 @pokeconquerors #1"));
+		assertEquals("@Carapuce -10pv /cc @twitterTest1 #1",HimSelfcell.ask(new Tweet("PokeConquerors", "")));
+		
+    }
 }

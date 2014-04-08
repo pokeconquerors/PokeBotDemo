@@ -1,15 +1,27 @@
 package fr.univaix.iut.pokebattle.smartcell;
 
+import fr.univaix.iut.pokebattle.bot.JudgeBot;
 import fr.univaix.iut.pokebattle.twitter.Tweet;
 
 public class JudgeAlwaysAnswersCell implements SmartCell {
-    public JudgeAlwaysAnswersCell() {
+    private JudgeBot owner = null;
+
+    public JudgeAlwaysAnswersCell(final JudgeBot owner) {
+        this.owner = owner;
     }
 
     public final String ask(final Tweet question) {
-        if (isNotNull(question)) { return "@" + question.getScreenName()
-                + " Bienvenue dans le monde fascinant des pokémons"; }
-        return "Un pokemon sauvage apparait";
+        if (isNotNull(question) && isNotAWait()) {
+            return "@" + question.getScreenName()
+                    + " Bienvenue dans le monde fascinant des pokémons";
+        } else if (isNotAWait()) {
+            return "Un pokemon sauvage apparait";
+        }
+        return null;
+    }
+
+    private boolean isNotAWait() {
+        return !owner.getWait();
     }
 
     private boolean isNotNull(final Tweet question) {

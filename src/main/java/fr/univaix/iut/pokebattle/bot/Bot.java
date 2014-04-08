@@ -14,7 +14,7 @@ public interface Bot {
 
     void setId(long id);
 
-    boolean isTimeToNextRound(String text);
+    boolean isAnInterestingTweetOfMe(String text);
 
     void setScreenName(String screenName);
 
