@@ -46,7 +46,7 @@ public class TwitterUserStreamEasyBuilder {
         return new TwitterUserStreamEasy(listener, credentials);
     }
 
-    public final void processNewQuestion(final Status status, final Bot bot)
+    public void processNewQuestion(final Status status, final Bot bot)
             throws TwitterException {
         if (isNotANewQuestion(status)) {
             if (isAnInterestingTweetOfMe(status, bot)) {
@@ -76,11 +76,11 @@ public class TwitterUserStreamEasyBuilder {
         return !(isTweetOfMe(status) && bot.isTimeToNextRound(status.getText()));
     }
 
-    private boolean responseIsNotNull(final String response) {
+    public boolean responseIsNotNull(final String response) {
         return response != null;
     }
 
-    public final boolean isNotANewQuestion(final Status status) throws TwitterException {
+    public boolean isNotANewQuestion(final Status status) throws TwitterException {
         return isTweetOfMe(status) || !isTweetForMe(status);
     }
 
@@ -89,7 +89,7 @@ public class TwitterUserStreamEasyBuilder {
                 .contains(twitter.getScreenName().toLowerCase());
     }
 
-    private boolean isTweetOfMe(final Status status) throws TwitterException {
+    public boolean isTweetOfMe(final Status status) throws TwitterException {
         return status.getUser().getId() == twitter.getId();
     }
 }

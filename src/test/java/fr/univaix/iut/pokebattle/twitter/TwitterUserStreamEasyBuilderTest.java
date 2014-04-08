@@ -18,7 +18,7 @@ import fr.univaix.iut.pokebattle.tuse.Credentials;
 public class TwitterUserStreamEasyBuilderTest {
     Twitter     twitter     = null;
     Credentials credentials = null;
-    TwitterFactory factory = null;
+    TwitterFactory factory  = null;
 
     @Before
     public void setUp() throws IOException  {
@@ -38,7 +38,7 @@ public class TwitterUserStreamEasyBuilderTest {
         assertThat(tuseb).isNotNull();
     }
    @Test
-   public void test_process() throws IOException, TwitterException{
+   public void test_process() throws IOException, TwitterException {
         JudgeBot juge = new JudgeBot();
         TwitterUserStreamEasyBuilder tuseb = new TwitterUserStreamEasyBuilder(
                 credentials, twitter, juge);
@@ -46,5 +46,24 @@ public class TwitterUserStreamEasyBuilderTest {
         tuseb.processNewQuestion(status, juge);
         assertThat(tuseb.isNotANewQuestion(status)).isTrue();
     }
-   
-}
+   @Test
+   public void test_response() throws IOException, TwitterException {
+       JudgeBot juge = new JudgeBot();
+       TwitterUserStreamEasyBuilder tuseb = new TwitterUserStreamEasyBuilder(
+               credentials, twitter, juge);
+       
+       String response = juge.ask(new Tweet("f"));
+       assertThat(tuseb.responseIsNotNull(response)).isTrue();
+   }
+   @Test
+   public void test_response_null() throws IOException, TwitterException {
+       JudgeBot juge = new JudgeBot();
+       TwitterUserStreamEasyBuilder tuseb = new TwitterUserStreamEasyBuilder(
+               credentials, twitter, juge);
+       
+       String response = null;
+       assertThat(tuseb.responseIsNotNull(response)).isFalse();
+   }
+ 
+}   
+
