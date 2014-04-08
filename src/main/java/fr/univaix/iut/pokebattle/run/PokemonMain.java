@@ -19,9 +19,7 @@ public final class PokemonMain {
         DataReadObject.getInstance().setPokedexFile(tmpPokedexFile);
     }
 
-    private PokemonMain() {
-
-    }
+    private PokemonMain() { }
 
     public static void main(final String[] args) {
         String pokedexFile = getPokedexFile(args);

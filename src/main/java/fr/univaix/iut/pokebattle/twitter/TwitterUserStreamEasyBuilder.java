@@ -46,7 +46,7 @@ public class TwitterUserStreamEasyBuilder {
         return new TwitterUserStreamEasy(listener, credentials);
     }
 
-    public void processNewQuestion(final Status status, final Bot bot)
+    public final void processNewQuestion(final Status status, final Bot bot)
             throws TwitterException {
         if (isNotANewQuestion(status)) {
             if (isNotAnInterestingTweetOfMe(status, bot)) {
@@ -68,7 +68,6 @@ public class TwitterUserStreamEasyBuilder {
             twitter.updateStatus(response + " " + dateFormat.format(date)
                     + " #PokeBattle");
         }
-
     }
 
     private boolean isNotAnInterestingTweetOfMe(final Status status, final Bot bot)
@@ -76,11 +75,11 @@ public class TwitterUserStreamEasyBuilder {
         return !(isTweetOfMe(status) && bot.isTimeToNextRound(status.getText()));
     }
 
-    public boolean responseIsNotNull(final String response) {
+    public final boolean responseIsNotNull(final String response) {
         return response != null;
     }
 
-    public boolean isNotANewQuestion(final Status status) throws TwitterException {
+    public final boolean isNotANewQuestion(final Status status) throws TwitterException {
         return isTweetOfMe(status) || !isTweetForMe(status);
     }
 
@@ -89,7 +88,7 @@ public class TwitterUserStreamEasyBuilder {
                 .contains(twitter.getScreenName().toLowerCase());
     }
 
-    public boolean isTweetOfMe(final Status status) throws TwitterException {
+    public final boolean isTweetOfMe(final Status status) throws TwitterException {
         return status.getUser().getId() == twitter.getId();
     }
 }
