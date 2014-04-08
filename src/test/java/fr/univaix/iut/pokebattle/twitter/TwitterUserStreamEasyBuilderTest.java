@@ -3,6 +3,7 @@ package fr.univaix.iut.pokebattle.twitter;
 import java.io.IOException;
 import java.io.InputStream;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import static org.fest.assertions.Assertions.assertThat;
@@ -17,23 +18,27 @@ import fr.univaix.iut.pokebattle.tuse.Credentials;
 public class TwitterUserStreamEasyBuilderTest {
     Twitter     twitter     = null;
     Credentials credentials = null;
+    TwitterFactory factory = null;
 
-    @Test
-    public void test() throws IOException {
+    @Before
+    public void setUp() throws IOException  {
         InputStream inputStream = PokemonMain.class.getClassLoader()
                 .getResourceAsStream("testCredentials.properties");
         credentials = Credentials.loadCredentials(inputStream);
-        TwitterFactory factory = new TwitterFactory();
+        factory = new TwitterFactory();
         twitter = factory.getInstance();
+    }
+    
+    @Test
+    public void test() throws IOException {
+      
+        
         TwitterUserStreamEasyBuilder tuseb = new TwitterUserStreamEasyBuilder(
                 credentials, twitter, new JudgeBot());
         assertThat(tuseb).isNotNull();
     }
    @Test
    public void test_process() throws IOException, TwitterException{
-        
-        TwitterFactory factory = new TwitterFactory();
-        twitter = factory.getInstance();
         JudgeBot juge = new JudgeBot();
         TwitterUserStreamEasyBuilder tuseb = new TwitterUserStreamEasyBuilder(
                 credentials, twitter, juge);
