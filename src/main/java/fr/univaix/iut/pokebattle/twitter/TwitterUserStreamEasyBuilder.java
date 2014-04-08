@@ -23,8 +23,17 @@ public class TwitterUserStreamEasyBuilder {
     private Credentials         credentials;
     private Twitter             twitter;
     private Bot                 bot;
+    private Boolean             debug = false;
 
-    public TwitterUserStreamEasyBuilder(final Credentials credentials,
+    public Boolean getDebug() {
+		return debug;
+	}
+
+	public void setDebug(Boolean debug) {
+		this.debug = debug;
+	}
+
+	public TwitterUserStreamEasyBuilder(final Credentials credentials,
             final Twitter twitter, final Bot bot) {
         this.credentials = credentials;
         this.twitter = twitter;
@@ -65,8 +74,10 @@ public class TwitterUserStreamEasyBuilder {
             Date date = new Date();
             System.out.println(response + " " + dateFormat.format(date)
                     + " #PokeBattle");
+            if(!debug) {
             twitter.updateStatus(response + " " + dateFormat.format(date)
                     + " #PokeBattle");
+            }
         }
     }
 

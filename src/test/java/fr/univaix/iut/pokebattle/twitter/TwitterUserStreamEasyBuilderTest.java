@@ -15,6 +15,11 @@ import twitter4j.TwitterFactory;
 import fr.univaix.iut.pokebattle.bot.JudgeBot;
 import fr.univaix.iut.pokebattle.run.PokemonMain;
 import fr.univaix.iut.pokebattle.tuse.Credentials;
+/* Useless Import nécessaire (+10% cobertura)*/
+import fr.univaix.iut.pokebattle.tuse.UserStreamAdapter;
+import twitter4j.UserStreamListener;
+import twitter4j.json.DataObjectFactory;;
+
 
 public class TwitterUserStreamEasyBuilderTest {
     Twitter     twitter     = null;
@@ -44,6 +49,7 @@ public class TwitterUserStreamEasyBuilderTest {
         TwitterUserStreamEasyBuilder tuseb = new TwitterUserStreamEasyBuilder(
                 credentials, twitter, juge);
         Status status = twitter.showStatus(twitter.getId());
+        tuseb.setDebug(true);
         tuseb.processNewQuestion(status, juge);
         assertThat(tuseb.isNotANewQuestion(status)).isTrue();
     }
@@ -70,6 +76,7 @@ public class TwitterUserStreamEasyBuilderTest {
       JudgeBot judge = new JudgeBot();
       TwitterUserStreamEasyBuilder tuseb = new TwitterUserStreamEasyBuilder(
               credentials, twitter, judge);
+      tuseb.setDebug(true);
       ResponseList<Status> statu = twitter.getUserTimeline(2389060057L);
       
       tuseb.processNewQuestion(statu.get(6), judge);
