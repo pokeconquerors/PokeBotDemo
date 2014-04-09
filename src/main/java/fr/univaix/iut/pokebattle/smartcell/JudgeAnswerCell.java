@@ -15,9 +15,7 @@ public class JudgeAnswerCell implements SmartCell {
     }
 
     private boolean isAHello(final Tweet question) {
-        return (question.getText().matches(getKeyWord()));/*
-                || question.getText().matches(".*\\s+(?i)salut\\s+.*")
-                || question.getText().matches(getKeyWord()));*/
+        return (question.getText().matches(getKeyWord()));
     }
 
     @Override
