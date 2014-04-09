@@ -56,6 +56,6 @@ public class JudgeAnswerCellTest {
     
     @Test
     public void test_KeyWord() {
-        assertEquals(".*\\s+(?i)salut", cell.getKeyWord());
+        assertEquals(".*\\s+(?i)salut(!.*|\\s+.*|)", cell.getKeyWord());
     }
 }

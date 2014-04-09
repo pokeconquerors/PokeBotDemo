@@ -15,13 +15,13 @@ public class JudgeAnswerCell implements SmartCell {
     }
 
     private boolean isAHello(final Tweet question) {
-        return (question.getText().matches(".*\\s+(?i)salut!.*")
+        return (question.getText().matches(getKeyWord()));/*
                 || question.getText().matches(".*\\s+(?i)salut\\s+.*")
-                || question.getText().matches(getKeyWord()));
+                || question.getText().matches(getKeyWord()));*/
     }
 
     @Override
     public final String getKeyWord() {
-        return ".*\\s+(?i)salut";
+        return ".*\\s+(?i)salut(!.*|\\s+.*|)";
     }
 }
