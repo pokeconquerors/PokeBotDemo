@@ -37,7 +37,7 @@ public class JudgeValidateFightCell implements SmartCell {
 
     private void addNewPokemon(final Tweet question) {
         owner.pushPokemon(owner.getPoke(question.getText()),
-                "@" + question.getScreenName(), null, null);
+                "@" + question.getScreenName(), null, null, true);
     }
 
     private String getReturnMessage(final Tweet question) {

@@ -53,7 +53,7 @@ public class JudgeAnswerNbFightCellTest {
         Tweet t1 = new Tweet("coucou",
                 "@pcreux #fight #ok with @pikachu /cc @viviane");
         t1.setCreatedAt(new Date(System.currentTimeMillis()));
-        judge.pushPokemon("@Bulbizarre", "@nedseb", null, null);
+        judge.pushPokemon("@Bulbizarre", "@nedseb", null, null, true);
         ;
         cell2.ask(t1);
 
@@ -66,7 +66,7 @@ public class JudgeAnswerNbFightCellTest {
         Tweet t1 = new Tweet("coucou",
                 "@pcreux #fight #ok with @pikachu /cc @viviane");
         t1.setCreatedAt(new Date(0));
-        judge.pushPokemon("@Bulbizarre", "@nedseb", null, null);
+        judge.pushPokemon("@Bulbizarre", "@nedseb", null, null, true);
         ;
         cell2.ask(t1);
         judge.setInFight(false);

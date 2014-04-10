@@ -19,7 +19,7 @@ public class JudgeInfoFirstOpponentsCell implements SmartCell {
     public final String ask(final Tweet question) {
         if (isFightWith(question)) {
             owner.pushPokemon(getPokemon1(question.getText()),
-                    "@" + question.getScreenName(), null, null);
+                    "@" + question.getScreenName(), null, null, true);
             return "Pokemon = "
                     + owner.getPokemonFromList(getPokemon1(question.getText()))
                     + ", Proprio = "

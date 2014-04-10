@@ -20,8 +20,8 @@ public class JudgeAnswerWinnerCellTest {
 
     @Test
     public void test_XPWin() {
-        judge.pushPokemon("Carapuce", "twitterTest1", "1", "70");
-        judge.pushPokemon("Bulbizare", "twitterTest2", "1", "70");
+        judge.pushPokemon("Carapuce", "twitterTest1", "1", "70", true);
+        judge.pushPokemon("Bulbizare", "twitterTest2", "1", "70", true);
         judge.setInFight(true);
         assertEquals("@Bulbizare #Win +10xp", cell.ask(new Tweet("Carapuce",
                 "#KO /cc @twitterJudge @nedseb @pcreux")));

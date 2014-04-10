@@ -30,8 +30,9 @@ public class JudgeAnswerValidAttaqueCell implements SmartCell {
             String nomPokemon = question.getScreenName();
             String adversairePokemon = owner.getOtherPokemon(nomPokemon);
             owner.incrIdRoundsEnCours();
+            Boolean playNextRound = owner.getPlayNextRound(nomPokemon);
             return getMessage(question, adversairePokemon, isACorrectTweet(question)
-                    && isACorrectAttack(question));
+                    && isACorrectAttack(question) && playNextRound);
         }
         return null;
     }
@@ -59,7 +60,7 @@ public class JudgeAnswerValidAttaqueCell implements SmartCell {
         return "" + adversairePokemon + " -0pv /cc " + "@"
                 + owner.getProprietaireFromList(adversairePokemon) + " #"
                 + owner.getIdRoundsEnCours() + (isWeirdSmiley(question)
-                        ? "" : getPenalityMessage());
+                        ? "" : getPenalityMessage(question.getScreenName()));
     }
 
     private String getCorrectLostPV(final String adversairePokemon) {
@@ -68,7 +69,9 @@ public class JudgeAnswerValidAttaqueCell implements SmartCell {
                 + owner.getIdRoundsEnCours();
     }
 
-    private String getPenalityMessage() {
+    private String getPenalityMessage(String pokemon) {
+    	if(owner.getPlayNextRound(pokemon))
+    		owner.setSkipNextRound(pokemon);
         return " PENALITE : SKIP NEXT ROUND";
     }
 

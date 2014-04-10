@@ -103,8 +103,8 @@ public class JudgeBotTest {
     @Test
     public void test_ElementInList() {
         JudgeBot judge2 = new JudgeBot();
-        judge2.pushPokemon("bulbizarbi", "nebsed", null, null);
-        judge2.pushPokemon("bulbizarre", "nedseb", null, null);
+        judge2.pushPokemon("bulbizarbi", "nebsed", null, null, true);
+        judge2.pushPokemon("bulbizarre", "nedseb", null, null, true);
         assertEquals(null, judge2.getElementInList("BulbiVraimentZarbi", 0, 0));
     }
 }
