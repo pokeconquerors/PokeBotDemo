@@ -1,0 +1,89 @@
+%% Save file as: COLORS.STY                     Source: FILESERV@SHSU.BITNET
+%+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+% Name:
+%	colors.sty
+% Author:  Fred Knight <knight@ll.mit.edu>
+% Purpose:
+%	Implement grayscale or color selection from LaTeX for PostScript.
+%	Works with black-and-white and color PostScript printers.
+%	A rainbow of colors is defined by default; you can add any
+%	color if you know its RGB values, e.g., from $OPENWINHOME/lib/rgb.txt.
+% NOTE: RGB.TXT is stored as STY.COLORS_RGB_TXT on FILESERV and is in the
+%       [.STY] directory on Niord.SHSU.edu (192.92.115.8)
+%
+% Examples:
+%-----1.
+%	\documentstyle[colors,...]{...}
+%
+%	\begin{verse}
+%		\psred Roses are red;\\
+%		\psblue The sky is blue;\\
+%		\psgreen Pickles are green;\\
+%		\psorange Colors are new.\\ \psblack
+%
+%		\red{Strawberries are red too;}\\
+%		\violet{But violets are never blue;}\\
+%	\end{verse}
+%-----2.
+%	\documentstyle[colors,...]{...}
+%
+%	\def\psLightGoldenrod{\pssetrgbcolor{0.93}{0.86}{0.51}}
+%	\def\LightGoldenrod#1{\psgsave\psLightGoldenrod#1\psgrestore}
+%	\LightGoldenrod{I like Light Goldenrod for a border color.}
+%	I like \psLightGoldenrod Light Goldenrod\psblack for a border color.
+% Usage:
+%	\ps<color>	: changes to <color>,
+%			: e.g., \psred red \psblue not blue
+%	\<color>{text}	: outputs text in <color>,
+%			: e.g., \red{strawberries}
+%
+%	\pssetgray{f}	: changes color to shade of gray
+%			: f = 0 (black) to 1 (white)
+% Restrictions:
+%	Only for Postscript---black & white or color!
+%	Only for dvi-to-ps driver that understands:
+%		\special{ps:: <Postscript commands>}
+% Modification History:
+%	write, 19 Oct 90, FKK
+%	alter \psred, \psorange, etc.; make a bw rainbow, 13 Nov 90, FKK
+%	omit pscolor and psbw booleans, 26 Jun 91, FKK
+%	add macros with arguments (see usage), 26 Jun 91, FKK
+%	remove \tan (conflicts with tangent) but keep \pstan, 15 Apr 92, FKK
+%-------------------------------------------------------------------
+%
+%	=====>> BASIC ACCESS TO POSTSCRIPT COLORS
+%
+%	=====>> Usage: \pssetrgbcolor{red}{green}{blue}
+%		where:		0 < red < 1, etc.
+%	=====>> Note: B&W ps printers understand setrgbcolor!
+%
+\def\pssetrgbcolor#1#2#3{\immediate\special{ps:: #1 #2 #3 setrgbcolor}}
+\def\pssetgray#1{\immediate\special{ps:: #1 setgray}}
+\def\psgsave{\immediate\special{ps:: gsave}}
+\def\psgrestore{\immediate\special{ps:: grestore}}
+%
+%	=====>> COMMANDS DERIVED FROM \pssetrgbcolor AND \pssetgray
+%	=====>> TWO TYPES: SET A NEW COLOR (NO ARGUMENT), e.g., \psred
+%	=====>>		   COLOR AN ARGUMENT, e.g., \red{Roses are red;}
+%
+\def\psgray#1{\pssetgray{#1}}
+\def\psblack{\psgray{0}}
+\def\black#1{\psgsave\psblack#1\psgrestore}
+\def\psred{\pssetrgbcolor{1}{0}{0}}
+\def\red#1{\psgsave\psred#1\psgrestore}
+\def\psorange{\pssetrgbcolor{1}{.65}{0}}
+\def\orange#1{\psgsave\psorange#1\psgrestore}
+\def\psyellow{\pssetrgbcolor{1}{1}{0}}
+\def\yellow#1{\psgsave\psyellow#1\psgrestore}
+\def\psgreen{\pssetrgbcolor{0}{1}{0}}
+\def\green#1{\psgsave\psgreen#1\psgrestore}
+\def\psblue{\pssetrgbcolor{0}{0}{1}}
+\def\blue#1{\psgsave\psblue#1\psgrestore}
+\def\psviolet{\pssetrgbcolor{.72}{.33}{.83}}
+\def\violet#1{\psgsave\psviolet#1\psgrestore}
+\def\pstan{\pssetrgbcolor{.5}{.5}{.2}}
+%conflicts with tangent%\def\tan#1{\psgsave\pstan#1\psgrestore}
+\def\psbrown{\pssetrgbcolor{.5}{.3}{.3}}
+\def\brown#1{\psgsave\psbrown#1\psgrestore}
+\def\pswhite{\psgray{1}}
+\def\white#1{\psgsave\pswhite#1\psgrestore}

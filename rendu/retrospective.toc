@@ -1,0 +1,10 @@
+\select@language {french}
+\contentsline {section}{\numberline {1}Travail en \IeC {\'e}quipe}{4}{section.1}
+\contentsline {subsection}{\numberline {1.1}Organisation}{4}{subsection.1.1}
+\contentsline {subsection}{\numberline {1.2}Difficult\IeC {\'e}s}{4}{subsection.1.2}
+\contentsline {subsection}{\numberline {1.3}Avantages}{4}{subsection.1.3}
+\contentsline {section}{\numberline {2}R\IeC {\'e}alisation d'un projet d'envergure et complexe}{5}{section.2}
+\contentsline {section}{\numberline {3}Java, les tests et Git}{6}{section.3}
+\contentsline {subsection}{\numberline {3.1}Java}{6}{subsection.3.1}
+\contentsline {subsection}{\numberline {3.2}Les tests}{6}{subsection.3.2}
+\contentsline {subsection}{\numberline {3.3}Git}{6}{subsection.3.3}

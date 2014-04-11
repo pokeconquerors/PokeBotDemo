@@ -1,0 +1,132 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[polutonikogreek, francais]{babel}
+\usepackage[top=3.2cm, bottom=3.5cm, left=2.8cm, right=2.8cm]{geometry}
+\usepackage{eurosym}    % €
+\usepackage{hyperref}   % Link
+\usepackage{graphicx}
+\usepackage{sectsty}
+\usepackage{color}
+\usepackage{colorx}
+\usepackage{multirow}
+\usepackage{datenumber}
+
+\definecolor{orangeIUT}{RGB}{250, 174, 61}
+\definecolor{bleuIUT}{RGB}{33, 116, 181}
+\sectionfont{\color{bleuIUT}}
+\partfont{\centering \color{orangeIUT}}
+
+% Header, footer
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+
+% Separate footer line 
+\renewcommand{\footrulewidth}{1pt}
+
+% Remove red border
+\hypersetup{pdfborder={0 0 0}}
+
+\begin{document}
+\pagenumbering{gobble} % Hide page number
+\title{ ~\\~\\~\\Rétrospective\\\small{Projet Agile - Bot Pokemon} ~\\~\\ ~\\~\\~\\~\\}
+
+\author{Cédric CANESTRARI, Arthur CAVAILLE, Cédric CHEBROU, Baptiste DEJEAN}
+\date{Vendredi 11 avril 2014 - Version 1.0\\
+	~\\
+	Sébastien NEDJAR\\
+	Benoît GANTAUME
+	~\\
+	~\\Module - Insertion Professionnelle~\\
+	~\\2$^e$ Année - Groupe 1
+	}
+\footnotesize{
+	\begin{tabular}{lp{2cm}r}
+		  \multirow{2}{*}{\includegraphics[width=7cm]{LOGO-IUT-AMU.png}} && Département informatique \\
+            && IUT d'Aix-en-Provence \\
+            && Aix-Marseille Université \\
+            && 413 Avenue Gaston Berger \\
+            && 13100 Aix-en-Provence \\
+            && Tél : 04.42.93.90.43 \\
+            && Fax : 04.42.93.90.74 \\
+            && iut-aix-informatique@univ-amu.fr 
+    	\end{tabular}
+}{\let\newpage\relax\maketitle} % No newpage `relax'
+\newpage
+\pagenumbering{arabic} % show page number
+
+\lhead{Module IP - Projet Agile}
+\chead{Rétrospective}
+\rhead{PokeBot - Java}
+\lfoot{Cédric CANESTRARI\\ Arthur CAVAILLE\\ Cédric CHEBROU\\ Baptiste DEJEAN}
+\cfoot{~\\~\thepage}
+\rfoot{\today \\ I.U.T. Aix-Marseille\\Département Informatique\\2$^e$ Année - Groupe 1}
+\setcounter{page}{2}
+    	\begin{figure}[h]
+        	\section*{Gestionnaire de versions}
+		\centering
+        	\begin{tabular}{|l|l|l|}
+			\hline
+            	\textbf{Version} & \textbf{Date} & \textbf{Description} \\
+            	\hline
+            		0.1 & 11/04/2014 & Première version \\
+            	\hline
+			0.2 & 11/04/2014 & Mise en place de l'en-tête et du pied de page \\
+            	\hline
+			1.0 & 11/04/2014 & Rédactions des parties \\
+            	\hline
+        	\end{tabular}
+    	\end{figure}
+\newpage
+
+\renewcommand{\contentsname}{Sommaire}
+\tableofcontents
+
+% Document start
+
+% ------------------------------------- Part 1
+
+\clearpage
+\part*{Expérience professionnelle}
+\section{Travail en équipe}
+\subsection{Organisation}
+
+	L'équilibre et la répartition des tâches du projet ont été correctement fait ce qui nous a permis de gérer notre temps. Nous avons également répartis le travail en fonction des facilités et difficultés de chacun. Nous avons eu, au début, des difficultés à démarrer car certains aspects techniques n'étaient pas explicites et nous avons du relire, en parler, et essayer de comprendre certaines fonctions et leur but.\\\\
+	La mise à disposition d'un matériel adapté et fonctionnel pour chacun des membres du groupe. Cela aurait permis d'être actif tout au long du projet sans être interrompu par un problème matériel ou logiciel quelconque. Certains jours, nous étions obligés de travailler sur 2 ordinateurs car c'était les seuls qui fonctionnaient correctement.
+
+\subsection{Difficultés}
+
+Les compétences des membres du groupe n'étaient pas homogènes. Ces différences ont engendré des retards et/ou des temps de compréhension ou de réalisation différents, ce qui nous a coûté du temps en groupe. Il a fallu que l'on discerne les difficultés de chacun, à quoi ces difficultés étaient liées et essayer de les résoudre ensemble.
+
+\subsection{Avantages}
+
+Le travail en équipe nous a permi de confronter les problèmes, en parler et les résoudre plus rapidement grâce aux connaissances de chacun. Les connaissances de l'équipe n'étant pas homogènes, certains n'ont pas que programmer mais ont aussi passé du temps avec d'autres membres du groupe qui avaient des lacunes pour les aider, les guider et débloquer les situations délicates.
+
+\newpage
+
+\section{Réalisation d'un projet d'envergure et complexe}
+
+L'encadrement du projet par les professeurs comme par le sujet détaillé et structuré nous a permis de réaliser le projet dans les temps en suivant les étapes demandées, et d'y ajouter nos propres modifications.\\
+
+Nous avons apprécié le projet et nous n'avons pas trouvé de point à améliorer.\\
+
+Nous avons été surpris à la fois par l'utilisation de l'API Twitter4J et par la simplicité de communiquer sur twitter par un logiciel développé par nous-même.\\
+
+La réalisation du projet nous a appris à gérer notre temps, nos répartitions de travail. Mais aussi à confronter les problèmes, argumenter ensemble sur les solutions que nous avons rencontrés. Cette expérience de travail a été très fructeuse pour nous et notre confiance en nos aptitudes. Il nous a apporté des connaissances nouvelles en java, en test unitaire, en développement agile, en management mais aussi en communications et relations.
+
+\newpage
+\section{Java, les tests et Git}
+\subsection{Java}
+
+Nos connaissances ont permis un très bon déroulement du projet. Notre niveau en java nous a étonné, nous ne pensions pas que nous pouvions réaliser un si gros projet sans avoir trop de problème. Nos réfactors et nos raccourcis claviers sont à améliorer, nous avons remarqués que c'était quelque chose d'extrêment utile et qui fait un gagner un temps précieux. Les ``Foreach'' sont extrêment utile et nous l'avions pas sur la version C++ que nous utilisons. 
+
+\subsection{Les tests}
+
+La mise en place des tests et leur compréhension ont été très facile et nous avons pu les utiliser partout. Les tests peuvent être amélioré en utilisant des ``mocks''  et on doit pouvoir réduire le nombre de ligne en utilisant des ``@Before'', ``@BeforeClass'' et également des ``@After'' et ``@AfterClass''.\\
+Checkstyle est un plugin très intéressant que nous avons mis à notre avantage pour résoudre tous nos oublies de syntaxe, ce qui nous a permis de rendre le code propre et claire.\\
+eCobertura est vraiment très utile et nous avons apprécié son utilisation pour voir les zones de code qui n'étaient pas testé et donc ajouté des tests de couverture.
+
+\subsection{Git}
+
+
+\end{document}
