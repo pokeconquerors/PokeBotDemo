@@ -70,9 +70,15 @@ public class JudgeAnswerValidAttaqueCell implements SmartCell {
     }
 
     private String getPenalityMessage(String pokemon) {
-    	if(owner.getPlayNextRound(pokemon))
-    		owner.setSkipNextRound(pokemon);
-        return " PENALITE : SKIP NEXT ROUND";
+    	if(owner.getPlayNextRound(pokemon)) {
+    		owner.setSkipNextRound(pokemon, false); 
+    		return " PENALITE : SKIP NEXT ROUND";
+    	}
+    	else {
+            owner.setSkipNextRound(pokemon, true);
+            return "";
+    	}
+        
     }
 
     private boolean isWeirdSmiley(final Tweet question) {

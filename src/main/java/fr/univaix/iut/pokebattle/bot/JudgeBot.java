@@ -335,12 +335,12 @@ public class JudgeBot implements Bot {
 		this.wait = wait;
 	}
 
-	public void setSkipNextRound(String pokemon) {
+	public final void setSkipNextRound(final String pokemon, final boolean playNextRound) {
 		for (String[] tmpPokemon : pokemons) {
 			if (tmpPokemon[0].contains(pokemon)) {
 				pokemons.remove(tmpPokemon);
 				pushPokemon(tmpPokemon[0], tmpPokemon[1], tmpPokemon[2],
-						tmpPokemon[3], false);
+						tmpPokemon[3], playNextRound);
 				break;
 			}
 		}		
