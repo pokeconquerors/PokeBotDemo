@@ -88,5 +88,11 @@ public class TwitterUserStreamEasyBuilderTest {
      listener.onStatus(null);
      assertThat(tuseb.isNotANewQuestion(statu.get(6))).isFalse();
   }
+  
+  @Test
+  public void test_bot () {
+      TwitterUserStreamEasyBuilder tuseb = new TwitterUserStreamEasyBuilder(credentials, twitter, new JudgeBot());
+      assertThat(tuseb.getBot()).isNotNull();
+  }
 }   
 

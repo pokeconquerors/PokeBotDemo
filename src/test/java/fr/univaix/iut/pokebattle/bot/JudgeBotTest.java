@@ -12,6 +12,8 @@ import twitter4j.Twitter;
 import twitter4j.TwitterFactory;
 import static org.fest.assertions.Assertions.assertThat;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 public class JudgeBotTest {
     JudgeBot                judgeBot = new JudgeBot();
@@ -106,5 +108,16 @@ public class JudgeBotTest {
         judge2.pushPokemon("bulbizarbi", "nebsed", null, null, true);
         judge2.pushPokemon("bulbizarre", "nedseb", null, null, true);
         assertEquals(null, judge2.getElementInList("BulbiVraimentZarbi", 0, 0));
+    }
+    
+    @Test
+    public void test_pokemonNull () {
+        assertFalse(judge.isTimeToNextRound("Salut toi"));
+    }
+    
+    @Test
+    public void test_interestingTweet() {
+        judge.setWait(true);
+        assertTrue(judge.isAnInterestingTweetOfMe("no gym ?"));
     }
 }

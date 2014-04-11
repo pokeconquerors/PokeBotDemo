@@ -27,6 +27,10 @@ public class TwitterUserStreamEasyBuilder {
     private Twitter             twitter;
     private Bot                 bot;
 
+    public Bot getBot() {
+        return bot;
+    }
+
     public TwitterUserStreamEasyBuilder(final Credentials credentials, final Twitter twitter,
             final Bot bot) {
         this.credentials = credentials;
