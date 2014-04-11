@@ -15,8 +15,7 @@ public class TwitterBuilder {
     public final Twitter build() {
         ConfigurationBuilder cb = new ConfigurationBuilder();
 
-        cb.setDebugEnabled(true)
-                .setOAuthConsumerKey(credentials.getConsumerKey())
+        cb.setDebugEnabled(true).setOAuthConsumerKey(credentials.getConsumerKey())
                 .setOAuthConsumerSecret(credentials.getConsumerSecret())
                 .setOAuthAccessToken(credentials.getToken())
                 .setOAuthAccessTokenSecret(credentials.getTokenSecret());

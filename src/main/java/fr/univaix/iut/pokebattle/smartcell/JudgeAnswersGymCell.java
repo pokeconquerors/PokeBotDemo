@@ -11,20 +11,28 @@ public class JudgeAnswersGymCell implements SmartCell {
     }
 
     public final String ask(final Tweet question) {
-        if (isNotNull(question) && isAnArena(question)) { return getGymMessage(question); }
+        if (isNotNull(question) && isAnArena(question)) {
+            return getGymMessage(question);
+        }
         return null;
     }
 
     private String getGymMessage(final Tweet question) {
-        if (hasGym()) { return "@" + question.getScreenName() + " my Gym is "
-                + owner.getArene() + " but maybe ..."; }
+        if (hasGym()) {
+            return "@" + question.getScreenName() + " my Gym is " + owner.getArene()
+                    + " but maybe ...";
+        }
+        updateOwner();
+        return "@" + question.getScreenName() + " no Gym";
+    }
+
+    private void updateOwner() {
         owner.setArene("no Gym");
         try {
             owner.update();
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return "@" + question.getScreenName() + " no Gym";
     }
 
     private boolean hasGym() {
@@ -41,6 +49,6 @@ public class JudgeAnswersGymCell implements SmartCell {
 
     @Override
     public final String getKeyWord() {
-      return ".*\\s+(?i)gym\\s*\\?.*";
+        return ".*\\s+(?i)gym\\s*\\?.*";
     }
 }

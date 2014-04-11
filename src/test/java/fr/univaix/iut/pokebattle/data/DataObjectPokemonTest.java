@@ -28,19 +28,19 @@ public class DataObjectPokemonTest {
         int forme = 4;
         DataObjectAttack[] attaques = null;
 
-        DataObjectPokemon dop = new DataObjectPokemon(nom, espece, taille,
-                poids, fmratio, effortval, type1, type2, expval, expmax,
-                captureval, capspe1, capspe2, couleur, forme, attaques);
+        DataObjectPokemon dop = new DataObjectPokemon(nom, espece, taille, poids, fmratio,
+                effortval, type1, type2, expval, expmax, captureval, capspe1, capspe2, couleur,
+                forme, attaques);
 
-        String pokemon = "DataObjectPokemon{" + "nom='" + nom + '\''
-                + ", espece='" + espece + '\'' + ", taille=" + taille
-                + ", poids=" + poids + ", fmratio=" + fmratio + ", effortval='"
-                + effortval + '\'' + ", type1='" + type1 + '\'' + ", type2='"
-                + type2 + '\'' + ", expval=" + expval + ", expmax=" + expmax
-                + ", captureval=" + captureval + ", capspe1='" + capspe1 + '\''
-                + ", capspe2='" + capspe2 + '\'' + ", couleur='" + couleur
-                + '\'' + ", forme=" + forme + ", attaques="
-                + (attaques == null ? null : Arrays.asList(attaques)) + '}';
+        String pokemon = "DataObjectPokemon{" + "nom='" + nom + '\'' + ", espece='" + espece + '\''
+                + ", taille=" + taille + ", poids=" + poids + ", fmratio=" + fmratio
+                + ", effortval='" + effortval + '\'' + ", type1='" + type1 + '\'' + ", type2='"
+                + type2 + '\'' + ", expval=" + expval + ", expmax=" + expmax + ", captureval="
+                + captureval + ", capspe1='" + capspe1 + '\'' + ", capspe2='" + capspe2 + '\''
+                + ", couleur='" + couleur + '\'' + ", forme=" + forme + ", attaques="
+                + (attaques == null
+                        ? null
+                        : Arrays.asList(attaques)) + '}';
 
         assertEquals(pokemon, dop.toString());
     }

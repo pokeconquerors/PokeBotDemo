@@ -32,7 +32,6 @@ public class JudgeAnswersHelpCell implements SmartCell {
         for (SmartCell smartcell : smartcells) {
             tmp += smartcell.getKeyWord() + " ";
         }
-        System.out.println(tmp);
         return tmp;
     }
 

@@ -10,7 +10,7 @@ import fr.univaix.iut.pokebattle.smartcell.JudgeAnswersWinnerCell;
 import fr.univaix.iut.pokebattle.twitter.Tweet;
 
 public class JudgeAnswersWinnerCellTest {
-    JudgeBot              judge = new JudgeBot();
+    JudgeBot               judge = new JudgeBot();
     JudgeAnswersWinnerCell cell  = new JudgeAnswersWinnerCell(judge);
 
     @Test
@@ -23,8 +23,8 @@ public class JudgeAnswersWinnerCellTest {
         judge.pushPokemon("Carapuce", "twitterTest1", "1", "70", true);
         judge.pushPokemon("Bulbizare", "twitterTest2", "1", "70", true);
         judge.setInFight(true);
-        assertEquals("@Bulbizare #Win +10xp", cell.ask(new Tweet("Carapuce",
-                "#KO /cc @twitterJudge @nedseb @pcreux")));
+        assertEquals("@Bulbizare #Win +10xp",
+                cell.ask(new Tweet("Carapuce", "#KO /cc @twitterJudge @nedseb @pcreux")));
     }
 
     @Test
@@ -37,9 +37,9 @@ public class JudgeAnswersWinnerCellTest {
     public void test_IsNull() {
         assertThat(cell.ask(new Tweet("#ko aa")));
     }
-    
+
     @Test
-    public void test_KeyWord()  {
+    public void test_KeyWord() {
         assertEquals("#(?i)ko.*", cell.getKeyWord());
     }
 

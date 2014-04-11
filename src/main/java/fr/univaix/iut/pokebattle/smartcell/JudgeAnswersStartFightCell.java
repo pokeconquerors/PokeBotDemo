@@ -14,19 +14,27 @@ public class JudgeAnswersStartFightCell implements SmartCell {
         if (!owner.isInFight()) {
             if (isOkToFight(question) && isNotNull(question)) {
                 owner.updateDateList(question.getCreatedAt());
-                if (owner.hasAlreadyDone5Fights()) { return "@"
-                        + question.getScreenName()
-                        + " Conseil du prof chen : pas plus de 5 combat en une heure !"; }
+                if (owner.hasAlreadyDone5Fights()) {
+                    return getNoMoreFight(question);
+                }
                 addNewPokemon(question);
                 startFight(question);
                 return getReturnMessage(question);
             }
         } else if (isOkToFight(question) && isNotNull(question)) {
-            return "Je suis déjà en combat, "
-                    + "veuillez me contacter plus tard jeune "
-                    + "dresseur bipéde, cordialement";
-            }
+            return getAlreadyInFight();
+        }
         return null;
+    }
+
+    private String getAlreadyInFight() {
+        return "Je suis déjà en combat, " + "veuillez me contacter plus tard jeune "
+                + "dresseur bipéde, cordialement";
+    }
+
+    private String getNoMoreFight(final Tweet question) {
+        return "@" + question.getScreenName()
+                + " Conseil du prof chen : pas plus de 5 combat en une heure !";
     }
 
     private void startFight(final Tweet question) {
@@ -36,8 +44,8 @@ public class JudgeAnswersStartFightCell implements SmartCell {
     }
 
     private void addNewPokemon(final Tweet question) {
-        owner.pushPokemon(owner.getPoke(question.getText()),
-                "@" + question.getScreenName(), null, null, true);
+        owner.pushPokemon(owner.getPoke(question.getText()), "@" + question.getScreenName(), null,
+                null, true);
     }
 
     private String getReturnMessage(final Tweet question) {
@@ -54,6 +62,6 @@ public class JudgeAnswersStartFightCell implements SmartCell {
 
     @Override
     public final String getKeyWord() {
-       return ".*\\s+#fight #ok with\\s+.*";
+        return ".*\\s+#fight #ok with\\s+.*";
     }
 }

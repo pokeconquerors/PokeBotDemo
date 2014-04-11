@@ -8,7 +8,7 @@ import fr.univaix.iut.pokebattle.twitter.Tweet;
  */
 public class JudgeAnswersWinnerCell implements SmartCell {
     private static final int POKEMON_COEFFICIENT_XP = 7;
-    private JudgeBot owner;
+    private JudgeBot         owner;
 
     public JudgeAnswersWinnerCell(final JudgeBot owner) {
         this.owner = owner;
@@ -16,24 +16,33 @@ public class JudgeAnswersWinnerCell implements SmartCell {
 
     public final int recupGainsXp(final String pokemon) {
         int exp;
-        float expVal = Float.parseFloat(owner.getXPFromList(pokemon));
-        float level = Float.parseFloat(owner.getLevelFromList(pokemon));
+        float expVal = getXP(pokemon);
+        float level = getLevel(pokemon);
         exp = (int) (expVal * (level / POKEMON_COEFFICIENT_XP));
 
         return exp;
     }
 
+    private float getLevel(final String pokemon) {
+        return Float.parseFloat(owner.getLevelFromList(pokemon));
+    }
+
+    private float getXP(final String pokemon) {
+        return Float.parseFloat(owner.getXPFromList(pokemon));
+    }
+
     public final String ask(final Tweet question) {
-
         String winnerPokemon = owner.getOtherPokemon(question.getScreenName());
-
         if (isNotNull(question) && isDead(question) && owner.isInFight()) {
             owner.setInFight(false);
             owner.reInitIdRoundsEnCours();
-            return "@" + winnerPokemon + " #Win +"
-                    + recupGainsXp(winnerPokemon) + "xp";
+            return getWinnerAndHimXp(winnerPokemon);
         }
         return null;
+    }
+
+    private String getWinnerAndHimXp(final String winnerPokemon) {
+        return "@" + winnerPokemon + " #Win +" + recupGainsXp(winnerPokemon) + "xp";
     }
 
     private boolean isNotNull(final Tweet question) {
@@ -46,7 +55,7 @@ public class JudgeAnswersWinnerCell implements SmartCell {
 
     @Override
     public final String getKeyWord() {
-       return "#(?i)ko.*";
+        return "#(?i)ko.*";
     }
 
 }

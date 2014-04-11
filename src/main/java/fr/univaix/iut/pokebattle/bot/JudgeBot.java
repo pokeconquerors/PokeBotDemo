@@ -71,7 +71,6 @@ public class JudgeBot implements Bot {
         return inFight;
     }
 
-
     public final void pushPokemon(final String nomPokemon, final String nomProprio,
             final String level, final String xp, final boolean playNextRound) {
         pokemons.add(new String[] {nomPokemon, nomProprio, level, xp,
@@ -147,7 +146,8 @@ public class JudgeBot implements Bot {
             new JudgeAnswersNumRoundCell(this), new JudgeAnswersWinnerCell(this),
             new JudgeAnswersFightsCell(this), new JudgeAnswersHireCell(this),
             new JudgeAnswersStartFightCell(this), new JudgeAnswersValidAttaqueCell(this),
-            new JudgeAnswersGymCell(this), new JudgeAnswersHelloCell(), new JudgeAnswersHelpCell(this) };
+            new JudgeAnswersGymCell(this), new JudgeAnswersHelloCell(),
+            new JudgeAnswersHelpCell(this)};
 
     public final SmartCell[] getSmartCells() {
         return smartCells;

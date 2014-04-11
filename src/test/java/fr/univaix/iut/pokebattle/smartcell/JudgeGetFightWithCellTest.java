@@ -9,7 +9,7 @@ import fr.univaix.iut.pokebattle.twitter.Tweet;
 
 public class JudgeGetFightWithCellTest {
 
-    JudgeBot                    judge = new JudgeBot();
+    JudgeBot              judge = new JudgeBot();
     JudgeGetFightWithCell cell  = new JudgeGetFightWithCell(judge);
 
     @Test

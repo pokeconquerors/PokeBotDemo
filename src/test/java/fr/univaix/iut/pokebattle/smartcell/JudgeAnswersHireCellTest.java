@@ -14,7 +14,7 @@ import fr.univaix.iut.pokebattle.twitter.Tweet;
 
 public class JudgeAnswersHireCellTest {
     private static JudgeBot judge = null;
-    private static String arene   ="no Gym";
+    private static String   arene = "no Gym";
 
     @BeforeClass
     public static void setUp() {
@@ -28,16 +28,14 @@ public class JudgeAnswersHireCellTest {
     public void Test_Hire_possible() {
         JudgeAnswersHireCell cell = new JudgeAnswersHireCell(judge);
         judge.setArene(null);
-        assertEquals("@titi my gym is @titi",
-                cell.ask(new Tweet("titi", " Hire!")));
+        assertEquals("@titi my gym is @titi", cell.ask(new Tweet("titi", " Hire!")));
     }
 
     @Test
     public void Test_Hire_impossible() {
         JudgeAnswersHireCell cell = new JudgeAnswersHireCell(judge);
         cell.ask(new Tweet("toto", " Hire!"));
-        assertEquals("@titi @toto is my owner but maybe ...",
-                cell.ask(new Tweet("titi", " Hire!")));
+        assertEquals("@titi @toto is my owner but maybe ...", cell.ask(new Tweet("titi", " Hire!")));
     }
 
     @Test
@@ -45,12 +43,13 @@ public class JudgeAnswersHireCellTest {
         JudgeAnswersHireCell cell = new JudgeAnswersHireCell(new JudgeBot());
         cell.ask(new Tweet("toto", " Hire!"));
     }
-    
+
     @Test
     public void test_KeyWord() {
         JudgeAnswersHireCell cell = new JudgeAnswersHireCell(new JudgeBot());
         assertEquals(".*\\s+(?i)hire\\s*!.*", cell.getKeyWord());
     }
+
     @AfterClass
     public static void reset_gym() throws TwitterException {
         TwitterFactory factory = new TwitterFactory();

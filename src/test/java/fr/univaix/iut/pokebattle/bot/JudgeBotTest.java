@@ -40,30 +40,23 @@ public class JudgeBotTest {
 
     @Test
     public void testNotImplementedNoAnswer() throws Exception {
-        assertThat(
-                judgeBot.ask(new Tweet(
-                        "@PokeConquerors This is not a question.")))
-                .isNotNull();
+        assertThat(judgeBot.ask(new Tweet("@PokeConquerors This is not a question."))).isNotNull();
     }
 
     @Test
     public void testNoOwnerNoSalut() {
-        assertThat(judgeBot.ask(new Tweet("@PokeConquerors Salut!")))
-                .isNotNull();
+        assertThat(judgeBot.ask(new Tweet("@PokeConquerors Salut!"))).isNotNull();
     }
 
     @Test
     public void testTweetHadOwnerHaveAnswer_Salut() {
-        assertThat(
-                judgeBot.ask(new Tweet("TwitterTest", "@PokeConquerors Salut!")))
-                .isNotNull();
+        assertThat(judgeBot.ask(new Tweet("TwitterTest", "@PokeConquerors Salut!"))).isNotNull();
     }
 
     @Test
     public void testTweetHadOwnerHaveAnswer_Gym() {
 
-        assertThat(judge.ask(new Tweet("TwitterTest", "@PokeConquerors Gym?")))
-                .isNotNull();
+        assertThat(judge.ask(new Tweet("TwitterTest", "@PokeConquerors Gym?"))).isNotNull();
     }
 
     @Test
@@ -74,8 +67,8 @@ public class JudgeBotTest {
     @Test
     public void testMultiple_Salut_Gym() {
         judge.setArene(null);
-        assertEquals("@TwitterTest no Gym", judge.ask(new Tweet("TwitterTest",
-                "@PokeConquerors Salut! Gym?")));
+        assertEquals("@TwitterTest no Gym",
+                judge.ask(new Tweet("TwitterTest", "@PokeConquerors Salut! Gym?")));
     }
 
     @Test
@@ -86,8 +79,7 @@ public class JudgeBotTest {
 
     @Test
     public void testisoneHourBetween() {
-        assertThat(judge.isMoreThanAnHour(new Date(3600002), new Date(1)))
-                .isTrue();
+        assertThat(judge.isMoreThanAnHour(new Date(3600002), new Date(1))).isTrue();
     }
 
     @Test
@@ -109,12 +101,12 @@ public class JudgeBotTest {
         judge2.pushPokemon("bulbizarre", "nedseb", null, null, true);
         assertEquals(null, judge2.getElementInList("BulbiVraimentZarbi", 0, 0));
     }
-    
+
     @Test
-    public void test_pokemonNull () {
+    public void test_pokemonNull() {
         assertFalse(judge.isTimeToNextRound("Salut toi"));
     }
-    
+
     @Test
     public void test_interestingTweet() {
         judge.setWait(true);

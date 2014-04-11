@@ -21,7 +21,7 @@ public class TwitterUserStreamEasyBuilder {
     private static final Logger LOGGER = LoggerFactory.getLogger(TwitterBot.class);
     private Credentials         credentials;
     private Twitter             twitter;
-    private Bot                 bot;
+    private Bot                 bot    = null;
 
     public final Bot getBot() {
         return bot;

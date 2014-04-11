@@ -16,21 +16,27 @@ public class JudgeAnswersOverBidCell implements SmartCell {
             int montant = getMontant(question.getText());
             if (owner.isInterestedBy(montant)) {
                 owner.setSalaire(montant);
-                return "@" + question.getScreenName()
-                        + " Nous allons bien nous entendre ! " + hire(question);
+                return getOverBidden(question);
             } else {
-                return "@" + question.getScreenName()
-                        + " Sale Radin ! Retourne à l'âge de Pierre";
+                return getSwindler(question);
             }
         }
         return null;
     }
 
+    private String getSwindler(final Tweet question) {
+        return "@" + question.getScreenName() + " Sale Radin ! Retourne à l'âge de Pierre";
+    }
+
+    private String getOverBidden(final Tweet question) {
+        return "@" + question.getScreenName() + " Nous allons bien nous entendre ! "
+                + hire(question);
+    }
+
     private String hire(final Tweet question) {
         JudgeAnswersHireCell cell = new JudgeAnswersHireCell(owner);
         owner.setArene(null);
-        String hireMess = cell.ask(
-                new Tweet(question.getScreenName(), "@PokeConquerors Hire !"))
+        String hireMess = cell.ask(new Tweet(question.getScreenName(), "@PokeConquerors Hire !"))
                 .replaceFirst("@" + question.getScreenName() + " ", "");
         return hireMess;
     }
@@ -65,6 +71,6 @@ public class JudgeAnswersOverBidCell implements SmartCell {
 
     @Override
     public final String getKeyWord() {
-       return ".*(?i)overbid\\s+.*";
+        return ".*(?i)overbid\\s+.*";
     }
 }

@@ -54,9 +54,8 @@ public final class DataReadObject {
 
         Gson gson = new Gson();
 
-        BufferedReader lecteur = new BufferedReader(new InputStreamReader(
-                DataReadObject.class.getClassLoader().getResourceAsStream(
-                        pokedexFile)));
+        BufferedReader lecteur = new BufferedReader(new InputStreamReader(DataReadObject.class
+                .getClassLoader().getResourceAsStream(pokedexFile)));
         // convert the json string back to object
         setPokemons(gson.fromJson(lecteur, DataObjectPokemon[].class));
     }
@@ -74,8 +73,7 @@ public final class DataReadObject {
         return getAttaque(nomAttaque, getPokemon(nomPokemon));
     }
 
-    private DataObjectAttack getAttaque(final String nomAttaque,
-            final DataObjectPokemon pokemon) {
+    private DataObjectAttack getAttaque(final String nomAttaque, final DataObjectPokemon pokemon) {
         for (DataObjectAttack attaque : pokemon.attaques) {
             if (attaque.nom.toLowerCase().equals(nomAttaque.toLowerCase())) {
                 return attaque;

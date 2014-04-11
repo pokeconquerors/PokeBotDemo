@@ -15,8 +15,8 @@ public class TwitterBotTest {
 
     @Test
     public void test_contructor() throws IOException, TUSEException {
-        InputStream inputStream = PokemonMain.class.getClassLoader()
-                .getResourceAsStream("testCredentials.properties");
+        InputStream inputStream = PokemonMain.class.getClassLoader().getResourceAsStream(
+                "testCredentials.properties");
         Credentials credentials = Credentials.loadCredentials(inputStream);
         TwitterBot twitterbot = new TwitterBot(new JudgeBot(), credentials);
         twitterbot.startBot();

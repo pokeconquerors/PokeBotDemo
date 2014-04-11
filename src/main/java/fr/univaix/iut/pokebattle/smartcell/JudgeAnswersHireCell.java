@@ -16,14 +16,22 @@ public class JudgeAnswersHireCell implements SmartCell {
             if (hasNoArena()) {
                 owner.setArene("@" + question.getScreenName());
                 updateOwnerDescription();
-                return "@" + question.getScreenName() + " my gym is " + "@"
-                        + question.getScreenName();
+                return getNewHire(question);
             } else {
-                return "@" + question.getScreenName() + " " + owner.getArene()
-                        + " is my owner but maybe ...";
+                return getAlreadyHire(question);
             }
         }
         return null;
+    }
+
+    private String getAlreadyHire(final Tweet question) {
+        return "@" + question.getScreenName() + " " + owner.getArene()
+                + " is my owner but maybe ...";
+    }
+
+    private String getNewHire(final Tweet question) {
+        return "@" + question.getScreenName() + " my gym is " + "@"
+                + question.getScreenName();
     }
 
     private boolean hasNoArena() {
@@ -48,6 +56,6 @@ public class JudgeAnswersHireCell implements SmartCell {
 
     @Override
     public final String getKeyWord() {
-     return ".*\\s+(?i)hire\\s*!.*";
+        return ".*\\s+(?i)hire\\s*!.*";
     }
 }

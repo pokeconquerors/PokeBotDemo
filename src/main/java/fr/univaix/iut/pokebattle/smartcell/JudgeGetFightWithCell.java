@@ -18,11 +18,17 @@ public class JudgeGetFightWithCell implements SmartCell {
 
     public final String ask(final Tweet question) {
         if (isFightWith(question)) {
-            owner.pushPokemon(getPokemon1(question.getText()),
-                    "@" + question.getScreenName(), null, null, true);
+            addPokemon(question);
         }
         return null;
+    }
 
+    private void addPokemon(final String pokemon, final String proprietaire) {
+        owner.pushPokemon(pokemon, proprietaire, null, null, true);
+    }
+
+    private void addPokemon(final Tweet question) {
+        addPokemon(getPokemon1(question.getText()), "@" + question.getScreenName());
     }
 
     private boolean isFightWith(final Tweet question) {

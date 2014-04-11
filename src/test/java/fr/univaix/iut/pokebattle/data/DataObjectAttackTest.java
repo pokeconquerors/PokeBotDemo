@@ -14,12 +14,10 @@ public class DataObjectAttackTest {
         String precision = "d";
         String pp = "e";
 
-        DataObjectAttack doa = new DataObjectAttack(niveau, nom, puissance,
-                precision, pp);
+        DataObjectAttack doa = new DataObjectAttack(niveau, nom, puissance, precision, pp);
 
-        String attaque = "DataObjectAttack{" + "niveau='" + niveau + '\''
-                + ", nom='" + nom + '\'' + ", puissance=" + puissance
-                + ", precision=" + precision + ", pp=" + pp + '}';
+        String attaque = "DataObjectAttack{" + "niveau='" + niveau + '\'' + ", nom='" + nom + '\''
+                + ", puissance=" + puissance + ", precision=" + precision + ", pp=" + pp + '}';
 
         assertEquals(attaque, doa.toString());
     }

@@ -14,7 +14,9 @@ public final class BotRunner {
     private BotRunner() { }
 
     public static BotRunner getInstance() {
-        return (instance != null ? instance : new BotRunner());
+        return (instance != null
+                ? instance
+                : new BotRunner());
     }
 
     public static void runBot(final Bot bot, final String credentialsFileName)

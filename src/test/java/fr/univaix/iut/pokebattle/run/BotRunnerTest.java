@@ -18,22 +18,25 @@ public class BotRunnerTest {
         assertThat(is).isNotNull();
     }
 
-    @Test(expected=NullPointerException.class)
+    @Test(expected = NullPointerException.class)
     public void test_runBot_error() throws TUSEException, IOException {
         JudgeBot judge = new JudgeBot();
-        BotRunner.runBot(judge, "testCredentialsErreur.properties"); }
+        BotRunner.runBot(judge, "testCredentialsErreur.properties");
+    }
 
-    @Test(expected=Exception.class)
+    @Test(expected = Exception.class)
     public void test_runBot_noerror() throws TUSEException, IOException {
         JudgeBot judge = new JudgeBot();
-        BotRunner.runBot(judge, "testCredentialsErreur.properties"); }
+        BotRunner.runBot(judge, "testCredentialsErreur.properties");
+    }
 
-    @Test(expected=Exception.class)
+    @Test(expected = Exception.class)
     public void test_runBot_NoJudge() throws TUSEException, IOException {
-            BotRunner.runBot(null, "testCredentialsErreur.properties"); }
-    
+        BotRunner.runBot(null, "testCredentialsErreur.properties");
+    }
+
     @Test
     public void test_getInstance() {
-    	assertThat(BotRunner.getInstance()).isNotNull();
+        assertThat(BotRunner.getInstance()).isNotNull();
     }
 }

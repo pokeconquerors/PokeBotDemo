@@ -18,8 +18,7 @@ public class DataObjectAttack {
 
     @Override
     public final String toString() {
-        return "DataObjectAttack{" + "niveau='" + niveau + '\'' + ", nom='"
-                + nom + '\'' + ", puissance=" + puissance + ", precision="
-                + precision + ", pp=" + pp + '}';
+        return "DataObjectAttack{" + "niveau='" + niveau + '\'' + ", nom='" + nom + '\''
+                + ", puissance=" + puissance + ", precision=" + precision + ", pp=" + pp + '}';
     }
 }

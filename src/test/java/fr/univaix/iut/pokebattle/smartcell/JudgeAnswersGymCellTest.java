@@ -14,8 +14,7 @@ public class JudgeAnswersGymCellTest {
 
     @Test
     public void Test_JudgeAnswerArene_Viridian() {
-        JudgeAnswersGymCell cell = new JudgeAnswersGymCell(new JudgeBot(
-                "ViridianGym"));
+        JudgeAnswersGymCell cell = new JudgeAnswersGymCell(new JudgeBot("ViridianGym"));
         assertEquals("@TwitterTest my Gym is ViridianGym but maybe ...",
                 cell.ask(new Tweet("TwitterTest", "@PokeConquerors Gym?")));
     }
@@ -40,17 +39,14 @@ public class JudgeAnswersGymCellTest {
 
     @Test
     public void Test_JudgeAnswerArene_regex() {
-        JudgeAnswersGymCell cell = new JudgeAnswersGymCell(new JudgeBot(
-                "TestGym"));
+        JudgeAnswersGymCell cell = new JudgeAnswersGymCell(new JudgeBot("TestGym"));
         assertThat(cell.ask(new Tweet("TwitterTest", " Gym ?"))).isNotNull();
     }
 
     @Test
     public void test_Regex_Wrong() {
-        JudgeAnswersGymCell cell = new JudgeAnswersGymCell(new JudgeBot(
-                "TestGym"));
-        assertThat(cell.ask(new Tweet("Boulet", "@PokeConquerors Gyma?")))
-                .isNull();
+        JudgeAnswersGymCell cell = new JudgeAnswersGymCell(new JudgeBot("TestGym"));
+        assertThat(cell.ask(new Tweet("Boulet", "@PokeConquerors Gyma?"))).isNull();
     }
 
     @Test
@@ -61,7 +57,7 @@ public class JudgeAnswersGymCellTest {
                 cell.ask(new Tweet("TwitterTest", "@PokeConquerors Gym?")));
 
     }
-    
+
     @Test
     public void test_KeyWord() {
         JudgeAnswersGymCell cell = new JudgeAnswersGymCell(new JudgeBot());

@@ -11,11 +11,10 @@ public class CredentialsTest {
     @Test
     public void testLoadCredentialsGivenAValidPropertiesFileShouldReturnAValidCredentials()
             throws Exception {
-        InputStream inputStream = getClass().getClassLoader()
-                .getResourceAsStream("./testCredentials.properties");
+        InputStream inputStream = getClass().getClassLoader().getResourceAsStream(
+                "./testCredentials.properties");
         Credentials credentials = Credentials.loadCredentials(inputStream);
-        assertThat(credentials.getConsumerKey()).isEqualTo(
-                "l5Ru6CFLV2cqdwbpYA0zg");
+        assertThat(credentials.getConsumerKey()).isEqualTo("l5Ru6CFLV2cqdwbpYA0zg");
         assertThat(credentials.getConsumerSecret()).isEqualTo(
                 "dmhQaM8sGbxcnmGvmTTRBSRNNHj3QFNbhSJfeNLoaQ");
         assertThat(credentials.getToken()).isEqualTo(

@@ -10,7 +10,7 @@ import fr.univaix.iut.pokebattle.twitter.Tweet;
 
 public class JudgeAnswersOverBidCellTest {
     JudgeAnswersOverBidCell cell  = null;
-    JudgeBot         judge = null;
+    JudgeBot                judge = null;
 
     @Before
     public void setUp() {
@@ -25,23 +25,19 @@ public class JudgeAnswersOverBidCellTest {
 
     @Test
     public void test_ForThisCell() {
-        assertTrue(cell.ask(new Tweet("TwitterMyTest",
-                "@PokeConquerors Overbid a")) != null);
+        assertTrue(cell.ask(new Tweet("TwitterMyTest", "@PokeConquerors Overbid a")) != null);
     }
 
     @Test
     public void test_TooMuchOverBid() {
         assertEquals("@TwitterMyTest Sale Radin ! Retourne à l'âge de Pierre",
-                cell.ask(new Tweet("TwitterMyTest",
-                        "@PokeConquerors Overbid 10000 €")));
+                cell.ask(new Tweet("TwitterMyTest", "@PokeConquerors Overbid 10000 €")));
     }
 
     @Test
     public void test_InterestedByOverBid() {
-        assertEquals(
-                "@TwitterMyTest Nous allons bien nous entendre ! my gym is @TwitterMyTest",
-                cell.ask(new Tweet("TwitterMyTest",
-                        "@PokeConquerors Overbid 500 €")));
+        assertEquals("@TwitterMyTest Nous allons bien nous entendre ! my gym is @TwitterMyTest",
+                cell.ask(new Tweet("TwitterMyTest", "@PokeConquerors Overbid 500 €")));
     }
 
     @Test
@@ -59,13 +55,13 @@ public class JudgeAnswersOverBidCellTest {
     @Test
     public void test_OverOverBid() {
         cell.ask(new Tweet("RischTwitter", "@PokeConquerors Overbid 900 €"));
-        assertEquals("@RischTwitter me paie 900", judge.getArene()
-                + " me paie " + judge.getSalaire());
+        assertEquals("@RischTwitter me paie 900",
+                judge.getArene() + " me paie " + judge.getSalaire());
     }
-    
+
     @Test
-    public void test_KeyWord()  {
-       assertEquals(".*(?i)overbid\\s+.*", cell.getKeyWord()); 
-       
+    public void test_KeyWord() {
+        assertEquals(".*(?i)overbid\\s+.*", cell.getKeyWord());
+
     }
 }

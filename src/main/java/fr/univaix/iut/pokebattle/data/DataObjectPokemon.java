@@ -21,14 +21,13 @@ public class DataObjectPokemon {
 
     DataObjectAttack[] attaques;
 
-    public DataObjectPokemon() {
-    }
+    public DataObjectPokemon() { }
 
-    public DataObjectPokemon(final String nom, final  String espece, final  float taille, final
-            float poids, final  float fmratio, final  String effortval, final  String type1, final
-            String type2, final  int expval, final  int expmax, final  int captureval, final
-            String capspe1, final  String capspe2, final  String couleur, final  int forme, final
-            DataObjectAttack[] attaques) {
+    public DataObjectPokemon(final String nom, final String espece, final float taille,
+            final float poids, final float fmratio, final String effortval, final String type1,
+            final String type2, final int expval, final int expmax, final int captureval,
+            final String capspe1, final String capspe2, final String couleur, final int forme,
+            final DataObjectAttack[] attaques) {
         this.nom = nom;
         this.espece = espece;
         this.taille = taille;
@@ -49,14 +48,14 @@ public class DataObjectPokemon {
 
     @Override
     public final String toString() {
-        return "DataObjectPokemon{" + "nom='" + nom + '\'' + ", espece='"
-                + espece + '\'' + ", taille=" + taille + ", poids=" + poids
-                + ", fmratio=" + fmratio + ", effortval='" + effortval + '\''
-                + ", type1='" + type1 + '\'' + ", type2='" + type2 + '\''
-                + ", expval=" + expval + ", expmax=" + expmax + ", captureval="
-                + captureval + ", capspe1='" + capspe1 + '\'' + ", capspe2='"
-                + capspe2 + '\'' + ", couleur='" + couleur + '\'' + ", forme="
-                + forme + ", attaques="
-                + (attaques == null ? null : Arrays.asList(attaques)) + '}';
+        return "DataObjectPokemon{" + "nom='" + nom + '\'' + ", espece='" + espece + '\''
+                + ", taille=" + taille + ", poids=" + poids + ", fmratio=" + fmratio
+                + ", effortval='" + effortval + '\'' + ", type1='" + type1 + '\'' + ", type2='"
+                + type2 + '\'' + ", expval=" + expval + ", expmax=" + expmax + ", captureval="
+                + captureval + ", capspe1='" + capspe1 + '\'' + ", capspe2='" + capspe2 + '\''
+                + ", couleur='" + couleur + '\'' + ", forme=" + forme + ", attaques="
+                + (attaques == null
+                        ? null
+                        : Arrays.asList(attaques)) + '}';
     }
 }

@@ -31,28 +31,24 @@ public class JudgeAnswersHelloCellTest {
 
     @Test
     public void testAsk_regex_Wrong() {
-        assertThat(cell.ask(new Tweet("Boulet", "@PokeConquerors SalutSalut!")))
-                .isNull();
+        assertThat(cell.ask(new Tweet("Boulet", "@PokeConquerors SalutSalut!"))).isNull();
     }
 
     @Test
     public void testAsk_regex_Wrong_2() {
-        assertThat(cell.ask(new Tweet("Boulet", "@PokeConquerors Saluta!")))
-                .isNull();
+        assertThat(cell.ask(new Tweet("Boulet", "@PokeConquerors Saluta!"))).isNull();
     }
 
     @Test
     public void testAsk_regex_Wrong_noexclamation() {
-        assertThat(cell.ask(new Tweet("Boulet", "@PokeConquerors Salut")))
-                .isNotNull();
+        assertThat(cell.ask(new Tweet("Boulet", "@PokeConquerors Salut"))).isNotNull();
     }
 
     @Test
     public void testAsk_regex_Wrong_InterroExclamation() {
-        assertThat(cell.ask(new Tweet("Boulet", "@PokeConquerors Salut?!")))
-                .isNull();
+        assertThat(cell.ask(new Tweet("Boulet", "@PokeConquerors Salut?!"))).isNull();
     }
-    
+
     @Test
     public void test_KeyWord() {
         assertEquals(".*\\s+(?i)salut(!.*|\\s+.*|)", cell.getKeyWord());

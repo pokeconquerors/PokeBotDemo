@@ -5,8 +5,9 @@ import fr.univaix.iut.pokebattle.twitter.Tweet;
 public class JudgeAnswersHelloCell implements SmartCell {
 
     public final String ask(final Tweet question) {
-        if (isNotNull(question) && isAHello(question)) { return "@"
-                + question.getScreenName() + " Salisalut très cher voisin !"; }
+        if (isNotNull(question) && isAHello(question)) {
+            return "@" + question.getScreenName() + " Salisalut très cher voisin !";
+        }
         return null;
     }
 

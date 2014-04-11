@@ -9,6 +9,7 @@ import fr.univaix.iut.pokebattle.twitter.Tweet;
  * Reply to all.
  */
 public class JudgeAnswersValidAttaqueCell implements SmartCell {
+    private static final int FIRST_CHAR = 1;
     private static final int POSITION_CC        = 3;
     private static final int POSITION_ATTAQUE   = 2;
     private static final int POSITION_NUM_ROUND = 7;
@@ -108,7 +109,7 @@ public class JudgeAnswersValidAttaqueCell implements SmartCell {
     }
 
     private String getNumRound(final Tweet question) {
-        return getElementInArray(question.getText(), POSITION_NUM_ROUND).substring(1);
+        return getElementInArray(question.getText(), POSITION_NUM_ROUND).substring(FIRST_CHAR);
     }
 
     private boolean isACorrectAttack(final Tweet question) {
@@ -119,7 +120,7 @@ public class JudgeAnswersValidAttaqueCell implements SmartCell {
     }
 
     private String getAttaque(final Tweet question) {
-        return getElementInArray(question.getText(), POSITION_ATTAQUE).substring(1);
+        return getElementInArray(question.getText(), POSITION_ATTAQUE).substring(FIRST_CHAR);
     }
 
     private boolean isNotNull(final Tweet question) {
@@ -127,8 +128,11 @@ public class JudgeAnswersValidAttaqueCell implements SmartCell {
     }
 
     private boolean isALaunchAttackFromPokemon(final Tweet question) {
-        return (question.getText().matches(getKeyWord()) || question.getText().contains("o_O ?"))
-                && getCC(question).equals("/cc");
+        return isAnAttackOrAnWeirdFace(question) && getCC(question).equals("/cc");
+    }
+
+    private boolean isAnAttackOrAnWeirdFace(final Tweet question) {
+        return question.getText().matches(getKeyWord()) || isWeirdSmiley(question);
     }
 
     private String getCC(final Tweet question) {

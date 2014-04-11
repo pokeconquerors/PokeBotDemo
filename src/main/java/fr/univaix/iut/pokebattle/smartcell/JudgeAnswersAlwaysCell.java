@@ -12,12 +12,15 @@ public class JudgeAnswersAlwaysCell implements SmartCell {
 
     public final String ask(final Tweet question) {
         if (isNotNull(question) && isNotAWait()) {
-            return "@" + question.getScreenName()
-                    + " Bienvenue dans le monde fascinant des pokémons";
+            return getMessage(question);
         } else if (isNotAWait()) {
             return "Un pokemon sauvage apparait";
         }
         return null;
+    }
+
+    private String getMessage(final Tweet question) {
+        return "@" + question.getScreenName() + " Bienvenue dans le monde fascinant des pokémons";
     }
 
     private boolean isNotAWait() {
