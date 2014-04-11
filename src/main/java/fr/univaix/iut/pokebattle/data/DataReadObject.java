@@ -35,7 +35,7 @@ public final class DataReadObject {
 
     public DataObjectPokemon getPokemon(final String nomPokemon) {
         for (DataObjectPokemon pokemon : pokemons) {
-            if (pokemon.nom.toLowerCase().equals(nomPokemon.toLowerCase())) {
+            if (nomPokemon.toLowerCase().contains(pokemon.nom.toLowerCase())) {
                 return pokemon;
             }
         }
