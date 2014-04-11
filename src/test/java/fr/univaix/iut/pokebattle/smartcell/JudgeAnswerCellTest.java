@@ -5,7 +5,6 @@ import static org.fest.assertions.Assertions.assertThat;
 
 import org.junit.Test;
 
-import fr.univaix.iut.pokebattle.bot.JudgeBot;
 import fr.univaix.iut.pokebattle.twitter.Tweet;
 
 public class JudgeAnswerCellTest {

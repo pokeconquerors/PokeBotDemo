@@ -1,10 +1,7 @@
 package fr.univaix.iut.pokebattle.run;
 
-import java.io.IOException;
-
 import fr.univaix.iut.pokebattle.bot.JudgeBot;
 import fr.univaix.iut.pokebattle.data.DataReadObject;
-import fr.univaix.iut.pokebattle.tuse.TUSEException;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
