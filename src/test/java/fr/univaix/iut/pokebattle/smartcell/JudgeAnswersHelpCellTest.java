@@ -29,10 +29,8 @@ public class JudgeAnswersHelpCellTest {
 
     @Test
     public void test_Retour() {
-        String chaine = ".*(?i)overbid\\s+.* .*(?i)#fight with .* null .*(?i)round\\s*\\?.* #(?i)ko.* "
-                + ".*\\s+(?i)fight\\s*?.* .*\\s+(?i)hire\\s*!.* .*\\s+#fight #ok with\\s+.* "
-                + "@.+ #(?i)attack #.+ @.+.* .*\\s+(?i)gym\\s*\\?.* .*\\s+(?i)salut(!.*|\\s+.*|) .*\\s+(?i)help.* ";
-        assertEquals(chaine, cell.ask(new Tweet("TwitterTest", "@PokeConquerors Help")));
+        String chaine = "<Overbid> <#fight with> <round ?> <#ko> <fight ?> <hire !> <#fight #ok with> <#attack #ton_Attaque> <gym ?> <salut !> <help> <...>";
+        assertEquals("@TwitterTest " + chaine, cell.ask(new Tweet("TwitterTest", "@PokeConquerors Help")));
     }
 
 }

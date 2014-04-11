@@ -4,6 +4,7 @@
 \usepackage[polutonikogreek, francais]{babel}
 \usepackage[top=3.2cm, bottom=3.5cm, left=2.8cm, right=2.8cm]{geometry}
 \usepackage{eurosym}    % €
+\usepackage{textcomp}
 \usepackage{hyperref}   % Link
 \usepackage{graphicx}
 \usepackage{sectsty}
@@ -32,7 +33,7 @@
 \title{ ~\\~\\~\\Rétrospective\\\small{Projet Agile - Bot Pokemon} ~\\~\\~\\~\\~\\}
 
 \author{Cédric CANESTRARI, Arthur CAVAILLE,\\ Cédric CHEBROU, Baptiste DEJEAN}
-\date{~\\Vendredi 11 avril 2014 - Version 1.1\\
+\date{~\\Dimanche 13 avril 2014 - Version 1.3\\
 	~\\
 	Sébastien NEDJAR\\
 	Benoît GANTAUME
@@ -59,7 +60,7 @@
 \chead{Rétrospective}
 \rhead{PokeBot - Java}
 \lfoot{Cédric CANESTRARI\\ Arthur CAVAILLE\\ Cédric CHEBROU\\ Baptiste DEJEAN}
-\cfoot{~\thepage\\~\\Version 1.1\\\today }
+\cfoot{~\thepage\\~\\Version 1.3\\\today }
 \rfoot{~\\ I.U.T. Aix-Marseille\\Département Informatique\\2$^e$ Année - Groupe 1}
 \setcounter{page}{2}
     	\begin{figure}[h]
@@ -77,6 +78,10 @@
 			1.0 & 11/04/2014 & Rédactions des parties \\
             	\hline
 			1.1 & 12/04/2014 & Rédactions des parties \\
+            	\hline
+            		1.2 & 12/04/2014 & Annexes \\
+            	\hline
+            		1.3 & 12/04/2014 & Fonctionnalités supplémentaires\\
             	\hline
         	\end{tabular}
     	\end{figure}
@@ -141,6 +146,63 @@ eCobertura est vraiment très utile et nous avons apprécié son utilisation pou
 \subsection{Git}
 
 L'utilisation de Git nous a permis de travailler ensemble et en même temps sur différents ordinateurs et pouvoir mettre en commun nos améliorations qui est une étape essentielle à l'avancement du projet. Cependant, un peu plus d'exercice et précision sur l'utilisation de github aurait été très utile et certains erreurs auraient pu être évité. Après des moments difficiles, un départ catastrophie, github est un très bon outil mais si on ne le maitrise pas, il peut nous faire perdre du travail.
+
+\newpage
+\section{Fonctionalités du juge de combat}
+\subsection{A19 - Un juge de combat répond toujours}
+
+Lorsque quelqu'un parle à un juge de combat, celui-ci répond en saluant.\\
+
+{\noindent \textit{Exemple}
+\begin{verbatim}
+      PCSBelias: 	    "@PokeConquerors Tu dois toujours répondre ?"
+      PokeConquerors: "@PCSBelias Bienvenue dans le monde fascinant des pokémons"
+\end{verbatim}
+
+\subsection{A20 - Un juge de combat répond si on lui demande de l'aide}
+
+Lorsque quelqu'un demande de l'aide à un juge de combat, celui-ci répond la liste des commandes.\\
+
+{\noindent \textit{Exemple}
+\begin{verbatim}
+      PCSBelias: 	    "@PokeConquerors help"
+      PokeConquerors: "@PCSBelias <salut !> <gym ?> <hire !>" ...
+\end{verbatim}
+\subsection{A21 - Un juge de combat peut changer d'arêne}
+
+Lorsque quelqu'un juge de combat a déjà une arène, celui-ci peut changer si on lui offre un salaire intéressant.\\
+
+{\noindent \textit{Exemple 1} : La surenchère est satisfaisante}
+
+\begin{verbatim}
+      Salaire de PokeConquerors : 0 euro
+      PCSBelias: 	    "@PokeConquerors OverBid 300 euros"
+      PokeConquerors: "@PCSBelias Nous allons bien nous entendre ! my gym is @PCSBelias"
+      Salaire de PokeConquerors : 300 euros
+\end{verbatim}
+\textit{Exemple 2} : La surenchère est démesurée
+\begin{verbatim}
+      Salaire de PokeConquerors : 0 euro
+      PCSBelias: 	    "@PokeConquerors OverBid 3000 euro"
+      PokeConquerors: "@PCSBelias Sale Radin ! Retourne à l'âge de Pierre"
+      Salaire de PokeConquerors : 0 euro
+\end{verbatim}
+\textit{Exemple 3} : Ce n'est pas une surenchère
+\begin{verbatim}
+      Salaire de PokeConquerors : 1000 euros
+      PCSBelias: 	    "@PokeConquerors OverBid 300 euro"
+      PokeConquerors: "@PCSBelias Sale Radin ! Retourne à l'âge de Pierre"
+      Salaire de PokeConquerors : 1000 euros
+\end{verbatim}
+\subsection{A22 - Un juge de combat donne le nombre de combat}
+
+Lorsque quelqu'un demande le nombre de combat à un juge de combat, celui-ci répond le nombre de combat dans la dernière heure.\\
+
+{\noindent \textit{Exemple}
+\begin{verbatim}
+      PCSBelias: 	    "@PokeConquerors fight ?"
+      PokeConquerors: "@PCSBelias Nombre de combats de la dernière heure : 0"
+\end{verbatim}
 
 \newpage
 \section{Remerciements}

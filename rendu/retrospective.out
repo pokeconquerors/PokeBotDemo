@@ -11,5 +11,10 @@
 \BOOKMARK [2][-]{subsection.3.1}{Java}{section.3}% 11
 \BOOKMARK [2][-]{subsection.3.2}{Les tests}{section.3}% 12
 \BOOKMARK [2][-]{subsection.3.3}{Git}{section.3}% 13
-\BOOKMARK [1][-]{section.4}{Remerciements}{}% 14
-\BOOKMARK [1][-]{section.5}{Annexes}{}% 15
+\BOOKMARK [1][-]{section.4}{Fonctionalit\351s du juge de combat}{}% 14
+\BOOKMARK [2][-]{subsection.4.1}{A19 - Un juge de combat r\351pond toujours}{section.4}% 15
+\BOOKMARK [2][-]{subsection.4.2}{A20 - Un juge de combat r\351pond si on lui demande de l'aide}{section.4}% 16
+\BOOKMARK [2][-]{subsection.4.3}{A21 - Un juge de combat peut changer d'ar\352ne}{section.4}% 17
+\BOOKMARK [2][-]{subsection.4.4}{A22 - Un juge de combat donne le nombre de combat}{section.4}% 18
+\BOOKMARK [1][-]{section.5}{Remerciements}{}% 19
+\BOOKMARK [1][-]{section.6}{Annexes}{}% 20

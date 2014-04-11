@@ -6,5 +6,5 @@ ce foutre dans le projet :
  git remote add heroku git@heroku.com:judgepcs.git
  git push heroku master
 
-login : chebrous@yahoo.fr
+login : chebrouc@yahoo.fr
 mdp : aabbcccc11

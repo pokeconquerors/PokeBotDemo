@@ -13,7 +13,7 @@ public class JudgeAnswersHelpCell implements SmartCell {
     @Override
     public final String ask(final Tweet question) {
         if (isNotNull(question) && isAskToHelp(question)) {
-            return getHelpMessage();
+            return "@" + question.getScreenName() + getHelpMessage();
         }
         return null;
     }
@@ -27,12 +27,7 @@ public class JudgeAnswersHelpCell implements SmartCell {
     }
 
     private String getHelpMessage() {
-        String tmp = "";
-        SmartCell[] smartcells = owner.getSmartCells();
-        for (SmartCell smartcell : smartcells) {
-            tmp += smartcell.getKeyWord() + " ";
-        }
-        return tmp;
+        return " <Overbid> <#fight with> <round ?> <#ko> <fight ?> <hire !> <#fight #ok with> <#attack #ton_Attaque> <gym ?> <salut !> <help> <...>";
     }
 
     @Override
