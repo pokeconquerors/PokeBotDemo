@@ -16,10 +16,6 @@ import twitter4j.Status;
 import twitter4j.Twitter;
 import twitter4j.TwitterException;
 import twitter4j.UserStreamListener;
-/* Useless Import nécessaire (+10% cobertura)
-import fr.univaix.iut.pokebattle.tuse.UserStreamAdapter;
-import twitter4j.UserStreamListener;
-import twitter4j.json.DataObjectFactory;*/
 
 public class TwitterUserStreamEasyBuilder {
     private static final Logger LOGGER = LoggerFactory.getLogger(TwitterBot.class);
@@ -27,7 +23,7 @@ public class TwitterUserStreamEasyBuilder {
     private Twitter             twitter;
     private Bot                 bot;
 
-    public Bot getBot() {
+    public final Bot getBot() {
         return bot;
     }
 
