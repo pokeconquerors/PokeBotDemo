@@ -6,12 +6,12 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 import fr.univaix.iut.pokebattle.bot.JudgeBot;
-import fr.univaix.iut.pokebattle.smartcell.JudgeAnswerWinnerCell;
+import fr.univaix.iut.pokebattle.smartcell.JudgeAnswersWinnerCell;
 import fr.univaix.iut.pokebattle.twitter.Tweet;
 
-public class JudgeAnswerWinnerCellTest {
+public class JudgeAnswersWinnerCellTest {
     JudgeBot              judge = new JudgeBot();
-    JudgeAnswerWinnerCell cell  = new JudgeAnswerWinnerCell(judge);
+    JudgeAnswersWinnerCell cell  = new JudgeAnswersWinnerCell(judge);
 
     @Test
     public void test_NoOwner() {

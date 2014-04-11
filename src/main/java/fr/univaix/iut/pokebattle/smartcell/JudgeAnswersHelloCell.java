@@ -2,7 +2,7 @@ package fr.univaix.iut.pokebattle.smartcell;
 
 import fr.univaix.iut.pokebattle.twitter.Tweet;
 
-public class JudgeAnswerCell implements SmartCell {
+public class JudgeAnswersHelloCell implements SmartCell {
 
     public final String ask(final Tweet question) {
         if (isNotNull(question) && isAHello(question)) { return "@"

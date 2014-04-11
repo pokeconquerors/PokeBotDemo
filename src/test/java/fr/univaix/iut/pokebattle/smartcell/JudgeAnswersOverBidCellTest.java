@@ -8,14 +8,14 @@ import org.junit.Test;
 import fr.univaix.iut.pokebattle.bot.JudgeBot;
 import fr.univaix.iut.pokebattle.twitter.Tweet;
 
-public class JudgeOverBidCellTest {
-    JudgeOverBidCell cell  = null;
+public class JudgeAnswersOverBidCellTest {
+    JudgeAnswersOverBidCell cell  = null;
     JudgeBot         judge = null;
 
     @Before
     public void setUp() {
         judge = new JudgeBot();
-        cell = new JudgeOverBidCell(judge);
+        cell = new JudgeAnswersOverBidCell(judge);
     }
 
     @Test

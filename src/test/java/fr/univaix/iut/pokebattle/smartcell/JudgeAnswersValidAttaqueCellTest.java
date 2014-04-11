@@ -2,16 +2,16 @@ package fr.univaix.iut.pokebattle.smartcell;
 
 import static org.junit.Assert.*;
 import fr.univaix.iut.pokebattle.bot.JudgeBot;
-import fr.univaix.iut.pokebattle.smartcell.JudgeAnswerValidAttaqueCell;
+import fr.univaix.iut.pokebattle.smartcell.JudgeAnswersValidAttaqueCell;
 import fr.univaix.iut.pokebattle.twitter.Tweet;
 
 import org.junit.Test;
 
 import static org.fest.assertions.Assertions.assertThat;
 
-public class JudgeAnswerValidAttaqueCellTest {
+public class JudgeAnswersValidAttaqueCellTest {
 	JudgeBot					judge	= new JudgeBot();
-	JudgeAnswerValidAttaqueCell	cell	= new JudgeAnswerValidAttaqueCell(judge);
+	JudgeAnswersValidAttaqueCell	cell	= new JudgeAnswersValidAttaqueCell(judge);
 
 	@Test
 	public void test_NoOwner() {

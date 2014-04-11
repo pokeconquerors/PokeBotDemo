@@ -12,7 +12,7 @@ import twitter4j.TwitterFactory;
 import fr.univaix.iut.pokebattle.bot.JudgeBot;
 import fr.univaix.iut.pokebattle.twitter.Tweet;
 
-public class JudgeHireCellTest {
+public class JudgeAnswersHireCellTest {
     private static JudgeBot judge = null;
     private static String arene   ="no Gym";
 
@@ -26,7 +26,7 @@ public class JudgeHireCellTest {
 
     @Test
     public void Test_Hire_possible() {
-        JudgeHireCell cell = new JudgeHireCell(judge);
+        JudgeAnswersHireCell cell = new JudgeAnswersHireCell(judge);
         judge.setArene(null);
         assertEquals("@titi my gym is @titi",
                 cell.ask(new Tweet("titi", " Hire!")));
@@ -34,7 +34,7 @@ public class JudgeHireCellTest {
 
     @Test
     public void Test_Hire_impossible() {
-        JudgeHireCell cell = new JudgeHireCell(judge);
+        JudgeAnswersHireCell cell = new JudgeAnswersHireCell(judge);
         cell.ask(new Tweet("toto", " Hire!"));
         assertEquals("@titi @toto is my owner but maybe ...",
                 cell.ask(new Tweet("titi", " Hire!")));
@@ -42,13 +42,13 @@ public class JudgeHireCellTest {
 
     @Test
     public void test_Hire_ExceptionUpdate() {
-        JudgeHireCell cell = new JudgeHireCell(new JudgeBot());
+        JudgeAnswersHireCell cell = new JudgeAnswersHireCell(new JudgeBot());
         cell.ask(new Tweet("toto", " Hire!"));
     }
     
     @Test
     public void test_KeyWord() {
-        JudgeHireCell cell = new JudgeHireCell(new JudgeBot());
+        JudgeAnswersHireCell cell = new JudgeAnswersHireCell(new JudgeBot());
         assertEquals(".*\\s+(?i)hire\\s*!.*", cell.getKeyWord());
     }
     @AfterClass

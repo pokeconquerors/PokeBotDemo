@@ -6,11 +6,11 @@ import fr.univaix.iut.pokebattle.twitter.Tweet;
 /**
  * Reply to all.
  */
-public class JudgeAnswerWinnerCell implements SmartCell {
+public class JudgeAnswersWinnerCell implements SmartCell {
     private static final int POKEMON_COEFFICIENT_XP = 7;
     private JudgeBot owner;
 
-    public JudgeAnswerWinnerCell(final JudgeBot owner) {
+    public JudgeAnswersWinnerCell(final JudgeBot owner) {
         this.owner = owner;
     }
 

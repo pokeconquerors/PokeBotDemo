@@ -7,9 +7,9 @@ import org.junit.Test;
 
 import fr.univaix.iut.pokebattle.twitter.Tweet;
 
-public class JudgeAnswerCellTest {
+public class JudgeAnswersHelloCellTest {
 
-    JudgeAnswerCell cell = new JudgeAnswerCell();
+    JudgeAnswersHelloCell cell = new JudgeAnswersHelloCell();
 
     @Test
     public void testAsk_Epeditor() {

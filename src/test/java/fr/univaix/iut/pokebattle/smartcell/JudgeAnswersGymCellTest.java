@@ -10,11 +10,11 @@ import twitter4j.TwitterFactory;
 import fr.univaix.iut.pokebattle.bot.JudgeBot;
 import fr.univaix.iut.pokebattle.twitter.Tweet;
 
-public class JudgeAnswerAreneCellTest {
+public class JudgeAnswersGymCellTest {
 
     @Test
     public void Test_JudgeAnswerArene_Viridian() {
-        JudgeAnswerAreneCell cell = new JudgeAnswerAreneCell(new JudgeBot(
+        JudgeAnswersGymCell cell = new JudgeAnswersGymCell(new JudgeBot(
                 "ViridianGym"));
         assertEquals("@TwitterTest my Gym is ViridianGym but maybe ...",
                 cell.ask(new Tweet("TwitterTest", "@PokeConquerors Gym?")));
@@ -26,7 +26,7 @@ public class JudgeAnswerAreneCellTest {
         Twitter twitter = factory.getInstance();
         JudgeBot juge = new JudgeBot();
         juge.setTwitter(twitter);
-        JudgeAnswerAreneCell cell = new JudgeAnswerAreneCell(juge);
+        JudgeAnswersGymCell cell = new JudgeAnswersGymCell(juge);
         assertEquals("@TwitterTest no Gym",
                 cell.ask(new Tweet("TwitterTest", "@PokeConquerors Gym?")));
 
@@ -34,20 +34,20 @@ public class JudgeAnswerAreneCellTest {
 
     @Test
     public void Test_JudgeAnswerArene_Null() {
-        JudgeAnswerAreneCell cell = new JudgeAnswerAreneCell(new JudgeBot());
+        JudgeAnswersGymCell cell = new JudgeAnswersGymCell(new JudgeBot());
         assertThat(cell.ask(new Tweet("TwitterTest", "@Gym?"))).isNull();
     }
 
     @Test
     public void Test_JudgeAnswerArene_regex() {
-        JudgeAnswerAreneCell cell = new JudgeAnswerAreneCell(new JudgeBot(
+        JudgeAnswersGymCell cell = new JudgeAnswersGymCell(new JudgeBot(
                 "TestGym"));
         assertThat(cell.ask(new Tweet("TwitterTest", " Gym ?"))).isNotNull();
     }
 
     @Test
     public void test_Regex_Wrong() {
-        JudgeAnswerAreneCell cell = new JudgeAnswerAreneCell(new JudgeBot(
+        JudgeAnswersGymCell cell = new JudgeAnswersGymCell(new JudgeBot(
                 "TestGym"));
         assertThat(cell.ask(new Tweet("Boulet", "@PokeConquerors Gyma?")))
                 .isNull();
@@ -56,7 +56,7 @@ public class JudgeAnswerAreneCellTest {
     @Test
     public void Test_JudgeAnswerArene_Exception() {
         JudgeBot juge = new JudgeBot();
-        JudgeAnswerAreneCell cell = new JudgeAnswerAreneCell(juge);
+        JudgeAnswersGymCell cell = new JudgeAnswersGymCell(juge);
         assertEquals("@TwitterTest no Gym",
                 cell.ask(new Tweet("TwitterTest", "@PokeConquerors Gym?")));
 
@@ -64,7 +64,7 @@ public class JudgeAnswerAreneCellTest {
     
     @Test
     public void test_KeyWord() {
-        JudgeAnswerAreneCell cell = new JudgeAnswerAreneCell(new JudgeBot());
+        JudgeAnswersGymCell cell = new JudgeAnswersGymCell(new JudgeBot());
         assertEquals(".*\\s+(?i)gym\\s*\\?.*", cell.getKeyWord());
     }
 }

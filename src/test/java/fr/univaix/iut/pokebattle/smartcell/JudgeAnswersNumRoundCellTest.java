@@ -7,10 +7,10 @@ import org.junit.Test;
 import fr.univaix.iut.pokebattle.bot.JudgeBot;
 import fr.univaix.iut.pokebattle.twitter.Tweet;
 
-public class JudgeNbRoundsCellTest {
+public class JudgeAnswersNumRoundCellTest {
 
     JudgeBot          judge = new JudgeBot();
-    JudgeNbRoundsCell cell  = new JudgeNbRoundsCell(judge);
+    JudgeAnswersNumRoundCell cell  = new JudgeAnswersNumRoundCell(judge);
 
     @Test
     public void testEchec() {

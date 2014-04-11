@@ -9,13 +9,13 @@ import org.junit.Test;
 import fr.univaix.iut.pokebattle.bot.JudgeBot;
 import fr.univaix.iut.pokebattle.twitter.Tweet;
 
-public class JudgeAlwaysAnswersCellTest {
+public class JudgeAnswersAlwaysCellTest {
 
-    JudgeAlwaysAnswersCell cell = null;
+    JudgeAnswersAlwaysCell cell = null;
 
     @Before
     public void setUp() {
-        cell = new JudgeAlwaysAnswersCell(new JudgeBot());
+        cell = new JudgeAnswersAlwaysCell(new JudgeBot());
     }
 
     @Test
@@ -42,7 +42,7 @@ public class JudgeAlwaysAnswersCellTest {
     @Test
     public void test_null() {
         JudgeBot judge = new JudgeBot();
-        cell = new JudgeAlwaysAnswersCell(judge);
+        cell = new JudgeAnswersAlwaysCell(judge);
         judge.setWait(true);
         assertEquals(null, cell.ask(new Tweet("")));
     }

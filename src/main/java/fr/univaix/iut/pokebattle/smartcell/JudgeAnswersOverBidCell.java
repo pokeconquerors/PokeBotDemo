@@ -3,10 +3,10 @@ package fr.univaix.iut.pokebattle.smartcell;
 import fr.univaix.iut.pokebattle.bot.JudgeBot;
 import fr.univaix.iut.pokebattle.twitter.Tweet;
 
-public class JudgeOverBidCell implements SmartCell {
+public class JudgeAnswersOverBidCell implements SmartCell {
     private JudgeBot owner = null;
 
-    public JudgeOverBidCell(final JudgeBot owner) {
+    public JudgeAnswersOverBidCell(final JudgeBot owner) {
         this.owner = owner;
     }
 
@@ -27,7 +27,7 @@ public class JudgeOverBidCell implements SmartCell {
     }
 
     private String hire(final Tweet question) {
-        JudgeHireCell cell = new JudgeHireCell(owner);
+        JudgeAnswersHireCell cell = new JudgeAnswersHireCell(owner);
         owner.setArene(null);
         String hireMess = cell.ask(
                 new Tweet(question.getScreenName(), "@PokeConquerors Hire !"))

@@ -7,18 +7,17 @@ import org.junit.Test;
 import fr.univaix.iut.pokebattle.bot.JudgeBot;
 import fr.univaix.iut.pokebattle.twitter.Tweet;
 
-public class JudgeInfoFirstOpponentsCellTest {
+public class JudgeGetFightWithCellTest {
 
     JudgeBot                    judge = new JudgeBot();
-    JudgeInfoFirstOpponentsCell cell  = new JudgeInfoFirstOpponentsCell(judge);
+    JudgeGetFightWithCell cell  = new JudgeGetFightWithCell(judge);
 
     @Test
     public void test() {
-        assertEquals("Pokemon = @bulbizare1, Proprio = @pcreux",
-                cell.ask(new Tweet("pcreux",
-                        "@nedseb #fight with @bulbizare1 /cc @viviane")));
+        cell.ask(new Tweet("pcreux", "@nedseb #fight with @bulbizare1 /cc @viviane"));
+        assertEquals("@bulbizare1", judge.getPokemonFromList("bulbizare1"));
     }
-    
+
     @Test
     public void test_KeyWord() {
         assertEquals(".*(?i)#fight with .*", cell.getKeyWord());

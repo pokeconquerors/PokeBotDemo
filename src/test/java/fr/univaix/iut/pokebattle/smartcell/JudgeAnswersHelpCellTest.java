@@ -8,13 +8,13 @@ import org.junit.Test;
 import fr.univaix.iut.pokebattle.bot.JudgeBot;
 import fr.univaix.iut.pokebattle.twitter.Tweet;
 
-public class JudgeAnswerHelpCellTest {
-	JudgeAnswerHelpCell cell = null;
+public class JudgeAnswersHelpCellTest {
+	JudgeAnswersHelpCell cell = null;
 
 	@Before
 	public void setUp () {
 		JudgeBot judge = new JudgeBot();
-		cell = new JudgeAnswerHelpCell(judge);
+		cell = new JudgeAnswersHelpCell(judge);
 	}
 		
 	@Test

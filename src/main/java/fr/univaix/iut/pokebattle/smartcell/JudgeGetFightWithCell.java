@@ -3,11 +3,11 @@ package fr.univaix.iut.pokebattle.smartcell;
 import fr.univaix.iut.pokebattle.bot.JudgeBot;
 import fr.univaix.iut.pokebattle.twitter.Tweet;
 
-public class JudgeInfoFirstOpponentsCell implements SmartCell {
+public class JudgeGetFightWithCell implements SmartCell {
     private static final int POSITION_POKEMON_IN_SPLITTAB = 3;
     private JudgeBot         owner;
 
-    public JudgeInfoFirstOpponentsCell(final JudgeBot owner) {
+    public JudgeGetFightWithCell(final JudgeBot owner) {
         this.owner = owner;
     }
 
@@ -20,11 +20,6 @@ public class JudgeInfoFirstOpponentsCell implements SmartCell {
         if (isFightWith(question)) {
             owner.pushPokemon(getPokemon1(question.getText()),
                     "@" + question.getScreenName(), null, null, true);
-            return "Pokemon = "
-                    + owner.getPokemonFromList(getPokemon1(question.getText()))
-                    + ", Proprio = "
-                    + owner.getProprietaireFromList(getPokemon1(question
-                            .getText()));
         }
         return null;
 

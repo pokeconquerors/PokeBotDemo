@@ -81,7 +81,7 @@ public class JudgeAnswersAfterHimSelfCellTest {
 				judge);
 		judge.setScreenName("PokeConquerors");
     	judge.setTweetMemoryResultat("aaa");
-    	JudgeAnswerValidAttaqueCell cellValid = new JudgeAnswerValidAttaqueCell(judge);
+    	JudgeAnswersValidAttaqueCell cellValid = new JudgeAnswersValidAttaqueCell(judge);
 		judge.pushPokemon("@Carapuce", "twitterTest1", "1", "70", true);
 		judge.pushPokemon("@Bulbizarre", "twitterTest2", "1", "70", true);	
     	cellValid.ask(new Tweet("Carapuce", "@Bulbizarre #attack #charge /cc @twitterTest2 @twitterTest1 @pokeconquerors #1"));

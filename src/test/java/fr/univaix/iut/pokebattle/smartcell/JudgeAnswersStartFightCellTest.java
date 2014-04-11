@@ -7,17 +7,17 @@ import java.util.Date;
 import java.util.List;
 
 import fr.univaix.iut.pokebattle.bot.JudgeBot;
-import fr.univaix.iut.pokebattle.smartcell.JudgeValidateFightCell;
+import fr.univaix.iut.pokebattle.smartcell.JudgeAnswersStartFightCell;
 import fr.univaix.iut.pokebattle.twitter.Tweet;
 import static org.fest.assertions.Assertions.assertThat;
 
 import org.junit.Test;
 
-public class JudgeValidateFightCellTest {
+public class JudgeAnswersStartFightCellTest {
 
     JudgeBot                    judge = new JudgeBot();
-    JudgeInfoFirstOpponentsCell cell  = new JudgeInfoFirstOpponentsCell(judge);
-    JudgeValidateFightCell      cell2 = new JudgeValidateFightCell(judge);
+    JudgeGetFightWithCell cell  = new JudgeGetFightWithCell(judge);
+    JudgeAnswersStartFightCell      cell2 = new JudgeAnswersStartFightCell(judge);
 
     @Test
     public void testSalut() {

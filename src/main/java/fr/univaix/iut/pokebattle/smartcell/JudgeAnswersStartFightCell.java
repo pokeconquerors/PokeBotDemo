@@ -3,10 +3,10 @@ package fr.univaix.iut.pokebattle.smartcell;
 import fr.univaix.iut.pokebattle.bot.JudgeBot;
 import fr.univaix.iut.pokebattle.twitter.Tweet;
 
-public class JudgeValidateFightCell implements SmartCell {
+public class JudgeAnswersStartFightCell implements SmartCell {
     private JudgeBot owner;
 
-    public JudgeValidateFightCell(final JudgeBot owner) {
+    public JudgeAnswersStartFightCell(final JudgeBot owner) {
         this.owner = owner;
     }
 

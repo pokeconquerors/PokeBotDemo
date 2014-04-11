@@ -6,19 +6,19 @@ import java.util.List;
 
 import twitter4j.Twitter;
 import twitter4j.TwitterException;
-import fr.univaix.iut.pokebattle.smartcell.JudgeAlwaysAnswersCell;
-import fr.univaix.iut.pokebattle.smartcell.JudgeAnswerAreneCell;
-import fr.univaix.iut.pokebattle.smartcell.JudgeAnswerCell;
-import fr.univaix.iut.pokebattle.smartcell.JudgeAnswerHelpCell;
-import fr.univaix.iut.pokebattle.smartcell.JudgeAnswerNbFightCell;
-import fr.univaix.iut.pokebattle.smartcell.JudgeAnswerWinnerCell;
+import fr.univaix.iut.pokebattle.smartcell.JudgeAnswersAlwaysCell;
+import fr.univaix.iut.pokebattle.smartcell.JudgeAnswersGymCell;
+import fr.univaix.iut.pokebattle.smartcell.JudgeAnswersHelloCell;
+import fr.univaix.iut.pokebattle.smartcell.JudgeAnswersHelpCell;
+import fr.univaix.iut.pokebattle.smartcell.JudgeAnswersFightsCell;
+import fr.univaix.iut.pokebattle.smartcell.JudgeAnswersWinnerCell;
 import fr.univaix.iut.pokebattle.smartcell.JudgeAnswersAfterHimSelfCell;
-import fr.univaix.iut.pokebattle.smartcell.JudgeHireCell;
-import fr.univaix.iut.pokebattle.smartcell.JudgeAnswerValidAttaqueCell;
-import fr.univaix.iut.pokebattle.smartcell.JudgeInfoFirstOpponentsCell;
-import fr.univaix.iut.pokebattle.smartcell.JudgeNbRoundsCell;
-import fr.univaix.iut.pokebattle.smartcell.JudgeOverBidCell;
-import fr.univaix.iut.pokebattle.smartcell.JudgeValidateFightCell;
+import fr.univaix.iut.pokebattle.smartcell.JudgeAnswersHireCell;
+import fr.univaix.iut.pokebattle.smartcell.JudgeAnswersValidAttaqueCell;
+import fr.univaix.iut.pokebattle.smartcell.JudgeGetFightWithCell;
+import fr.univaix.iut.pokebattle.smartcell.JudgeAnswersNumRoundCell;
+import fr.univaix.iut.pokebattle.smartcell.JudgeAnswersOverBidCell;
+import fr.univaix.iut.pokebattle.smartcell.JudgeAnswersStartFightCell;
 import fr.univaix.iut.pokebattle.smartcell.SmartCell;
 import fr.univaix.iut.pokebattle.twitter.Tweet;
 
@@ -47,14 +47,6 @@ public class JudgeBot implements Bot {
     private String           tweetMemoryResultat              = null;
     private Boolean          wait                             = false;
 
-    public final void setTweetMemoryResultat(final String tweetMemoryResultat) {
-        this.tweetMemoryResultat = tweetMemoryResultat;
-    }
-
-    public final String getTweetMemoryResultat() {
-        return this.tweetMemoryResultat;
-    }
-
     public final Twitter getTwitter() {
         return twitter;
     }
@@ -63,13 +55,22 @@ public class JudgeBot implements Bot {
         this.twitter = twitter;
     }
 
-    public final boolean isInFight() {
-        return inFight;
+    public final void setTweetMemoryResultat(final String tweetMemoryResultat) {
+        this.tweetMemoryResultat = tweetMemoryResultat;
+    }
+
+    public final String getTweetMemoryResultat() {
+        return this.tweetMemoryResultat;
     }
 
     public final void setInFight(final boolean inFight) {
         this.inFight = inFight;
     }
+
+    public final boolean isInFight() {
+        return inFight;
+    }
+
 
     public final void pushPokemon(final String nomPokemon, final String nomProprio,
             final String level, final String xp, final boolean playNextRound) {
@@ -141,12 +142,12 @@ public class JudgeBot implements Bot {
         this.id = id;
     }
 
-    private final SmartCell[] smartCells = new SmartCell[] {new JudgeOverBidCell(this),
-            new JudgeInfoFirstOpponentsCell(this), new JudgeAnswersAfterHimSelfCell(this),
-            new JudgeNbRoundsCell(this), new JudgeAnswerWinnerCell(this),
-            new JudgeAnswerNbFightCell(this), new JudgeHireCell(this),
-            new JudgeValidateFightCell(this), new JudgeAnswerValidAttaqueCell(this),
-            new JudgeAnswerAreneCell(this), new JudgeAnswerCell(), new JudgeAnswerHelpCell(this) };
+    private final SmartCell[] smartCells = new SmartCell[] {new JudgeAnswersOverBidCell(this),
+            new JudgeGetFightWithCell(this), new JudgeAnswersAfterHimSelfCell(this),
+            new JudgeAnswersNumRoundCell(this), new JudgeAnswersWinnerCell(this),
+            new JudgeAnswersFightsCell(this), new JudgeAnswersHireCell(this),
+            new JudgeAnswersStartFightCell(this), new JudgeAnswersValidAttaqueCell(this),
+            new JudgeAnswersGymCell(this), new JudgeAnswersHelloCell(), new JudgeAnswersHelpCell(this) };
 
     public final SmartCell[] getSmartCells() {
         return smartCells;
@@ -160,7 +161,7 @@ public class JudgeBot implements Bot {
                 return answer;
             }
         }
-        return new JudgeAlwaysAnswersCell(this).ask(question);
+        return new JudgeAnswersAlwaysCell(this).ask(question);
     }
 
     public final void setArene(final String arene) {

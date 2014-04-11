@@ -9,10 +9,10 @@ import org.junit.Test;
 import fr.univaix.iut.pokebattle.bot.JudgeBot;
 import fr.univaix.iut.pokebattle.twitter.Tweet;
 
-public class JudgeAnswerNbFightCellTest {
+public class JudgeAnswersFightsCellTest {
     JudgeBot               judge = new JudgeBot();
-    JudgeAnswerNbFightCell cell  = new JudgeAnswerNbFightCell(judge);
-    JudgeValidateFightCell cell2 = new JudgeValidateFightCell(judge);
+    JudgeAnswersFightsCell cell  = new JudgeAnswersFightsCell(judge);
+    JudgeAnswersStartFightCell cell2 = new JudgeAnswersStartFightCell(judge);
 
     @Test
     public void test_regex() {
