@@ -112,4 +112,9 @@ public class JudgeBotTest {
         judge.setWait(true);
         assertTrue(judge.isAnInterestingTweetOfMe("no gym ?"));
     }
+    
+    @Test
+    public void test_Smarcell() {
+        assertThat(judge.getSmartCells()).isNotNull();
+    }
 }
