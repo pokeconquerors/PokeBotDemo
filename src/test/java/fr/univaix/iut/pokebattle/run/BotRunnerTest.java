@@ -37,6 +37,7 @@ public class BotRunnerTest {
 
     @Test
     public void test_getInstance() {
+        BotRunner.getInstance();
         assertThat(BotRunner.getInstance()).isNotNull();
     }
 }

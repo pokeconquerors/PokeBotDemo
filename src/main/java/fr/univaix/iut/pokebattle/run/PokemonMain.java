@@ -22,7 +22,7 @@ public final class PokemonMain {
     public static PokemonMain getInstance() {
         return (instance != null
                 ? instance
-                : new PokemonMain());
+                : (instance = new PokemonMain()));
     }
 
     public static void main(final String[] args) {

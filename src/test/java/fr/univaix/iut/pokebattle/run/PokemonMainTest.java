@@ -29,6 +29,7 @@ public class PokemonMainTest {
 
     @Test
     public void test_getInstance() {
+        PokemonMain.getInstance();
         assertThat(PokemonMain.getInstance()).isNotNull();
     }
 
